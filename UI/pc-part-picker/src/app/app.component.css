@@ -1,0 +1,28 @@
+.mat-mdc-button-base {
+    margin: 8px 0 8px 8px;
+  }
+
+  .card-container {
+    display: flex;
+    background: var(--sys-background);
+    /* border-bottom-style: solid; */
+    border-color: var(--sys-primary);
+    flex-wrap: wrap;         /* Ensure the cards wrap to the next row */
+    justify-content: space-around; /* Space out cards evenly */
+  }
+  
+  mat-card {
+    width: calc(25% - 16px);  /* Ensure 4 cards per row */
+    margin: 8px;
+    padding: 16px; /* Padding inside the card */
+
+  }
+
+  mat-card-title, mat-card-content {
+    color: var(--sys-on-surface-variant);  /* Bright white text */
+    font-weight: bold;  /* Optional: make it bold */
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }

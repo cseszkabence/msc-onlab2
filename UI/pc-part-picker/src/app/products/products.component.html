@@ -1,0 +1,40 @@
+<mat-sidenav-container class="browser-layout">
+    <!-- Filters section (left one-third) -->
+    <mat-sidenav mode="side" opened class="filters">
+      <h3>Filters</h3>
+      
+      <mat-expansion-panel *ngFor="let filter of filters">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ filter.name }}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-checkbox *ngFor="let option of filter.options" [(ngModel)]="option.checked">
+          {{ option.name }}
+        </mat-checkbox>
+        <mat-slider min="200" max="500">
+          <input value="300" matSliderStartThumb>
+          <input value="400" matSliderEndThumb>
+        </mat-slider>
+      </mat-expansion-panel>
+    </mat-sidenav>
+  
+    <!-- Product list section (right two-thirds) -->
+    <mat-sidenav-content class="product-list">
+      <mat-grid-list cols="3" gutterSize="16px">
+        <mat-grid-tile *ngFor="let product of products">
+          <mat-card class="product-card">
+            <mat-card-header>
+              <mat-card-title>{{ product.name }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p><strong>Price:</strong> {{ product.price | currency }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <!-- View Details Button -->
+              <button mat-button (click)="openProductDetails(product)">View Details</button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

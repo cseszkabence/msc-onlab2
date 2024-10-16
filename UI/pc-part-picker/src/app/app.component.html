@@ -1,0 +1,100 @@
+<html>
+<mat-toolbar>
+
+  <mat-toolbar-row>
+    <span>PC PART PICKER</span>
+    <button mat-flat-button (click)="toggleProducts()" routerLink="/products-component">Products</button>
+    <button mat-flat-button routerLink="/configurator-component" routerLinkActive="active"
+      ariaCurrentWhenActive="page">Configurator</button>
+    <button mat-flat-button (click)="toggleSearch()">Search</button>
+    <span class="example-spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row *ngIf="showSearchBar" @slideDownUp>
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput placeholder="Search something..." [(ngModel)]="searchQuery">
+    </mat-form-field>
+  </mat-toolbar-row>
+
+  
+</mat-toolbar>
+<div *ngIf="showProductsBar" class="card-toolbar" @slideDownUp>
+  <div class="card-container">
+    <button mat-flat-button *ngFor="let card of cards; let i = index" (click)="chooseProduct(i)">{{ card.title }}
+    </button>
+  </div>
+</div>
+<router-outlet></router-outlet>
+<!-- Electronics Product Browser -->
+<app-products [filters]="electronicsFilters" [products]="currentProducts"></app-products>
+
+<!-- Clothing Product Browser -->
+<!-- <app-products [filters]="clothingFilters" [products]="clothingProducts"></app-products>
+ --><!--   <div class="row">
+    <label class="text">Select Processor!</label>
+    <select class="dropdown" id="dropdown1">
+      <option *ngFor="let processor of ProcessorModel">
+        {{processor.name}}
+      </option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label class="text">Select Motherboard!</label>
+    <select class="dropdown" id="dropdown2">
+      <option *ngFor="let mobo of MotherboardModel">
+        {{mobo.name}}
+      </option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label class="text">Select Graphics Card!</label>
+    <select class="dropdown" id="dropdown3">
+      <option *ngFor="let videocard of VideocardModel">
+        {{videocard.name}}
+      </option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label class="text">Select PC Case!</label>
+    <select class="dropdown" id="dropdown4">
+      <option *ngFor="let case of CaseModel">
+        {{case.name}}
+      </option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label class="text">Select Memory!</label>
+    <select class="dropdown" id="dropdown5">
+      <option *ngFor="let mem of MemoryModel">
+        {{mem.name}}
+      </option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label class="text">Select Harddrive!</label>
+    <select class="dropdown" id="dropdown6">
+      <option *ngFor="let harddrive of HarddriveModel">
+        {{harddrive.name}}
+      </option>
+    </select>
+  </div>
+
+  <div class="row">
+    <label class="text">Select Powersupply!</label>
+    <select class="dropdown" id="dropdown7">
+      <option *ngFor="let psu of PowersupplyModel">
+        {{psu.name}}
+      </option>
+    </select>
+  </div> -->
+
+</html>

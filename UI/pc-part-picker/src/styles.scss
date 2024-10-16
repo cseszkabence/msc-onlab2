@@ -1,0 +1,30 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$my-material-app-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+      use-system-variables: true, // 👈 Added
+    ),
+    typography: (
+      use-system-variables: true, // 👈 Added
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+:root {
+  @include mat.all-component-themes($my-material-app-theme);
+  @include mat.system-level-colors($my-material-app-theme); // 👈 Added
+  @include mat.system-level-typography($my-material-app-theme); // 👈 Added
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
