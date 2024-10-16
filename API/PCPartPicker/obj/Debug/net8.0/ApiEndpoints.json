@@ -1,0 +1,82 @@
+[
+  {
+    "ContainingType": "PCPartPicker.Controllers.PartsController",
+    "Method": "GetCase",
+    "RelativePath": "api/Parts/GetCase",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PCPartPicker.Controllers.PartsController",
+    "Method": "GetHarddrive",
+    "RelativePath": "api/Parts/GetHarddrive",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PCPartPicker.Controllers.PartsController",
+    "Method": "GetMemory",
+    "RelativePath": "api/Parts/GetMemory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PCPartPicker.Controllers.PartsController",
+    "Method": "GetMotherboard",
+    "RelativePath": "api/Parts/GetMotherboard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PCPartPicker.Controllers.PartsController",
+    "Method": "GetPowersupply",
+    "RelativePath": "api/Parts/GetPowersupply",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PCPartPicker.Controllers.PartsController",
+    "Method": "GetProcessor",
+    "RelativePath": "api/Parts/GetProcessor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PCPartPicker.Controllers.PartsController",
+    "Method": "GetProcessorCooler",
+    "RelativePath": "api/Parts/GetProcessorCooler",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PCPartPicker.Controllers.PartsController",
+    "Method": "GetVideocard",
+    "RelativePath": "api/Parts/GetVideocard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

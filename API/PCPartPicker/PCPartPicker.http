@@ -1,0 +1,6 @@
+@PCPartPicker_HostAddress = http://localhost:5147
+
+GET {{PCPartPicker_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
