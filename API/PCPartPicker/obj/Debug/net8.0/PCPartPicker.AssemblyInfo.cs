@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PCPartPicker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b09e570711b020f0ba955d741f829f6fff876c41")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d3ae74f428ccf7cfddc50e7b1505f9a668a2b3da")]
 [assembly: System.Reflection.AssemblyProductAttribute("PCPartPicker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PCPartPicker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
