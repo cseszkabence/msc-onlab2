@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\csesz\\Desktop\\önlab2_project\\API\\PCPartPicker\\PCPartPicker.csproj": {}
+    "C:\\Users\\csesz\\Desktop\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj": {}
   },
   "projects": {
-    "C:\\Users\\csesz\\Desktop\\önlab2_project\\API\\PCPartPicker\\PCPartPicker.csproj": {
+    "C:\\Users\\csesz\\Desktop\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\csesz\\Desktop\\önlab2_project\\API\\PCPartPicker\\PCPartPicker.csproj",
+        "projectUniqueName": "C:\\Users\\csesz\\Desktop\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
         "projectName": "PCPartPicker",
-        "projectPath": "C:\\Users\\csesz\\Desktop\\önlab2_project\\API\\PCPartPicker\\PCPartPicker.csproj",
+        "projectPath": "C:\\Users\\csesz\\Desktop\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
         "packagesPath": "C:\\Users\\csesz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\csesz\\Desktop\\önlab2_project\\API\\PCPartPicker\\obj\\",
+        "outputPath": "C:\\Users\\csesz\\Desktop\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

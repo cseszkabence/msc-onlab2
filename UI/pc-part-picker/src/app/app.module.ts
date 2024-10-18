@@ -21,6 +21,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 
@@ -33,6 +36,8 @@ import {MatSliderModule} from '@angular/material/slider';
   ],
   imports: [
     BrowserModule,
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
     MatSliderModule,
     MatDialogModule,
     MatExpansionModule,
@@ -53,7 +58,8 @@ import {MatSliderModule} from '@angular/material/slider';
     provideRouter(routes)
   ],
   bootstrap: [AppComponent],
-  exports: [MatSliderModule]
+  exports: [MatSliderModule,
+  ]
 })
 export class AppModule { }
 
