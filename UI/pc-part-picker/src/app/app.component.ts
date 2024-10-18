@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Motherboard } from '../model/Motherboard';
+import { ProductServiceService } from './product-service.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -17,12 +19,12 @@ import { Motherboard } from '../model/Motherboard';
   ],
 })
 export class AppComponent {
-
-
   title = 'PC PART PICKER';
   private APIUrl = "http://localhost:5147/api"
+
   constructor(
-    private httpClient:HttpClient
+    private httpClient:HttpClient,
+    private productService: ProductServiceService
   ){}
 
   showSearchBar: boolean = false;
@@ -49,7 +51,7 @@ export class AppComponent {
     { name: 'Color', options: [{ name: 'Red', checked: false }, { name: 'Blue', checked: false }] }
   ];
 
-  currentProducts: any=[];
+  currentProducts!: Observable<any[]>;
 
   searchQuery: string = '';
   VideocardModel:any=[];
@@ -72,62 +74,6 @@ export class AppComponent {
 
     this.showProductsBar = !this.showProductsBar;
   }
-
-  getMotheboard()
-  {
-    this.httpClient.get<Motherboard[]>(this.APIUrl + '/Parts/GetMotherboard').subscribe(data=>{
-      this.MotherboardModel=data
-    })
-  }
-
-  async getProcessor()
-  {
-    this.httpClient.get(this.APIUrl + '/Parts/GetProcessor').subscribe(data=>{
-      this.ProcessorModel=data
-    })
-  }
-
-  async getVideocard()
-  {
-    this.httpClient.get(this.APIUrl + '/Parts/GetVideocard').subscribe(data=>{
-      this.VideocardModel=data
-    })
-  }
-
-  async getCase()
-  {
-    this.httpClient.get(this.APIUrl + '/Parts/GetCase').subscribe(data=>{
-      this.CaseModel=data
-    })
-  }
-
-  async getMemory()
-  {
-    this.httpClient.get(this.APIUrl + '/Parts/GetMemory').subscribe(data=>{
-      this.MemoryModel=data
-    })
-  }
-
-  async getHarddrive()
-  {
-    this.httpClient.get(this.APIUrl + '/Parts/GetHarddrive').subscribe(data=>{
-      this.HarddriveModel=data
-    })
-  }
-
-  async getPowersupply()
-  {
-    this.httpClient.get(this.APIUrl + '/Parts/GetPowersupply').subscribe(data=>{
-      this.PowersupplyModel=data
-    })
-  }
-
-  async getProcessorCooler()
-  {
-    this.httpClient.get(this.APIUrl + '/Parts/GetProcessorCooler').subscribe(data=>{
-      this.ProcessorCoolerModel=data
-    })
-  }
   
   ngOnInit() 
   {
@@ -137,55 +83,10 @@ export class AppComponent {
     this.getMemory()
     this.getMotheboard()
     this.getPowersupply()
-    this.getProcessor()
     this.getProcessorCooler() */
   }
 
   async chooseProduct(n: number) {
-    switch(n){
-      case 0: {
-        await this.getProcessor();
-        this.currentProducts = this.ProcessorModel;
-        break;
-      }
-      case 1: {
-        await this.getMotheboard();
-        this.currentProducts = this.MotherboardModel;
-        break;
-      }
-      case 2: {
-        await this.getMemory();
-        this.currentProducts = this.MemoryModel;
-        break;
-      }
-      case 3: {
-        await this.getVideocard();
-        this.currentProducts = this.VideocardModel;
-        break;
-      }
-      case 4: {
-        await this.getHarddrive();
-        this.currentProducts = this.HarddriveModel;
-        break;
-      }
-      case 5: {
-        await this.getPowersupply();
-        this.currentProducts = this.PowersupplyModel;
-        break;
-      }
-      case 6: {
-        await this.getCase();
-        this.currentProducts = this.CaseModel;
-        break;
-      }
-      case 7: {
-        await this.getProcessorCooler();
-        this.currentProducts = this.ProcessorCoolerModel;
-        break;
-      }
-      default:{
-        break;
-      }
-    }
+    this.productService.chooseProduct(n);
   }
 }
