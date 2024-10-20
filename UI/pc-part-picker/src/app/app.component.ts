@@ -52,39 +52,20 @@ export class AppComponent {
   ];
 
   currentProducts!: Observable<any[]>;
-
   searchQuery: string = '';
-  VideocardModel:any=[];
-  MotherboardModel:any=[];
-  ProcessorModel:any=[];
-  MemoryModel:any=[];
-  CaseModel:any=[];
-  HarddriveModel:any=[];
-  PowersupplyModel:any=[];
-  ProcessorCoolerModel:any=[];
 
   toggleSearch(): void {
-    //this.showProductsBar = false;
-
+    this.showProductsBar = false;
     this.showSearchBar = !this.showSearchBar;
   }
 
   toggleProducts(): void {
     this.showSearchBar = false;
-
     this.showProductsBar = !this.showProductsBar;
   }
   
   ngOnInit() 
-  {
-/*     this.getVideocard()
-    this.getCase()
-    this.getHarddrive()
-    this.getMemory()
-    this.getMotheboard()
-    this.getPowersupply()
-    this.getProcessorCooler() */
-  }
+  {}
 
   async chooseProduct(n: number) {
     this.productService.chooseProduct(n);

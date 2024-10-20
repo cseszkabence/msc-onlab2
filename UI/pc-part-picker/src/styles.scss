@@ -27,6 +27,7 @@ $my-material-app-theme: mat.define-theme(
 html, body {
   margin: 0;
   padding: 0;
+  background-color: var(--sys-background);
 }
 
 .transparent .mat-mdc-dialog-container {

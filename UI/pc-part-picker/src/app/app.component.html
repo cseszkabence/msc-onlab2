@@ -1,6 +1,5 @@
 <html>
 <mat-toolbar>
-
   <mat-toolbar-row>
     <span>PC PART PICKER</span>
     <button mat-flat-button (click)="toggleProducts()" routerLink="/products-component">Products</button>
@@ -12,28 +11,24 @@
       <mat-icon>shopping_cart</mat-icon>
     </button>
   </mat-toolbar-row>
-
-  <mat-toolbar-row *ngIf="showSearchBar" @slideDownUp>
-    <mat-form-field>
-      <mat-label>Search</mat-label>
-      <input matInput placeholder="Search something..." [(ngModel)]="searchQuery">
-    </mat-form-field>
-  </mat-toolbar-row>
-
-  
 </mat-toolbar>
+
+
 <div *ngIf="showProductsBar" class="card-toolbar" @slideDownUp>
   <div class="card-container">
     <button mat-flat-button *ngFor="let card of cards; let i = index" (click)="chooseProduct(i)">{{ card.title }}
     </button>
   </div>
 </div>
+
+<div *ngIf="showSearchBar" @slideDownUp>
+ <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Search something..." [(ngModel)]="searchQuery" type="search">
+    <button matSuffix mat-button><mat-icon >search</mat-icon></button>
+  </mat-form-field> 
+</div>
+
 <router-outlet></router-outlet>
-<!-- Electronics Product Browser -->
-<app-products></app-products>
-
-<!-- Clothing Product Browser -->
-<!-- <app-products [filters]="clothingFilters" [products]="clothingProducts"></app-products>
- -->
-
+<!-- <app-products></app-products> -->
 </html>
