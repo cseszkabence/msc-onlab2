@@ -2,7 +2,37 @@
 <mat-dialog-content>
   <!-- <img [src]="product.image" alt="{{ product.name }}" width="100%">
   <p>{{ product.description }}</p> -->
-  <p><strong>Price:</strong> {{ product.price | currency }}</p>
+  <div class="details-container"><strong>Price:</strong>
+    <div class="details-data"> {{ product.price | currency }}</div>
+  </div>
+  <div class="details-container"><strong>Price:</strong>
+    <div class="details-data"> {{ product.coreCount}}</div>
+  </div>
+  <div class="details-container"><strong>Price:</strong>
+    <div class="details-data"> {{ product.coreClock}}</div>
+  </div>
+  <div class="details-container"><strong>Price:</strong>
+    <div class="details-data"> {{ product.boostClock}}</div>
+  </div>
+  <div class="details-container"><strong>Price:</strong>
+    <div class="details-data"> {{ product.tdp}} </div>
+  </div>
+  <div class="details-container">
+    <h4>Price:</h4>
+
+    <div class="details-data"> {{ product.graphics }}</div>
+  </div>
+  <div class="details-container"><strong>Price:</strong>
+    <div class="details-data"> {{ product.smt}}</div>
+  </div>
+  <div class="details-container">
+    <!-- <h4>Price:</h4> -->
+     <!-- TODO: FIND SOLUTION TO DISPLAY/HIDE LABELS WITH CONENT -- CSS STYLES -->
+    <div class="details-data">
+      {{ product.bubu}}
+    </div>
+  </div>
+
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>

@@ -4,7 +4,7 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
 import { RouterModule } from '@angular/router';
 import { MatSliderModule } from '@angular/material/slider';
 import { map, Observable } from 'rxjs';
-import { ProductServiceService } from '../product-service.service';
+import { filterProductsByName, ProductServiceService } from '../product-service.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
 
@@ -15,45 +15,53 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 })
 export class ProductsComponent implements OnInit {
 
-
   filters = [
     { name: 'Manufacturer', options: [{ name: 'AMD', checked: false }, { name: 'Intel', checked: false }] },
     { name: 'Price', options: [{ name: 'Under $500', checked: false }, { name: '$500 - $1000', checked: false }] }
   ];
 
-  products$ = this.productService.products$;
+  products$!: Observable<any[]>;
+  allProducts$!: Observable<any[]>;
 
-  priceRanges = [
-    { label: 'Under $50', range: [0, 50] },
-    { label: '$50 - $100', range: [50, 100] },
-    { label: '$100 - $200', range: [100, 200] },
-    { label: 'Above $200', range: [200, Infinity] }
-  ];
-  availableBrands = ['BrandA', 'BrandB', 'BrandC'];
-
+  enabledFilters = 0;
+  filteredProducts$!: Observable<any[]>;
 
   constructor(private productService: ProductServiceService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.productService.chooseProduct(0);
+    this.fetchData();
+    this.saveOriginalProductsList();
+    this.products$.subscribe({
+      next: (products) => this.productService.productsSubject.next(products)
+    });
+  }
+
+  saveOriginalProductsList(): void {
+    this.allProducts$ = this.products$;
+  }
+
+  fetchData() {
+    this.products$ = this.productService.products$;
   }
 
   onChange(event: any, index: any, item: any) {
-    const filteredProducts$ = filterProductsByName(this.products$, item.name);
-    filteredProducts$.subscribe(filteredProducts => {
-      console.log('Filtered Products:', filteredProducts);
+    this.enabledFilters = 0;
+    //this.filteredProducts$ = this.allProducts$;
+    this.filters[0].options.forEach(element => {
+      if (element.checked == true) {
+        this.enabledFilters++;
+        this.productService.searchProducts( element.name);
+        this.fetchData();
+        //this.filteredProducts$ = filterProductsByName(this.filteredProducts$, element.name);
+      }
     });
-    this.products$ = filteredProducts$;
-  }
-  
-  // Set the brand filter
-  setBrandFilter(brand: string): void {
-    this.productService.setFilter('brand', brand);
-  }
-
-  // Set the price range filter
-  setPriceRangeFilter(range: { label: string, range: number[] }): void {
-    this.productService.setFilter('priceRange', range.range);
+    if (this.enabledFilters == 0) {
+      this.products$ = this.allProducts$;
+      return;
+    }
+    //this.products$ = this.filteredProducts$;
+    //this.fetchData();
   }
 
   openProductDetails(product: any): void {
@@ -63,11 +71,5 @@ export class ProductsComponent implements OnInit {
     });
   }
 }
-function filterProductsByName<T extends { name: string }>(
-    products$: Observable<T[]>,
-    searchTerm: string
-  ): Observable<T[]> {
-    return products$.pipe(
-      map(products => products.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase())))
-    );
-  }
+
+

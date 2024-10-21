@@ -14,7 +14,7 @@
 </mat-toolbar>
 
 
-<div *ngIf="showProductsBar" class="card-toolbar" @slideDownUp>
+<div *ngIf="showProductsBar" @slideDownUp>
   <div class="card-container">
     <button mat-flat-button *ngFor="let card of cards; let i = index" (click)="chooseProduct(i)">{{ card.title }}
     </button>
@@ -25,7 +25,7 @@
  <mat-form-field>
     <mat-label>Search</mat-label>
     <input matInput placeholder="Search something..." [(ngModel)]="searchQuery" type="search">
-    <button matSuffix mat-button><mat-icon >search</mat-icon></button>
+    <button matSuffix mat-button (click)="searchProducts()"><mat-icon >search</mat-icon></button>
   </mat-form-field> 
 </div>
 
