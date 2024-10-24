@@ -20,6 +20,7 @@ import { Processor } from '../model/Processor';
   ],
 })
 export class AppComponent {
+
   title = 'PC PART PICKER';
   categoryNumber: number = 0;
 
@@ -55,17 +56,18 @@ export class AppComponent {
 
   ngOnInit() { }
 
-  searchProducts(): void {
-    if(this.searchQuery !== ''){
-      this.productService.searchProducts(this.searchQuery);
-    }else{
-      this.productService.chooseProduct(this.categoryNumber);
-    }
+  async searchProducts() {
+    await this.productService.searchProducts(this.searchQuery);
   }
 
-  chooseProduct(n: number) {
+  async cleanSearch() {
+    this.searchQuery = '';
+    this.searchProducts();
+  }
+
+  async chooseProduct(n: number) {
     this.categoryNumber = n;
-    this.productService.chooseProduct(n);
+    await this.productService.chooseProduct(n);
   }
 
 }

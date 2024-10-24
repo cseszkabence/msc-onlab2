@@ -51,7 +51,7 @@ export class ProductsComponent implements OnInit {
     this.filters[0].options.forEach(element => {
       if (element.checked == true) {
         this.enabledFilters++;
-        this.productService.searchProducts( element.name);
+        this.productService.searchProducts(element.name);
         this.fetchData();
         //this.filteredProducts$ = filterProductsByName(this.filteredProducts$, element.name);
       }

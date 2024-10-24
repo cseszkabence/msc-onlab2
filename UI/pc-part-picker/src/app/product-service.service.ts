@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Motherboard } from '../model/Motherboard';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
 import { Processor } from '../model/Processor';
 import { Videocard } from '../model/Videocard';
 import { Pccase } from '../model/Pccase';
@@ -19,13 +19,19 @@ export class ProductServiceService {
   productsSubject = new BehaviorSubject<any[]>([]);
   products$ = this.productsSubject.asObservable();
 
+  originalProducts!: any[];
+
   constructor(
-    private httpClient:HttpClient
+    private httpClient: HttpClient
   ) { }
 
-  searchProducts(searchQuery: string): void {
-    const currentProducts = this.productsSubject.getValue(); // Get the current value of the products array
-    const filteredProducts = currentProducts.filter(product =>
+  async searchProducts(searchQuery: string): Promise<void> {
+    if (searchQuery == '') {
+      this.productsSubject.next(this.originalProducts);
+      return;
+    }
+    //const currentProducts = this.productsSubject.getValue(); // Get the current value of the products array
+    const filteredProducts = this.originalProducts.filter(product =>
       product.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     this.productsSubject.next(filteredProducts); // Update the BehaviorSubject with the filtered array
@@ -35,112 +41,95 @@ export class ProductServiceService {
     this.productsSubject.next(products);
   }
 
+  async saveProducts() {
+    this.originalProducts = this.productsSubject.getValue();
+  }
+
   getProducts() {
     return this.products$;
   }
 
-  chooseProduct(n: number): void {
-    switch(n){
+  async chooseProduct(n: number): Promise<void> {
+    //n=10;
+    this.originalProducts = [];
+    switch (n) {
       case 0: {
-        this.getProcessor().subscribe({
-          next: (products) => this.productsSubject.next(products),
-          error: (err) => console.error('Failed to load products', err)
-        });
+        const products = await firstValueFrom(this.getProcessor());
+        this.productsSubject.next(products);
         break;
       }
-      case 1: { 
-        this.getMotheboard().subscribe({
-          next: (products) => this.productsSubject.next(products),
-          error: (err) => console.error('Failed to load products', err)
-        }); 
+      case 1: {
+        const products = await firstValueFrom(this.getMotheboard());
+        this.productsSubject.next(products);
         break;
       }
       case 2: {
-        this.getMemory().subscribe({
-          next: (products) => this.productsSubject.next(products),
-          error: (err) => console.error('Failed to load products', err)
-        });         
+        const products = await firstValueFrom(this.getMemory());
+        this.productsSubject.next(products);
         break;
       }
       case 3: {
-        this.getVideocard().subscribe({
-          next: (products) => this.productsSubject.next(products),
-          error: (err) => console.error('Failed to load products', err)
-        });         
+        const products = await firstValueFrom(this.getVideocard());
+        this.productsSubject.next(products);
         break;
       }
       case 4: {
-        this.getHarddrive().subscribe({
-          next: (products) => this.productsSubject.next(products),
-          error: (err) => console.error('Failed to load products', err)
-        });        
+        const products = await firstValueFrom(this.getHarddrive());
+        this.productsSubject.next(products);
         break;
       }
       case 5: {
-        this.getPowersupply().subscribe({
-          next: (products) => this.productsSubject.next(products),
-          error: (err) => console.error('Failed to load products', err)
-        });         
+        const products = await firstValueFrom(this.getPowersupply());
+        this.productsSubject.next(products);
         break;
       }
       case 6: {
-        this.getCase().subscribe({
-          next: (products) => this.productsSubject.next(products),
-          error: (err) => console.error('Failed to load products', err)
-        });         
+        const products = await firstValueFrom(this.getCase());
+        this.productsSubject.next(products);
         break;
       }
       case 7: {
-        this.getProcessorCooler().subscribe({
-          next: (products) => this.productsSubject.next(products),
-          error: (err) => console.error('Failed to load products', err)
-        });         
+        const products = await firstValueFrom(this.getProcessorCooler());
+        this.productsSubject.next(products);
         break;
       }
-      default:{
+      default: {
         //this.productsSubject.next(this.mockData);
         break;
       }
     }
+    await this.saveProducts();
   }
 
-  getMotheboard(): Observable<Motherboard[]>
-  {
+  getMotheboard(): Observable<Motherboard[]> {
     return this.httpClient.get<Motherboard[]>(this.APIUrl + '/Parts/GetMotherboard')
   }
 
-  getProcessor(): Observable<Processor[]>
-  {
+  getProcessor(): Observable<Processor[]> {
     return this.httpClient.get<Processor[]>(this.APIUrl + '/Parts/GetProcessor')
   }
 
-  getVideocard(): Observable<Videocard[]>
-  {
+  getVideocard(): Observable<Videocard[]> {
     return this.httpClient.get<Videocard[]>(this.APIUrl + '/Parts/GetVideocard')
   }
 
-  getCase(): Observable<Pccase[]>
-  {
+  getCase(): Observable<Pccase[]> {
     return this.httpClient.get<Pccase[]>(this.APIUrl + '/Parts/GetCase')
   }
 
-  getMemory(): Observable<Memory[]>
-  {
+  getMemory(): Observable<Memory[]> {
     return this.httpClient.get<Memory[]>(this.APIUrl + '/Parts/GetMemory')
   }
 
-  getHarddrive(): Observable<Harddrive[]>
-  {
+  getHarddrive(): Observable<Harddrive[]> {
     return this.httpClient.get<Harddrive[]>(this.APIUrl + '/Parts/GetHarddrive')
   }
 
-  getPowersupply(): Observable<Powersupply[]>
-  {
+  getPowersupply(): Observable<Powersupply[]> {
     return this.httpClient.get<Powersupply[]>(this.APIUrl + '/Parts/GetPowersupply')
   }
 
-  getProcessorCooler(): Observable<Cpucooler[]>
-  {
+  getProcessorCooler(): Observable<Cpucooler[]> {
     return this.httpClient.get<Cpucooler[]>(this.APIUrl + '/Parts/GetProcessorCooler')
   }
 
@@ -485,7 +474,7 @@ export class ProductServiceService {
       "seriesType": null,
       "socketType": null
     }
-]
+  ]
 }
 
 export function filterProductsByName<T extends { name: string }>(
