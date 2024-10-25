@@ -24,7 +24,7 @@
 <div *ngIf="showSearchBar" @slideDownUp>
  <mat-form-field>
     <mat-label>Search</mat-label>
-    <input matInput placeholder="Search something..." [(ngModel)]="searchQuery">
+    <input matInput #txtVal (keydown.enter)="searchProducts()" placeholder="Search something..." [(ngModel)]="searchQuery">
     @if (searchQuery) {
       <button matSuffix mat-button aria-label="Clear" (click)="cleanSearch()">
         <mat-icon>close</mat-icon>
