@@ -2,10 +2,10 @@
 <mat-toolbar>
   <mat-toolbar-row>
     <span>PC PART PICKER</span>
-    <button mat-flat-button (click)="toggleProducts()" routerLink="/products-component">Products</button>
-    <button mat-flat-button routerLink="/configurator-component" routerLinkActive="active"
+    <button mat-raised-button [ngStyle]="{'background-color': showProductsBar ? '#19241E' : '#0F1511'}" (click)="toggleProducts()" routerLink="/products-component">Products</button>
+    <button mat-raised-button routerLink="/configurator-component" routerLinkActive="active"
       ariaCurrentWhenActive="page">Configurator</button>
-    <button mat-flat-button (click)="toggleSearch()">Search</button>
+    <button mat-raised-button [ngStyle]="{'background-color': showSearchBar ? '#19241E' : '#0F1511'}" (click)="toggleSearch()">Search</button>
     <span class="example-spacer"></span>
     <button mat-icon-button>
       <mat-icon>shopping_cart</mat-icon>

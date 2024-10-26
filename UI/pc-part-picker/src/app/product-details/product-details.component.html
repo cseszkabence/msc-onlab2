@@ -1,9 +1,5 @@
 <h2 mat-dialog-title>{{ product.name }}</h2>
 <mat-dialog-content>
-  <!-- <div *ngIf="product.name" class="details-container"><strong>Name:</strong>
-    <div class="details-data"> {{ product.name }}</div>
-  </div> -->
-
   <!--CPU-->
 
   <div *ngIf="product.price" class="details-container"><strong>Price:</strong>
@@ -13,10 +9,10 @@
     <div class="details-data"> {{ product.coreCount}}</div>
   </div>
   <div *ngIf="product.coreClock" class="details-container"><strong>Clock speed:</strong>
-    <div class="details-data"> {{ product.coreClock}} GHz</div>
+    <div class="details-data"> {{ product.coreClock}} MHz</div>
   </div>
   <div *ngIf="product.boostClock" class="details-container"><strong>Boost clock speed:</strong>
-    <div class="details-data"> {{ product.boostClock}} GHz</div>
+    <div class="details-data"> {{ product.boostClock}} MHz</div>
   </div>
   <div *ngIf="product.tdp" class="details-container"><strong>TDP:</strong>
     <div class="details-data"> {{ product.tdp}} W</div>
@@ -57,9 +53,6 @@
   <div *ngIf="product.pricePerGb" class="details-container"><strong>Price per GB:</strong>
     <div class="details-data"> {{ product.pricePerGb}}</div>
   </div>
-  <div *ngIf="product.color" class="details-container"><strong>Color:</strong>
-    <div class="details-data"> {{ product.color }}</div>
-  </div>
   <div *ngIf="product.firsWordLatency" class="details-container"><strong>First Word Latency:</strong>
     <div class="details-data"> {{ product.firsWordLatency}}</div>
   </div>
@@ -75,23 +68,14 @@
   <div *ngIf="product.memory" class="details-container"><strong>Memory size:</strong>
     <div class="details-data"> {{ product.memory}} GB</div>
   </div>
-  <div *ngIf="product.coreClock" class="details-container"><strong>Core speed:</strong>
-    <div class="details-data"> {{ product.coreClock}} Mhz</div>
-  </div>
-  <div *ngIf="product.boostClock" class="details-container"><strong>Bost clock speed:</strong>
-    <div class="details-data"> {{ product.boostClock }} Mhz</div>
-  </div>
-  <div *ngIf="product.color" class="details-container"><strong>Color:</strong>
-    <div class="details-data"> {{ product.color}}</div>
-  </div>
   <div *ngIf="product.length" class="details-container"><strong>Length:</strong>
     <div class="details-data"> {{ product.length}} mm</div>
   </div>
 
   <!--STORAGE-->
 
-  <div *ngIf="product.capacity" class="details-container"><strong>Capcaity:</strong>
-    <div class="details-data"> {{ product.capcaity}}</div>
+  <div *ngIf="product.capacity" class="details-container"><strong>Capacity:</strong>
+    <div class="details-data"> {{ product.capacity}} GB</div>
   </div>
   <div *ngIf="product.pricePerGb" class="details-container"><strong>Price per GB:</strong>
     <div class="details-data"> {{ product.pricePerGb}}</div>
@@ -109,9 +93,6 @@
 
   <!--PSU-->
 
-  <div *ngIf="product.type" class="details-container"><strong>Type:</strong>
-    <div class="details-data"> {{ product.type}}</div>
-  </div>
   <div *ngIf="product.efficiency" class="details-container"><strong>Efficiency:</strong>
     <div class="details-data"> {{ product.efficiency}}</div>
   </div>
@@ -121,18 +102,9 @@
   <div *ngIf="product.modular" class="details-container"><strong>Modular:</strong>
     <div class="details-data"> {{ product.modular }}</div>
   </div>
-  <div *ngIf="product.color" class="details-container"><strong>Color:</strong>
-    <div class="details-data"> {{ product.color}}</div>
-  </div>
 
   <!--CASE-->
 
-  <div *ngIf="product.formFactor" class="details-container"><strong>Form factor:</strong>
-    <div class="details-data"> {{ product.formFactor}}</div>
-  </div>
-  <div *ngIf="product.color" class="details-container"><strong>Color:</strong>
-    <div class="details-data"> {{ product.color}}</div>
-  </div>
   <div *ngIf="product.sidePanel" class="details-container"><strong>Sidepanel:</strong>
     <div class="details-data"> {{ product.sidePanel}} </div>
   </div>
@@ -146,20 +118,11 @@
   
   <!--CPU COOLER-->
 
-  <div *ngIf="product.rpm" class="details-container"><strong>RPM:</strong>
-    <div class="details-data"> {{ product.rpm}}</div>
+  <div *ngIf="product.rpm" class="details-container"><strong>Fan speed:</strong>
+    <div class="details-data"> {{ product.rpm}} RPM</div>
   </div>
   <div *ngIf="product.noiseLevel" class="details-container"><strong>Noise level:</strong>
-    <div class="details-data"> {{ product.noiseLevel}} db</div>
-  </div>
-  <div *ngIf="product.color" class="details-container"><strong>Color:</strong>
-    <div class="details-data"> {{ product.color}} </div>
-  </div>
-  <div *ngIf="product.size" class="details-container"><strong>Size:</strong>
-    <div class="details-data"> {{ product.size }} mm</div>
-  </div>
-  <div *ngIf="product.internal35Bays" class="details-container"><strong>Internal 3.5" bays:</strong>
-    <div class="details-data"> {{ product.internal35Bays}}</div>
+    <div class="details-data"> {{ product.noiseLevel}} Db</div>
   </div>
 
 </mat-dialog-content>

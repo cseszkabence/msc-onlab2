@@ -27,6 +27,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {MatTableModule} from '@angular/material/table';
   ],
   imports: [
     BrowserModule,
+    MatButtonToggleModule,
     MatTableModule,
     MatInputModule,
     MatSelectModule,
