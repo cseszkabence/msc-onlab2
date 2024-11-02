@@ -6,6 +6,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { map, Observable } from 'rxjs';
 import { filterProductsByName, ProductServiceService } from '../product-service.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { getManufacturers, Processor } from '../../model/Processor';
 
 
 @Component({
@@ -16,8 +17,8 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 export class ProductsComponent implements OnInit {
 
   filters = [
-    { name: 'Manufacturer', options: [{ name: 'AMD', checked: false }, { name: 'Intel', checked: false }] },
-    { name: 'Price', options: [{ name: 'Under $500', checked: false }, { name: '$500 - $1000', checked: false }] }
+    { name: 'Manufacturer', options: [] },
+    { name: 'Series', options: [{ name: 'Series A', checked: false }, { name: 'Series B', checked: false }] }
   ];
 
   products$!: Observable<any[]>;
@@ -29,12 +30,14 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductServiceService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.productService.chooseProduct(0);
+    //this.productService.chooseProduct(0);
     this.fetchData();
     this.saveOriginalProductsList();
     this.products$.subscribe({
       next: (products) => this.productService.productsSubject.next(products)
     });
+    
+    this.initializeManufacturerFilter();
   }
 
   saveOriginalProductsList(): void {
@@ -63,6 +66,20 @@ export class ProductsComponent implements OnInit {
     //this.products$ = this.filteredProducts$;
     //this.fetchData();
   }
+
+  initializeManufacturerFilter() {
+    this.products$.subscribe(async (processors) => {
+      const manufacturerOptions = getManufacturers(processors);
+      // Find or create the Manufacturer filter
+      const manufacturerFilter = this.filters.find(f => f.name === 'Manufacturer');
+      if (manufacturerFilter) {
+        manufacturerFilter.options = manufacturerOptions;
+      } else {
+        this.filters.push({ name: 'Manufacturer', options: manufacturerOptions });
+      }
+    });
+  }
+
 
   openProductDetails(product: any): void {
     this.dialog.open(ProductDetailsComponent, {
