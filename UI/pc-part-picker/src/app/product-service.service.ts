@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Motherboard } from '../model/Motherboard';
 import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
-import { Processor } from '../model/Processor';
+import { getManufacturers, Processor } from '../model/Processor';
 import { Videocard } from '../model/Videocard';
 import { Pccase } from '../model/Pccase';
 import { Memory } from '../model/Memory';
@@ -10,6 +10,15 @@ import { Harddrive } from '../model/Harddrive';
 import { Powersupply } from '../model/Powersupply';
 import { Cpucooler } from '../model/Cpucooler';
 
+export interface FilterOption {
+  name: string;
+  checked: boolean;
+}
+
+export interface Filter {
+  name: string;
+  options: FilterOption[];
+}
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +27,9 @@ export class ProductServiceService {
   private APIUrl = "http://localhost:5147/api"
   productsSubject = new BehaviorSubject<any[]>([]);
   products$ = this.productsSubject.asObservable();
+
+  private filtersSubject = new BehaviorSubject<Filter[]>([]);
+  filters$: Observable<Filter[]> = this.filtersSubject.asObservable();
 
   originalProducts!: any[];
 
@@ -41,12 +53,24 @@ export class ProductServiceService {
     this.productsSubject.next(products);
   }
 
-  async saveProducts() {
-    this.originalProducts = this.productsSubject.getValue();
+  updateFilters(newFilters: Filter[]): void {
+    this.filtersSubject.next(newFilters);
   }
 
-  getProducts() {
-    return this.products$;
+  async saveProducts() {
+    this.originalProducts = this.productsSubject.getValue();
+    this.addManufacturerFilter(this.originalProducts)
+  }
+
+  getOriginalProducts() {
+    return this.originalProducts;
+  }
+
+  addManufacturerFilter(products: Processor[]) {
+    const manufacturerOptions = getManufacturers(products); // Convert products to filter options
+    const filters = this.filtersSubject.getValue();
+    filters.push({ name: 'Manufacturer', options: manufacturerOptions });
+    this.updateFilters(filters);
   }
 
   async chooseProduct(n: number): Promise<void> {
