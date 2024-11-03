@@ -19,7 +19,7 @@ export class ProductsComponent implements OnInit {
   filters: Filter[] = [];
 
   products$!: Observable<any[]>;
-  allProducts$!: Observable<any[]>;
+  allProducts!: any[];
 
   enabledFilters = 0;
 
@@ -37,7 +37,7 @@ export class ProductsComponent implements OnInit {
   }
 
   saveOriginalProductsList(): void {
-    this.allProducts$ = this.productService.products$;
+    //this.allProducts$ = this.productService.originalProducts;
   }
 
   fetchData() {
@@ -54,7 +54,7 @@ export class ProductsComponent implements OnInit {
       }
     });
     if (this.enabledFilters == 0) {
-      this.products$ = this.allProducts$;
+      this.productService.resetProducts();
       return;
     }
   }

@@ -57,6 +57,10 @@ export class ProductServiceService {
     this.filtersSubject.next(newFilters);
   }
 
+  resetProducts(){
+    this.productsSubject.next(this.originalProducts);
+  }
+
   async saveProducts() {
     this.originalProducts = this.productsSubject.getValue();
     this.addManufacturerFilter(this.originalProducts)
@@ -68,7 +72,8 @@ export class ProductServiceService {
 
   addManufacturerFilter(products: Processor[]) {
     const manufacturerOptions = getManufacturers(products); // Convert products to filter options
-    const filters = this.filtersSubject.getValue();
+    var filters = this.filtersSubject.getValue();
+    filters = [];
     filters.push({ name: 'Manufacturer', options: manufacturerOptions });
     this.updateFilters(filters);
   }
