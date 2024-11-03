@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Motherboard } from '../model/Motherboard';
-import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
-import { getManufacturers, Processor } from '../model/Processor';
+import { BehaviorSubject, filter, firstValueFrom, map, Observable } from 'rxjs';
+import { getManufacturers, getSeries, Processor } from '../model/Processor';
 import { Videocard } from '../model/Videocard';
 import { Pccase } from '../model/Pccase';
 import { Memory } from '../model/Memory';
@@ -32,6 +32,7 @@ export class ProductServiceService {
   filters$: Observable<Filter[]> = this.filtersSubject.asObservable();
 
   originalProducts!: any[];
+  filteredProducts!: any[];
 
   constructor(
     private httpClient: HttpClient
@@ -42,11 +43,34 @@ export class ProductServiceService {
       this.productsSubject.next(this.originalProducts);
       return;
     }
-    //const currentProducts = this.productsSubject.getValue(); // Get the current value of the products array
     const filteredProducts = this.originalProducts.filter(product =>
       product.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     this.productsSubject.next(filteredProducts); // Update the BehaviorSubject with the filtered array
+  }
+
+  filterManufacturers(filterOption: FilterOption){
+    const filteredProducts = this.originalProducts.filter(product =>
+      product.manufacturerType == filterOption.name
+    );
+    this.productsSubject.next(filteredProducts);
+  }
+
+  filterSeries(filterOption: FilterOption){
+    //const currentProducts = this.productsSubject.getValue();
+    if(this.filteredProducts == undefined){
+      this.filteredProducts = this.originalProducts.filter(product =>
+        product.seriesType == filterOption.name
+      );
+    }else{
+      const newFilteredProducts = this.originalProducts.filter(product =>
+        product.seriesType == filterOption.name
+      );
+      //this.filteredProducts.push(newFilteredProducts);
+      this.filteredProducts = this.filteredProducts.concat(newFilteredProducts);
+    }
+   
+    this.productsSubject.next(this.filteredProducts);
   }
 
   updateProducts(products: any[]): void {
@@ -59,6 +83,7 @@ export class ProductServiceService {
 
   resetProducts(){
     this.productsSubject.next(this.originalProducts);
+    this.filteredProducts = [];
   }
 
   async saveProducts() {
@@ -72,14 +97,16 @@ export class ProductServiceService {
 
   addManufacturerFilter(products: Processor[]) {
     const manufacturerOptions = getManufacturers(products); // Convert products to filter options
+    const seriesOptions = getSeries(products);
     var filters = this.filtersSubject.getValue();
     filters = [];
     filters.push({ name: 'Manufacturer', options: manufacturerOptions });
+    filters.push({ name: 'Series', options: seriesOptions });
     this.updateFilters(filters);
   }
 
   async chooseProduct(n: number): Promise<void> {
-    //n=10;
+    n=10;
     this.originalProducts = [];
     switch (n) {
       case 0: {
@@ -123,7 +150,7 @@ export class ProductServiceService {
         break;
       }
       default: {
-        //this.productsSubject.next(this.mockData);
+        this.productsSubject.next(this.mockData);
         break;
       }
     }
@@ -176,9 +203,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 1,
       "seriesTypeId": 2,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "AMD",
+      "seriesType": "AMD Ryzen 5",
+      "socketType": "AM4"
     },
     {
       "processorid": 2,
@@ -193,9 +220,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 1,
       "seriesTypeId": 3,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "AMD",
+      "seriesType": "AMD Ryzen 7",
+      "socketType": "AM4"
     },
     {
       "processorid": 3,
@@ -210,9 +237,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 1,
       "seriesTypeId": 2,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "AMD",
+      "seriesType": "AMD Ryzen 5",
+      "socketType": "AM4"
     },
     {
       "processorid": 4,
@@ -227,9 +254,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 1,
       "seriesTypeId": 2,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "AMD",
+      "seriesType": "AMD Ryzen 5",
+      "socketType": "AM4"
     },
     {
       "processorid": 5,
@@ -244,9 +271,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 1,
       "seriesTypeId": 4,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "AMD",
+      "seriesType": "AMD Ryzen 9",
+      "socketType": "AM4"
     },
     {
       "processorid": 6,
@@ -261,9 +288,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 1,
       "seriesTypeId": 3,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "AMD",
+      "seriesType": "AMD Ryzen 7",
+      "socketType": "AM5"
     },
     {
       "processorid": 7,
@@ -278,9 +305,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 1,
       "seriesTypeId": 3,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "AMD",
+      "seriesType": "AMD Ryzen 7",
+      "socketType": "AM5"
     },
     {
       "processorid": 8,
@@ -295,9 +322,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 1,
       "seriesTypeId": 2,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "AMD",
+      "seriesType": "AMD Ryzen 5",
+      "socketType": "AM5"
     },
     {
       "processorid": 9,
@@ -312,9 +339,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 1,
       "seriesTypeId": 4,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "AMD",
+      "seriesType": "AMD Ryzen 9",
+      "socketType": "AM5"
     },
     {
       "processorid": 10,
@@ -329,9 +356,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 1,
       "seriesTypeId": 4,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "AMD",
+      "seriesType": "AMD Ryzen 9",
+      "socketType": "AM5"
     },
     {
       "processorid": 11,
@@ -346,9 +373,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 2,
       "seriesTypeId": 6,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "Intel",
+      "seriesType": "Intel Core i5",
+      "socketType": "LGA1700"
     },
     {
       "processorid": 12,
@@ -363,9 +390,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 2,
       "seriesTypeId": 7,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "Intel",
+      "seriesType": "Intel Core i7",
+      "socketType": "LGA1700"
     },
     {
       "processorid": 13,
@@ -380,9 +407,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 2,
       "seriesTypeId": 8,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "Intel",
+      "seriesType": "Intel Core i9",
+      "socketType": "LGA1700"
     },
     {
       "processorid": 14,
@@ -397,9 +424,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 2,
       "seriesTypeId": 6,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "Intel",
+      "seriesType": "Intel Core i5",
+      "socketType": "LGA1700"
     },
     {
       "processorid": 15,
@@ -414,9 +441,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 2,
       "seriesTypeId": 7,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "Intel",
+      "seriesType": "Intel Core i7",
+      "socketType": "LGA1700"
     },
     {
       "processorid": 16,
@@ -431,9 +458,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 2,
       "seriesTypeId": 6,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "Intel",
+      "seriesType": "Intel Core i5",
+      "socketType": "LGA1200"
     },
     {
       "processorid": 17,
@@ -448,9 +475,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 2,
       "seriesTypeId": 6,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "Intel",
+      "seriesType": "Intel Core i5",
+      "socketType": "LGA1200"
     },
     {
       "processorid": 18,
@@ -465,9 +492,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 2,
       "seriesTypeId": 7,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "Intel",
+      "seriesType": "Intel Core i7",
+      "socketType": "LGA1200"
     },
     {
       "processorid": 19,
@@ -482,9 +509,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 2,
       "seriesTypeId": 5,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "Intel",
+      "seriesType": "Intel Core i3",
+      "socketType": "LGA1200"
     },
     {
       "processorid": 20,
@@ -499,9 +526,9 @@ export class ProductServiceService {
       "smt": true,
       "manufacturerTypeId": 2,
       "seriesTypeId": 8,
-      "manufacturerType": null,
-      "seriesType": null,
-      "socketType": null
+      "manufacturerType": "Intel",
+      "seriesType": "Intel Core i9",
+      "socketType": "LGA1200"
     }
   ]
 }

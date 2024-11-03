@@ -16,14 +16,28 @@ export interface Processor {
     manufacturerTypeId: number | null;
     seriesTypeId: number | null;
     manufacturerType: string | null;
-    seriesType: SeriesType | null;
-    socketType: SocketType | null;
+    seriesType: string | null;
+    socketType: string | null;
 }
 export function getManufacturers(processors: Processor[]): { name: string; checked: boolean }[] {
   const manufacturers = new Set<string>();
 
   processors.forEach((processor) => {
     manufacturers.add(processor.manufacturerType!);
+  });
+
+  // Convert each manufacturer into an object with 'name' and 'checked' properties
+  return Array.from(manufacturers).map((manufacturer) => ({
+    name: manufacturer,
+    checked: false,
+  }));
+}
+
+export function getSeries(processors: Processor[]): { name: string; checked: boolean }[] {
+  const manufacturers = new Set<string>();
+
+  processors.forEach((processor) => {
+    manufacturers.add(processor.seriesType!);
   });
 
   // Convert each manufacturer into an object with 'name' and 'checked' properties

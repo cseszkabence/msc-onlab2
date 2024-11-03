@@ -15,7 +15,7 @@ export interface Videocard {
     manufacturerTypeId: number | null;
     chipsetTypeId: number | null;
     seriesTypeId: number | null;
-    chipsetType: ChipsetType | null;
-    manufacturerType: ManufacturerType | null;
-    seriesType: SeriesType | null;
+    chipsetType: string | null;
+    manufacturerType: string | null;
+    seriesType: string | null;
 }

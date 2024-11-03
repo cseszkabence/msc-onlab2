@@ -9,5 +9,5 @@ export interface Cpucooler {
     color: string | null;
     size: number | null;
     manufacturerTypeId: number | null;
-    manufacturerType: ManufacturerType | null;
+    manufacturerType: string | null;
 }

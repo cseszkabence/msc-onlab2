@@ -16,8 +16,8 @@ export interface Motherboard {
     socketTypeId: number | null;
     memoryTypeId: number | null;
     formFactoryTypeId: number | null;
-    formFactoryType: FormfactorType | null;
-    manufacturerType: ManufacturerType | null;
-    memoryType: MemoryType | null;
-    socketType: SocketType | null;
+    formFactoryType: string | null;
+    manufacturerType: string | null;
+    memoryType: string | null;
+    socketType: string | null;
 }

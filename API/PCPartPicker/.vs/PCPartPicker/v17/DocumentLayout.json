@@ -98,23 +98,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 280,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Memory.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Memory.cs",
-              "RelativeDocumentMoniker": "Models\\Memory.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Memory.cs",
-              "RelativeToolTip": "Models\\Memory.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAA2wCAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-16T16:57:01.054Z"
             },
             {
               "$type": "Document",
@@ -154,6 +142,31 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAIAQAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-09-25T17:32:42.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Memory.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Memory.cs",
+              "RelativeDocumentMoniker": "Models\\Memory.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Memory.cs",
+              "RelativeToolTip": "Models\\Memory.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAA2wCAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T16:57:01.054Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "PartsController.cs",
               "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Controllers\\PartsController.cs",
@@ -187,19 +200,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-25T17:43:54.187Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAIAQAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-25T17:32:42.437Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",

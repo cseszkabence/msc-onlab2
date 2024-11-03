@@ -13,6 +13,6 @@ export interface Memory {
     casLatency: number | null;
     manufacturerTypeId: number | null;
     type: number | null;
-    manufacturerType: ManufacturerType | null;
-    typeNavigation: MemoryType | null;
+    manufacturerType: string | null;
+    typeNavigation: string | null;
 }

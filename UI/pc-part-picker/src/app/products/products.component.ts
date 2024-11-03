@@ -46,16 +46,27 @@ export class ProductsComponent implements OnInit {
 
   onChange(event: any, index: any, item: any) {
     this.enabledFilters = 0;
-    this.filters[0].options.forEach(element => {
-      if (element.checked == true) {
-        this.enabledFilters++;
-        this.productService.searchProducts(element.name);
-        this.fetchData();
+    this.productService.resetProducts;
+    this.filters.forEach(async filter => {
+      if(filter.name == "Manufacturer"){
+        filter.options.forEach(option => {
+          if(option.checked){
+            this.enabledFilters++;
+            this.productService.filterManufacturers(option);
+          }
+        })
       }
-    });
-    if (this.enabledFilters == 0) {
+      else if(filter.name == "Series"){
+        filter.options.forEach(option => {
+          if(option.checked){
+            this.enabledFilters++;
+            this.productService.filterSeries(option);
+          }
+        })
+      }
+    })
+    if(this.enabledFilters==0){
       this.productService.resetProducts();
-      return;
     }
   }
 

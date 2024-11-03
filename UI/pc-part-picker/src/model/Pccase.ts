@@ -12,6 +12,6 @@ export interface Pccase {
     internal35Bays: number | null;
     formFactorTypeId: number | null;
     manufacturerTypeId: number | null;
-    formFactorType: FormfactorType | null;
-    manufacturerType: ManufacturerType | null;
+    formFactorType: string | null;
+    manufacturerType: string | null;
 }

@@ -12,6 +12,6 @@ export interface Powersupply {
     color: string | null;
     manufacturerTypeId: number | null;
     formFactorId: number | null;
-    formFactor: FormfactorType | null;
-    manufacturerType: ManufacturerType | null;
+    formFactor: string | null;
+    manufacturerType: string | null;
 }

@@ -12,6 +12,6 @@ export interface Harddrive {
     interface: string | null;
     manufacturerTypeId: number | null;
     driveTypeId: number | null;
-    driveType: HarddriveType | null;
-    manufacturerType: ManufacturerType | null;
+    driveType: string | null;
+    manufacturerType: string | null;
 }
