@@ -6,7 +6,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { map, Observable } from 'rxjs';
 import { Filter, filterProductsByName, ProductServiceService } from '../product-service.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { getManufacturers, Processor } from '../../model/Processor';
+import {Processor } from '../../model/Processor';
 
 
 @Component({
@@ -46,7 +46,7 @@ export class ProductsComponent implements OnInit {
 
   onChange(event: any, index: any, item: any) {
     this.enabledFilters = 0;
-    this.productService.resetProducts;
+    this.productService.resetProducts();
     this.filters.forEach(async filter => {
       if(filter.name == "Manufacturer"){
         filter.options.forEach(option => {
@@ -69,18 +69,6 @@ export class ProductsComponent implements OnInit {
       this.productService.resetProducts();
     }
   }
-
-  initializeManufacturerFilter() {
-    const manufacturerOptions = getManufacturers(this.productService.originalProducts);
-      // Find or create the Manufacturer filter
-      const manufacturerFilter = this.filters.find(f => f.name === 'Manufacturer');
-      if (manufacturerFilter) {
-        manufacturerFilter.options = manufacturerOptions;
-      } else {
-        this.filters.push({ name: 'Manufacturer', options: manufacturerOptions });
-      }
-  }
-
 
   openProductDetails(product: any): void {
     this.dialog.open(ProductDetailsComponent, {
