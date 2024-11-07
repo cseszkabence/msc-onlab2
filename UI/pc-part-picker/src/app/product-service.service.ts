@@ -75,28 +75,101 @@ export class ProductServiceService {
       );
       this.filteredProducts = this.filteredProducts.concat(newFilteredProducts);
     }
-
     this.productsSubject.next(this.filteredProducts);
   }
 
-  filterSocketType() {
-
+  filterSocketType(filterOption: FilterOption) {
+    if (this.filteredProducts == undefined) {
+      this.filteredProducts = this.originalProducts.filter(product =>
+        product.socketType == filterOption.name
+      );
+    } else {
+      const newFilteredProducts = this.originalProducts.filter(product =>
+        product.socketType == filterOption.name
+      );
+      this.filteredProducts = this.filteredProducts.concat(newFilteredProducts);
+    }
+    this.productsSubject.next(this.filteredProducts);
   }
 
-  filterFormFactorType() {
-
+  filterFormFactorType(filterOption: FilterOption) {
+    if (this.filteredProducts == undefined) {
+      this.filteredProducts = this.originalProducts.filter(product =>
+      {
+        if(isMotherboard(product)){
+          product.formFactoryType == filterOption.name
+        }else{
+          product.formFactorType == filterOption.name
+        }
+      }
+      );
+    } else {
+      const newFilteredProducts = this.originalProducts.filter(product =>
+      {
+        if(isMotherboard(product)){
+          product.formFactoryType == filterOption.name
+        }else{
+          product.formFactorType == filterOption.name
+        }
+      }
+      );
+      this.filteredProducts = this.filteredProducts.concat(newFilteredProducts);
+    }
+    this.productsSubject.next(this.filteredProducts);
   }
 
-  filterMemoryType() {
-
+  filterMemoryType(filterOption: FilterOption) {
+    if (this.filteredProducts == undefined) {
+      this.filteredProducts = this.originalProducts.filter(product =>
+      {
+        if(isMotherboard(product)){
+          product.memoryType == filterOption.name
+        }else{
+          product.typeNavigation == filterOption.name
+        }
+      }
+      );
+    } else {
+      const newFilteredProducts = this.originalProducts.filter(product =>
+      {
+        if(isMotherboard(product)){
+          product.memoryType == filterOption.name
+        }else{
+          product.typeNavigation == filterOption.name
+        }
+      }
+      );
+      this.filteredProducts = this.filteredProducts.concat(newFilteredProducts);
+    }
+    this.productsSubject.next(this.filteredProducts);
   }
 
-  filterChipsetType() {
-
+  filterChipsetType(filterOption: FilterOption) {
+    if (this.filteredProducts == undefined) {
+      this.filteredProducts = this.originalProducts.filter(product =>
+        product.chipsetType == filterOption.name
+      );
+    } else {
+      const newFilteredProducts = this.originalProducts.filter(product =>
+        product.chipsetType == filterOption.name
+      );
+      this.filteredProducts = this.filteredProducts.concat(newFilteredProducts);
+    }
+    this.productsSubject.next(this.filteredProducts);
   }
 
-  filterDriveTye() {
-
+  filterDriveType(filterOption: FilterOption) {
+    if (this.filteredProducts == undefined) {
+      this.filteredProducts = this.originalProducts.filter(product =>
+        product.driveType == filterOption.name
+      );
+    } else {
+      const newFilteredProducts = this.originalProducts.filter(product =>
+        product.driveType == filterOption.name
+      );
+      this.filteredProducts = this.filteredProducts.concat(newFilteredProducts);
+    }
+    this.productsSubject.next(this.filteredProducts);
   }
 
   updateProducts(products: any[]): void {
