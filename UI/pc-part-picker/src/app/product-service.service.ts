@@ -94,25 +94,26 @@ export class ProductServiceService {
 
   filterFormFactorType(filterOption: FilterOption) {
     if (this.filteredProducts == undefined) {
-      this.filteredProducts = this.originalProducts.filter(product =>
-      {
-        if(isMotherboard(product)){
+      if (isMotherboard(this.originalProducts[0])) {
+        this.filteredProducts = this.originalProducts.filter(product =>
           product.formFactoryType == filterOption.name
-        }else{
+        );
+      } else {
+        this.filteredProducts = this.originalProducts.filter(product =>
           product.formFactorType == filterOption.name
-        }
+        )
       }
-      );
     } else {
-      const newFilteredProducts = this.originalProducts.filter(product =>
-      {
-        if(isMotherboard(product)){
+      var newFilteredProducts: any[];
+      if (isMotherboard(this.originalProducts[0])) {
+        newFilteredProducts = this.originalProducts.filter(product =>
           product.formFactoryType == filterOption.name
-        }else{
+        );
+      } else {
+        newFilteredProducts = this.originalProducts.filter(product =>
           product.formFactorType == filterOption.name
-        }
+        )
       }
-      );
       this.filteredProducts = this.filteredProducts.concat(newFilteredProducts);
     }
     this.productsSubject.next(this.filteredProducts);
@@ -120,25 +121,26 @@ export class ProductServiceService {
 
   filterMemoryType(filterOption: FilterOption) {
     if (this.filteredProducts == undefined) {
-      this.filteredProducts = this.originalProducts.filter(product =>
-      {
-        if(isMotherboard(product)){
+      if (isMotherboard(this.originalProducts[0])) {
+        this.filteredProducts = this.originalProducts.filter(product =>
           product.memoryType == filterOption.name
-        }else{
+        );
+      } else {
+        this.filteredProducts = this.originalProducts.filter(product =>
           product.typeNavigation == filterOption.name
-        }
+        )
       }
-      );
     } else {
-      const newFilteredProducts = this.originalProducts.filter(product =>
-      {
-        if(isMotherboard(product)){
+      var newFilteredProducts: any[];
+      if (isMotherboard(this.originalProducts[0])) {
+        newFilteredProducts = this.originalProducts.filter(product =>
           product.memoryType == filterOption.name
-        }else{
+        );
+      } else {
+        newFilteredProducts = this.originalProducts.filter(product =>
           product.typeNavigation == filterOption.name
-        }
+        )
       }
-      );
       this.filteredProducts = this.filteredProducts.concat(newFilteredProducts);
     }
     this.productsSubject.next(this.filteredProducts);
@@ -195,67 +197,106 @@ export class ProductServiceService {
   }
 
   initFilters(products: any[], n: number) {
-    const manufacturerOptions = getManufacturers(products);
-    const seriesOptions = getSeries(products);
-    const socketOptions = getSocketTypes(products);
-    const formFactorOptions = getFormFactorTypes(products);
-    const memoryOptions = getMemoryTypes(products);
-    const chipsetOptions = getChipsetTypes(products);
-    const driveOptions = getDriveTypes(products);
-    var filters = this.filtersSubject.getValue();
-    filters = [];
-    filters.push({ name: 'Manufacturer', options: manufacturerOptions });
-    filters.push({ name: 'Series', options: seriesOptions });
-    filters.push({ name: 'Sockets', options: socketOptions });
-    filters.push({ name: 'Form Factors', options: formFactorOptions });
-    filters.push({ name: 'Memory Types', options: memoryOptions });
-    filters.push({ name: 'Chipsets', options: chipsetOptions });
-    filters.push({ name: 'Options', options: driveOptions });
-    this.updateFilters(filters);
+    /* 
+        const manufacturerOptions = getManufacturers(products);
+        filters.push({ name: 'Manufacturer', options: manufacturerOptions });
+        const seriesOptions = getSeries(products);
+        const socketOptions = getSocketTypes(products);
+        const formFactorOptions = getFormFactorTypes(products);
+        const memoryOptions = getMemoryTypes(products);
+        const chipsetOptions = getChipsetTypes(products);
+        const driveOptions = getDriveTypes(products);
+        filters.push({ name: 'Manufacturer', options: manufacturerOptions });
+    
+        filters.push({ name: 'Series', options: seriesOptions });
+        filters.push({ name: 'Sockets', options: socketOptions });
+        filters.push({ name: 'Form Factors', options: formFactorOptions });
+        filters.push({ name: 'Memory Types', options: memoryOptions });
+        filters.push({ name: 'Chipsets', options: chipsetOptions });
+        filters.push({ name: 'Drive Types', options: driveOptions });
+        this.updateFilters(filters); */
   }
 
   async chooseProduct(n: number): Promise<void> {
     //n=10;
     this.originalProducts = [];
+    var filters = this.filtersSubject.getValue();
+    filters = [];
     switch (n) {
       case 0: {
         const products = await firstValueFrom(this.getProcessor());
         this.productsSubject.next(products);
+        const manufacturerOptions = getManufacturers(products);
+        const seriesOptions = getSeries(products);
+        const socketOptions = getSocketTypes(products);
+        filters.push({ name: 'Manufacturer', options: manufacturerOptions });
+        filters.push({ name: 'Series', options: seriesOptions });
+        filters.push({ name: 'Sockets', options: socketOptions });
         break;
       }
       case 1: {
         const products = await firstValueFrom(this.getMotheboard());
         this.productsSubject.next(products);
+        const manufacturerOptions = getManufacturers(products);
+        const socketOptions = getSocketTypes(products);
+        const formFactorOptions = getFormFactorTypes(products);
+        const memoryOptions = getMemoryTypes(products);
+        filters.push({ name: 'Manufacturer', options: manufacturerOptions });
+        filters.push({ name: 'Sockets', options: socketOptions });
+        filters.push({ name: 'Form Factors', options: formFactorOptions });
+        filters.push({ name: 'Memory Types', options: memoryOptions });
         break;
       }
       case 2: {
         const products = await firstValueFrom(this.getMemory());
         this.productsSubject.next(products);
+        const manufacturerOptions = getManufacturers(products);
+        const memoryOptions = getMemoryTypes(products);
+        filters.push({ name: 'Manufacturer', options: manufacturerOptions });
+        filters.push({ name: 'Memory Types', options: memoryOptions });
         break;
       }
       case 3: {
         const products = await firstValueFrom(this.getVideocard());
         this.productsSubject.next(products);
+        const manufacturerOptions = getManufacturers(products);
+        const seriesOptions = getSeries(products);
+        const chipsetOptions = getChipsetTypes(products);
+        filters.push({ name: 'Manufacturer', options: manufacturerOptions });
+        filters.push({ name: 'Series', options: seriesOptions });
+        filters.push({ name: 'Chipsets', options: chipsetOptions });
         break;
       }
       case 4: {
         const products = await firstValueFrom(this.getHarddrive());
         this.productsSubject.next(products);
+        const manufacturerOptions = getManufacturers(products);
+        filters.push({ name: 'Manufacturer', options: manufacturerOptions });
         break;
       }
       case 5: {
         const products = await firstValueFrom(this.getPowersupply());
         this.productsSubject.next(products);
+        const manufacturerOptions = getManufacturers(products);
+        const formFactorOptions = getFormFactorTypes(products);
+        filters.push({ name: 'Manufacturer', options: manufacturerOptions });
+        filters.push({ name: 'Form Factors', options: formFactorOptions });
         break;
       }
       case 6: {
         const products = await firstValueFrom(this.getCase());
         this.productsSubject.next(products);
+        const manufacturerOptions = getManufacturers(products);
+        const formFactorOptions = getFormFactorTypes(products);
+        filters.push({ name: 'Manufacturer', options: manufacturerOptions });
+        filters.push({ name: 'Form Factors', options: formFactorOptions });
         break;
       }
       case 7: {
         const products = await firstValueFrom(this.getProcessorCooler());
         this.productsSubject.next(products);
+        const manufacturerOptions = getManufacturers(products);
+        filters.push({ name: 'Manufacturer', options: manufacturerOptions });
         break;
       }
       default: {
@@ -263,6 +304,7 @@ export class ProductServiceService {
         break;
       }
     }
+    this.updateFilters(filters);
     await this.saveProducts(n);
   }
 

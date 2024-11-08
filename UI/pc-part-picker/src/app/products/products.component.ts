@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { RouterModule } from '@angular/router';
 import { MatSliderModule } from '@angular/material/slider';
-import { map, Observable } from 'rxjs';
+import { map, Observable, Subscription } from 'rxjs';
 import { Filter, filterProductsByName, ProductServiceService } from '../product-service.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import {Processor } from '../../model/Processor';
@@ -15,6 +15,8 @@ import {Processor } from '../../model/Processor';
   styleUrl: './products.component.css',
 })
 export class ProductsComponent implements OnInit {
+
+  private subscriptions: Subscription[] = [];  // Track all subscriptions
 
   filters: Filter[] = [];
 
@@ -28,12 +30,21 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.fetchData();
     this.saveOriginalProductsList();
-    this.products$.subscribe({
-      next: (products) => this.productService.productsSubject.next(products)
-    });
-    this.productService.filters$.subscribe((filters) => {
-      this.filters = filters;
-    });
+    this.subscriptions.push(
+      this.products$.subscribe({
+        next: (products) => this.productService.productsSubject.next(products)
+      })
+    );
+
+    this.subscriptions.push(
+      this.productService.filters$.subscribe((filters) => {
+        this.filters = filters;
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());  // Unsubscribe from all
   }
 
   saveOriginalProductsList(): void {
@@ -61,6 +72,46 @@ export class ProductsComponent implements OnInit {
           if(option.checked){
             this.enabledFilters++;
             this.productService.filterSeries(option);
+          }
+        })
+      }
+      else if(filter.name == "Sockets"){
+        filter.options.forEach(option => {
+          if(option.checked){
+            this.enabledFilters++;
+            this.productService.filterSocketType(option);
+          }
+        })
+      }
+      else if(filter.name == "Form Factors"){
+        filter.options.forEach(option => {
+          if(option.checked){
+            this.enabledFilters++;
+            this.productService.filterFormFactorType(option);
+          }
+        })
+      }
+      else if(filter.name == "Memory Types"){
+        filter.options.forEach(option => {
+          if(option.checked){
+            this.enabledFilters++;
+            this.productService.filterMemoryType(option);
+          }
+        })
+      }
+      else if(filter.name == "Chipsets"){
+        filter.options.forEach(option => {
+          if(option.checked){
+            this.enabledFilters++;
+            this.productService.filterChipsetType(option);
+          }
+        })
+      }
+      else if(filter.name == "Drive Types"){
+        filter.options.forEach(option => {
+          if(option.checked){
+            this.enabledFilters++;
+            this.productService.filterDriveType(option);
           }
         })
       }

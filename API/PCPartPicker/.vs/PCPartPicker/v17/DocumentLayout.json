@@ -94,47 +94,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 280,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Harddrive.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Harddrive.cs",
-              "RelativeDocumentMoniker": "Models\\Harddrive.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Harddrive.cs",
-              "RelativeToolTip": "Models\\Harddrive.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAswB4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T14:45:59.855Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ManufacturerType.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ManufacturerType.cs",
-              "RelativeDocumentMoniker": "Models\\ManufacturerType.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ManufacturerType.cs",
-              "RelativeToolTip": "Models\\ManufacturerType.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T14:46:00.563Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "FormfactorType.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\FormfactorType.cs",
-              "RelativeDocumentMoniker": "Models\\FormfactorType.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\FormfactorType.cs",
-              "RelativeToolTip": "Models\\FormfactorType.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T14:45:59.407Z"
             },
             {
               "$type": "Document",
@@ -232,6 +196,42 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-08T15:34:55.933Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "FormfactorType.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\FormfactorType.cs",
+              "RelativeDocumentMoniker": "Models\\FormfactorType.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\FormfactorType.cs",
+              "RelativeToolTip": "Models\\FormfactorType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T14:45:59.407Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ManufacturerType.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ManufacturerType.cs",
+              "RelativeDocumentMoniker": "Models\\ManufacturerType.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ManufacturerType.cs",
+              "RelativeToolTip": "Models\\ManufacturerType.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T14:46:00.563Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Harddrive.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Harddrive.cs",
+              "RelativeDocumentMoniker": "Models\\Harddrive.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Harddrive.cs",
+              "RelativeToolTip": "Models\\Harddrive.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAswB4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T14:45:59.855Z"
             },
             {
               "$type": "Document",
