@@ -1,16 +1,16 @@
 .product-list {
-    background-color: var(--sys-primary);
-    padding-left: 12px;
-    padding-right: 12px;
-  }
+  background-color: var(--sys-primary);
+  padding-left: 12px;
+  padding-right: 12px;
+}
 
-  .product-card {
-    max-width: 100%;
-    margin: 0;
-  }
+.product-card {
+  max-width: 100%;
+  margin: 0;
+}
 
-mat-grid-tile-content{
-    padding: 0px;
+mat-grid-tile-content {
+  padding: 0px;
 }
 
 mat-slider {

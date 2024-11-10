@@ -9,10 +9,6 @@
         <mat-checkbox *ngFor="let option of filter.options" [(ngModel)]="option.checked" (change)="onChange($event, i, option)">
           {{ option.name }}
         </mat-checkbox>
-       <!--  <mat-slider min="200" max="500">
-          <input value="300" matSliderStartThumb>
-          <input value="400" matSliderEndThumb>
-        </mat-slider> -->
       </mat-expansion-panel>
   </mat-sidenav>
 

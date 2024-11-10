@@ -28,6 +28,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
   ],
   imports: [
     BrowserModule,
+    MatListModule,
     MatButtonToggleModule,
     MatTableModule,
     MatInputModule,
