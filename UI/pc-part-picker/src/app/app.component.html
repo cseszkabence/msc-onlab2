@@ -2,10 +2,19 @@
 <mat-toolbar>
   <mat-toolbar-row>
     <span>PC PART PICKER</span>
-    <button mat-raised-button [ngStyle]="{'background-color': showProductsBar ? '#19241E' : '#0F1511'}" (click)="toggleProducts()" routerLink="/products-component">Products</button>
-    <button mat-raised-button routerLink="/configurator-component" routerLinkActive="active"
-      ariaCurrentWhenActive="page">Configurator</button>
-    <button mat-raised-button [ngStyle]="{'background-color': showSearchBar ? '#19241E' : '#0F1511'}" (click)="toggleSearch()">Search</button>
+    <button mat-raised-button [ngStyle]="{'background-color': showProductsBar ? '#19241E' : '#0F1511'}" (click)="toggleProducts()" class="main-buttons">Products</button>
+    <button mat-raised-button (click)="navigateToConfigurator()" class="main-buttons">Configurator</button>
+    <button mat-raised-button [ngStyle]="{'background-color': showSearchBar ? '#19241E' : '#0F1511'}" (click)="toggleSearch()" class="main-buttons">Search</button>
+      <mat-form-field *ngIf="showSearchBar" @slideUpDown>
+         <mat-label>Search</mat-label>
+         <input matInput #txtVal (keydown.enter)="searchProducts()" placeholder="Search something..." [(ngModel)]="searchQuery">
+         @if (searchQuery) {
+           <button matSuffix mat-button aria-label="Clear" (click)="cleanSearch()">
+             <mat-icon>close</mat-icon>
+           </button>
+         }
+         <button matSuffix mat-button (click)="searchProducts()"><mat-icon >search</mat-icon></button>
+       </mat-form-field> 
     <span class="example-spacer"></span>
     <button mat-icon-button>
       <mat-icon>shopping_cart</mat-icon>
@@ -21,18 +30,7 @@
   </div>
 </div>
 
-<div *ngIf="showSearchBar" @slideDownUp>
- <mat-form-field>
-    <mat-label>Search</mat-label>
-    <input matInput #txtVal (keydown.enter)="searchProducts()" placeholder="Search something..." [(ngModel)]="searchQuery">
-    @if (searchQuery) {
-      <button matSuffix mat-button aria-label="Clear" (click)="cleanSearch()">
-        <mat-icon>close</mat-icon>
-      </button>
-    }
-    <button matSuffix mat-button (click)="searchProducts()"><mat-icon >search</mat-icon></button>
-  </mat-form-field> 
-</div>
+
 
 <router-outlet></router-outlet>
 <!-- <app-products></app-products> -->

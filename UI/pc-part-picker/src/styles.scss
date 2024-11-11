@@ -28,6 +28,9 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: var(--sys-background);
+  body .mdc-text-field--filled {
+    border-radius: 2em;
+  }
 }
 
 .transparent .mat-mdc-dialog-container {

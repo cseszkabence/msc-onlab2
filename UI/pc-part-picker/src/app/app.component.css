@@ -1,5 +1,6 @@
-.mat-mdc-button-base {
-  margin: 8px 0 8px 8px;
+.main-buttons {
+  margin: 12px 12px 12px 12px;
+  height: 56px;
 }
 
 .card-container {
@@ -11,6 +12,8 @@
   /* Ensure the cards wrap to the next row */
   justify-content: space-around;
   /* Space out cards evenly */
+  margin-top:12px;
+  margin-bottom:12px;
 }
 
 mat-card {
@@ -37,4 +40,5 @@ mat-card-content {
 mat-form-field{
   margin: 12px;
   width: 350px;
+  padding-top: 24px;
 }

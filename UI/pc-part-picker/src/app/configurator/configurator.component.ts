@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { ProductServiceService } from '../product-service.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-configurator',
@@ -25,9 +26,47 @@ export class ConfiguratorComponent {
   displayedColumns: string[] = ['demo-position', 'demo-weight'];
   dataSource = ELEMENT_DATA;
 
-  toggleBrowser(element: any) {
+  async toggleBrowser(element: any) {
+    const name = element.name;
+    switch (name) {
+      case "Processor": {
+        element.browsableProducts = await firstValueFrom(this.productService.getProcessor());
+        break;
+      }
+      case "Motherboard": {
+        element.browsableProducts = await firstValueFrom(this.productService.getMotheboard());
+        break;
+      }
+      case "Videocard": {
+        element.browsableProducts = await firstValueFrom(this.productService.getVideocard());
+        break;
+      }
+      case "Memory": {
+        element.browsableProducts = await firstValueFrom(this.productService.getMemory());
+        break;
+      }
+      case "Harddrive": {
+        element.browsableProducts = await firstValueFrom(this.productService.getHarddrive());
+        break;
+      }
+      case "PC Case": {
+        element.browsableProducts = await firstValueFrom(this.productService.getCase());
+        break;
+      }
+      case "Powersupply": {
+        element.browsableProducts = await firstValueFrom(this.productService.getPowersupply());
+        break;
+      }
+      case "CPU Cooler": {
+        element.browsableProducts = await firstValueFrom(this.productService.getProcessorCooler());
+        break;
+      }
+      default: {
+        break;
+      }
+    }
     element.productBrowserActive = !element.productBrowserActive;
-    element.browsableProducts = this.productService.mockData;
+    //element.browsableProducts = this.productService.mockData;
   }
 
   removeComponent(element: any) {
@@ -62,49 +101,42 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {
     name: "Motherboard", productBrowserActive: false,
     productChosen: false,
-
     browsableProducts: [],
     chosenProduct: undefined
   },
   {
     name: "Videocard", productBrowserActive: false,
     productChosen: false,
-
     browsableProducts: [],
     chosenProduct: undefined
   },
   {
     name: "Memory", productBrowserActive: false,
     productChosen: false,
-
     browsableProducts: [],
     chosenProduct: undefined
   },
   {
     name: "Harddrive", productBrowserActive: false,
     productChosen: false,
-
     browsableProducts: [],
     chosenProduct: undefined
   },
   {
     name: "PC Case", productBrowserActive: false,
     productChosen: false,
-
     browsableProducts: [],
     chosenProduct: undefined
   },
   {
     name: "Powersupply", productBrowserActive: false,
     productChosen: false,
-
     browsableProducts: [],
     chosenProduct: undefined
   },
   {
     name: "CPU Cooler", productBrowserActive: false,
     productChosen: false,
-
     browsableProducts: [],
     chosenProduct: undefined
   },
