@@ -109,6 +109,10 @@ export class ProductServiceService {
         newFilteredProducts = this.originalProducts.filter(product =>
           product.formFactoryType == filterOption.name
         );
+      } else if (isPSU(this.originalProducts[0])) {
+        newFilteredProducts = this.originalProducts.filter(product =>
+          product.formFactor == filterOption.name
+        )
       } else {
         newFilteredProducts = this.originalProducts.filter(product =>
           product.formFactorType == filterOption.name
@@ -189,34 +193,11 @@ export class ProductServiceService {
 
   async saveProducts(n: number) {
     this.originalProducts = this.productsSubject.getValue();
-    this.initFilters(this.originalProducts, n)
   }
 
   getOriginalProducts() {
     return this.originalProducts;
   }
-
-  initFilters(products: any[], n: number) {
-    /* 
-        const manufacturerOptions = getManufacturers(products);
-        filters.push({ name: 'Manufacturer', options: manufacturerOptions });
-        const seriesOptions = getSeries(products);
-        const socketOptions = getSocketTypes(products);
-        const formFactorOptions = getFormFactorTypes(products);
-        const memoryOptions = getMemoryTypes(products);
-        const chipsetOptions = getChipsetTypes(products);
-        const driveOptions = getDriveTypes(products);
-        filters.push({ name: 'Manufacturer', options: manufacturerOptions });
-    
-        filters.push({ name: 'Series', options: seriesOptions });
-        filters.push({ name: 'Sockets', options: socketOptions });
-        filters.push({ name: 'Form Factors', options: formFactorOptions });
-        filters.push({ name: 'Memory Types', options: memoryOptions });
-        filters.push({ name: 'Chipsets', options: chipsetOptions });
-        filters.push({ name: 'Drive Types', options: driveOptions });
-        this.updateFilters(filters); */
-  }
-
   async chooseProduct(n: number): Promise<void> {
     //n=10;
     this.originalProducts = [];
@@ -739,7 +720,9 @@ export function getFormFactorTypes(products: any[]): { name: string; checked: bo
     if (isMotherboard(product)) {
       formfactors.add(product.formFactoryType!);
     }
-    else {
+    else if (isPSU(product)) {
+      formfactors.add(product.formFactor!);
+    } else {
       formfactors.add(product.formFactorType!);
     }
   });
@@ -798,4 +781,8 @@ export function getDriveTypes(products: any[]): { name: string; checked: boolean
 
 export function isMotherboard(item: any): item is Motherboard {
   return "formFactoryType" in item;
+}
+
+export function isPSU(item: any): item is Powersupply {
+  return "formFactor" in item;
 }

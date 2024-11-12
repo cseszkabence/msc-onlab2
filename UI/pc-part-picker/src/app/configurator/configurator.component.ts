@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { ProductServiceService } from '../product-service.service';
 import { firstValueFrom } from 'rxjs';
+import { Configuration } from '../../model/Configuration';
 
 @Component({
   selector: 'app-configurator',
@@ -20,13 +21,31 @@ import { firstValueFrom } from 'rxjs';
 })
 export class ConfiguratorComponent {
 
+  constructor(private productService: ProductServiceService) {
+  }
 
-  constructor(private productService: ProductServiceService) { }
-
+  totalPrice: number | null | undefined;
   displayedColumns: string[] = ['demo-position', 'demo-weight'];
   dataSource = ELEMENT_DATA;
+  configuration: Configuration = {
+    processor: undefined,
+    motherboard: undefined,
+    videocard: undefined,
+    memory: undefined,
+    harddrive: undefined,
+    pccase: undefined,
+    powersupply: undefined,
+    cpucooler: undefined
+  }
 
-  async toggleBrowser(element: any) {
+  totalPriceCalculator() {
+    this.totalPrice = 0;
+    this.dataSource.forEach((component) => {
+      this.totalPrice = this.totalPrice + component.chosenProduct.price;
+    });
+  }
+
+  async toggleBrowser(element: PeriodicElement) {
     const name = element.name;
     switch (name) {
       case "Processor": {
@@ -35,6 +54,10 @@ export class ConfiguratorComponent {
       }
       case "Motherboard": {
         element.browsableProducts = await firstValueFrom(this.productService.getMotheboard());
+        const filteredProducts = element.browsableProducts.filter(product =>
+          product.socketType == this.configuration.processor?.socketType
+        );
+        element.browsableProducts = filteredProducts;
         break;
       }
       case "Videocard": {
@@ -43,6 +66,10 @@ export class ConfiguratorComponent {
       }
       case "Memory": {
         element.browsableProducts = await firstValueFrom(this.productService.getMemory());
+        const filteredProducts = element.browsableProducts.filter(product =>
+          product.typeNavigation == this.configuration.motherboard?.memoryType
+        );
+        element.browsableProducts = filteredProducts;
         break;
       }
       case "Harddrive": {
@@ -51,6 +78,10 @@ export class ConfiguratorComponent {
       }
       case "PC Case": {
         element.browsableProducts = await firstValueFrom(this.productService.getCase());
+        const filteredProducts = element.browsableProducts.filter(product =>
+          product.formFactorType == this.configuration.motherboard?.formFactoryType
+        );
+        element.browsableProducts = filteredProducts;
         break;
       }
       case "Powersupply": {
@@ -69,16 +100,93 @@ export class ConfiguratorComponent {
     //element.browsableProducts = this.productService.mockData;
   }
 
-  removeComponent(element: any) {
+  removeComponent(element: PeriodicElement) {
     element.productBrowserActive = false;
     element.productChosen = false;
     element.chosenProduct = undefined;
+    const name = element.name;
+    switch (name) {
+      case "Processor": {
+        this.configuration.processor = undefined;
+        break;
+      }
+      case "Motherboard": {
+        this.configuration.motherboard = undefined;
+        break;
+      }
+      case "Videocard": {
+        this.configuration.videocard = undefined;
+        break;
+      }
+      case "Memory": {
+        this.configuration.memory = undefined;
+        break;
+      }
+      case "Harddrive": {
+        this.configuration.harddrive = undefined;
+        break;
+      }
+      case "PC Case": {
+        this.configuration.pccase = undefined;
+        break;
+      }
+      case "Powersupply": {
+        this.configuration.powersupply = undefined;
+        break;
+      }
+      case "CPU Cooler": {
+        this.configuration.cpucooler = undefined;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
   }
 
-  chooseComponent(element: any, product: any) {
+  async chooseComponent(element: PeriodicElement, product: any) {
     element.chosenProduct = product;
     element.productChosen = true;
     element.productBrowserActive = false;
+    const name = element.name;
+    switch (name) {
+      case "Processor": {
+        this.configuration.processor = product;
+        break;
+      }
+      case "Motherboard": {
+        this.configuration.motherboard = product;
+        break;
+      }
+      case "Videocard": {
+        this.configuration.videocard = product;
+        break;
+      }
+      case "Memory": {
+        this.configuration.memory = product;
+        break;
+      }
+      case "Harddrive": {
+        this.configuration.harddrive = product;
+        break;
+      }
+      case "PC Case": {
+        this.configuration.pccase = product;
+        break;
+      }
+      case "Powersupply": {
+        this.configuration.powersupply = product;
+        break;
+      }
+      case "CPU Cooler": {
+        this.configuration.cpucooler = product;
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+    this.totalPriceCalculator();
   }
 }
 

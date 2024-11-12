@@ -40,3 +40,9 @@
 .comp-info-label{
   margin-right: 16px;
 }
+
+.comp-totalprice-label{
+  font-size: 42px;
+  color: aqua;
+  vertical-align:middle;
+}

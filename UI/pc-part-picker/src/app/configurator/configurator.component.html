@@ -10,7 +10,9 @@
     <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let element">
       <ng-container *ngIf="element.productChosen">
-        <mat-label>Chosen product: {{element.chosenProduct.name}}</mat-label>
+        <mat-label class="comp-info-label">Chosen product: {{element.chosenProduct.name}}</mat-label>
+        <mat-label class="comp-info-label">{{element.chosenProduct.chipset}}</mat-label>
+        <mat-label class="comp-info-label">Price: {{element.chosenProduct.price | currency}}</mat-label>
         <button mat-raised-button (click)="removeComponent(element)">Remove</button>
       </ng-container>
 
@@ -25,8 +27,9 @@
           <mat-list>
             <mat-list-item *ngFor="let product of element.browsableProducts">
               <mat-label class="comp-info-label">{{product.name}}</mat-label>
+              <mat-label class="comp-info-label">{{product.chipset}}</mat-label>
               <mat-label class="comp-info-label">Cores: {{product.coreCount}}</mat-label>
-              <mat-label class="comp-info-label">Price: {{product.price}}</mat-label>
+              <mat-label class="comp-info-label">Price: {{product.price | currency}}</mat-label>
                 <button mat-raised-button class="comp-add-btn"(click)="chooseComponent(element, product)">
                   <b>+</b>
                 </button>
@@ -38,6 +41,9 @@
     </td>
   </ng-container>
 
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<mat-label class="comp-totalprice-label">TOTAL: {{totalPrice | currency}}</mat-label>
+<button mat-raised-button class="comp-add-btn"(click)="totalPriceCalculator()">CALCULATE</button>
