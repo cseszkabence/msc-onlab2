@@ -7,7 +7,7 @@
 
   <!-- Weight Column -->
   <ng-container matColumnDef="demo-weight">
-    <th mat-header-cell *matHeaderCellDef> </th>
+    <th mat-header-cell *matHeaderCellDef> Chosen product</th>
     <td mat-cell *matCellDef="let element">
       <ng-container *ngIf="element.productChosen">
         <mat-label class="comp-info-label">Chosen product: {{element.chosenProduct.name}}</mat-label>

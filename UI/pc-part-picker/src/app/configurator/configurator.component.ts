@@ -142,6 +142,7 @@ export class ConfiguratorComponent {
         break;
       }
     }
+    this.totalPriceCalculator();
   }
 
   async chooseComponent(element: PeriodicElement, product: any) {
