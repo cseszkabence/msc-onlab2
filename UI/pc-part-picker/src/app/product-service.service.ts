@@ -9,6 +9,7 @@ import { Harddrive } from '../model/Harddrive';
 import { Powersupply } from '../model/Powersupply';
 import { Cpucooler } from '../model/Cpucooler';
 import { Processor } from '../model/Processor';
+import { pcpart } from '../model/Pcpart';
 
 export interface FilterOption {
   name: string;
@@ -20,12 +21,14 @@ export interface Filter {
   options: FilterOption[];
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductServiceService {
   private APIUrl = "http://localhost:5147/api"
-  productsSubject = new BehaviorSubject<any[]>([]);
+  productsSubject = new BehaviorSubject<pcpart[]>([]);
   products$ = this.productsSubject.asObservable();
 
   private filtersSubject = new BehaviorSubject<Filter[]>([]);

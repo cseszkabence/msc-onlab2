@@ -3,6 +3,7 @@ import { ManufacturerType } from "./ManufacturerType";
 import { SeriesType } from "./SeriesType";
 
 export interface Videocard {
+    type_name: 'Videocard';
     videocardid: number;
     name: string | null;
     price: number | null;

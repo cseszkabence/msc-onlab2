@@ -2,6 +2,7 @@ import { HarddriveType } from "./HarddriveType";
 import { ManufacturerType } from "./ManufacturerType";
 
 export interface Harddrive {
+    type_name: 'Harddrive';
     harddriveid: number;
     name: string | null;
     price: number | null;

@@ -2,6 +2,7 @@ import { ManufacturerType } from "./ManufacturerType";
 import { MemoryType } from "./MemoryType";
 
 export interface Memory {
+    type_name: 'Memory';
     memoryid: number;
     name: string | null;
     price: number | null;

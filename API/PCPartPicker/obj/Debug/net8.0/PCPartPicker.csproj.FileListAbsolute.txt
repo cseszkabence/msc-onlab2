@@ -296,3 +296,7 @@ C:\Users\csesz\Desktop\önlab2_project\msc-onlab2\API\PCPartPicker\bin\Debug\net
 C:\Users\csesz\Desktop\önlab2_project\msc-onlab2\API\PCPartPicker\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\csesz\Desktop\önlab2_project\msc-onlab2\API\PCPartPicker\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\Users\csesz\Desktop\önlab2_project\msc-onlab2\API\PCPartPicker\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\csesz\Desktop\önlab2_project\msc-onlab2\API\PCPartPicker\bin\Debug\net8.0\PCPartPicker.staticwebassets.endpoints.json
+C:\Users\csesz\Desktop\önlab2_project\msc-onlab2\API\PCPartPicker\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\csesz\Desktop\önlab2_project\msc-onlab2\API\PCPartPicker\obj\Debug\net8.0\staticwebassets\msbuild.PCPartPicker.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\csesz\Desktop\önlab2_project\msc-onlab2\API\PCPartPicker\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

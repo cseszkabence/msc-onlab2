@@ -1,6 +1,7 @@
 import { ManufacturerType } from "./ManufacturerType";
 
 export interface Cpucooler {
+    type_name: 'Cpucooler'
     cpucoolerid: number;
     name: string | null;
     price: number | null;

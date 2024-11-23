@@ -4,6 +4,7 @@ import { MemoryType } from "./MemoryType";
 import { SocketType } from "./SocketType";
 
 export interface Motherboard {
+    type_name: 'Motherboard';
     motherboardid: number;
     name: string | null;
     price: number | null;

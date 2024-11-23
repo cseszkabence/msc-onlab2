@@ -2,6 +2,7 @@ import { FormfactorType } from "./FormfactorType";
 import { ManufacturerType } from "./ManufacturerType";
 
 export interface Pccase {
+    type_name: 'Pccase';
     pccaseid: number;
     name: string | null;
     price: number | null;

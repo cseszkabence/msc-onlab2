@@ -2,14 +2,15 @@
   <!-- Filters section (left one-third) -->
   <mat-sidenav mode="side" opened class="filters">
     <h3>Filters</h3>
-      <mat-expansion-panel *ngFor="let filter of filters; let i = index">
-        <mat-expansion-panel-header>
-          <mat-panel-title>{{ filter.name }}</mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-checkbox *ngFor="let option of filter.options" [(ngModel)]="option.checked" (change)="onChange($event, i, option)">
-          {{ option.name }}
-        </mat-checkbox>
-      </mat-expansion-panel>
+    <mat-expansion-panel *ngFor="let filter of filters; let i = index">
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ filter.name }}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-checkbox *ngFor="let option of filter.options" [(ngModel)]="option.checked"
+        (change)="onChange($event, i, option)">
+        {{ option.name }}
+      </mat-checkbox>
+    </mat-expansion-panel>
   </mat-sidenav>
 
   <!-- Product list section (right two-thirds) -->
@@ -18,6 +19,7 @@
       <mat-grid-list cols="3" gutterSize="16px">
         <mat-grid-tile *ngFor="let product of products">
           <mat-card class="product-card">
+            <img mat-card-image [src]="getImagePath(product)" alt="{{ product.name }}" />
             <mat-card-header>
               <mat-card-title>{{ product.name }} {{ product.chipset }}</mat-card-title>
             </mat-card-header>

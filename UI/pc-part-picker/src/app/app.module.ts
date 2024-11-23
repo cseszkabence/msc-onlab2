@@ -23,7 +23,6 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { SpinnerComponent } from './spinner/spinner.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
@@ -36,7 +35,6 @@ import {MatListModule} from '@angular/material/list';
     ProductsComponent,
     ConfiguratorComponent,
     ProductDetailsComponent,
-    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

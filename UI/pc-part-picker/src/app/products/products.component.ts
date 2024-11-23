@@ -7,6 +7,14 @@ import { map, Observable, Subscription } from 'rxjs';
 import { Filter, filterProductsByName, ProductServiceService } from '../product-service.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import {Processor } from '../../model/Processor';
+import { pcpart } from '../../model/Pcpart';
+import { Harddrive } from '../../model/Harddrive';
+import { Cpucooler } from '../../model/Cpucooler';
+import { Pccase } from '../../model/Pccase';
+import { Powersupply } from '../../model/Powersupply';
+import { Videocard } from '../../model/Videocard';
+import { Memory } from '../../model/Memory';
+import { Motherboard } from '../../model/Motherboard';
 
 
 @Component({
@@ -21,7 +29,7 @@ export class ProductsComponent implements OnInit {
   filters: Filter[] = [];
 
   products$!: Observable<any[]>;
-  allProducts!: any[];
+  allProducts!: pcpart[];
 
   enabledFilters = 0;
 
@@ -49,6 +57,29 @@ export class ProductsComponent implements OnInit {
 
   saveOriginalProductsList(): void {
     //this.allProducts$ = this.productService.originalProducts;
+  }
+
+  getImagePath(product: any): string {
+    const basePath = '/assets/images/';
+    if(product.videocardid > 0) {
+      return `${basePath}${product.chipset!}.jpg`;
+    }
+    else
+    {
+      return `${basePath}${product.name!}.jpg`;
+    }
+  }
+
+  private getFolderName(product: pcpart): string {
+    if (this.isProcessor(product)) return 'processors';
+    if (this.isMotherboard(product)) return 'motherboards';
+    if (this.isMemory(product)) return 'memory';
+    if (this.isVideocard(product)) return 'videocards';
+    if (this.isHarddrive(product)) return 'harddrives';
+    if (this.isPowersupply(product)) return 'powersupplies';
+    if (this.isPccase(product)) return 'cases';
+    if (this.isCpucooler(product)) return 'processor_coolers';
+    return 'unknown'; // Fallback
   }
 
   fetchData() {
@@ -127,6 +158,36 @@ export class ProductsComponent implements OnInit {
       data: product
     });
   }
+  private isProcessor(product: pcpart): product is Processor {
+    return product.type_name === 'Processor';
+  }
+  
+  private isMotherboard(product: pcpart): product is Motherboard {
+    return product.type_name === 'Motherboard';
+  }
+  
+  private isMemory(product: pcpart): product is Memory {
+    return product.type_name === 'Memory';
+  }
+  private isVideocard(product: pcpart): product is Videocard {
+    return product.type_name === 'Processor';
+  }
+  
+  private isPowersupply(product: pcpart): product is Powersupply {
+    return product.type_name === 'Motherboard';
+  }
+  
+  private isPccase(product: pcpart): product is Pccase {
+    return product.type_name === 'Memory';
+  }
+  private isCpucooler(product: pcpart): product is Cpucooler {
+    return product.type_name === 'Processor';
+  }
+  
+  private isHarddrive(product: pcpart): product is Harddrive {
+    return product.type_name === 'Motherboard';
+  }
+  
 }
 
 

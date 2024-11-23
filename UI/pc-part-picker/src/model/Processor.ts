@@ -3,6 +3,7 @@ import { SeriesType } from "./SeriesType";
 import { SocketType } from "./SocketType";
 
 export interface Processor {
+    type_name: 'Processor';
     processorid: number;
     name: string | null;
     price: number | null;

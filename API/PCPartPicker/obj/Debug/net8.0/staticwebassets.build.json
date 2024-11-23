@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "O3NKIT2StjXS3LESmUY4E2qHqTkw0HR8HzozUJ9q5jI=",
+  "Hash": "inSEW9TaNucyA++wznX5Mfll1yFdcd214TkanlCVuhs=",
   "Source": "PCPartPicker",
   "BasePath": "_content/PCPartPicker",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

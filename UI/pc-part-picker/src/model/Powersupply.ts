@@ -2,6 +2,7 @@ import { FormfactorType } from "./FormfactorType";
 import { ManufacturerType } from "./ManufacturerType";
 
 export interface Powersupply {
+    type_name: 'Powersupply';
     powersupplyid: number;
     name: string | null;
     price: number | null;
