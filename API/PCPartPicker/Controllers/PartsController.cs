@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PCPartPicker.Interface;
 using PCPartPicker.Models;
 
 namespace PCPartPicker.Controllers

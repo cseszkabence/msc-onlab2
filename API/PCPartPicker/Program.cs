@@ -1,4 +1,3 @@
-using PCPartPicker.Interface;
 using PCPartPicker.Models;
 using System.Text.Json.Serialization;
 

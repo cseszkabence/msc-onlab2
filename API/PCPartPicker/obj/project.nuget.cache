@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nBuwnds1ppU=",
+  "dgSpecHash": "LHWrsKOCV8M=",
   "success": true,
-  "projectFilePath": "C:\\Users\\csesz\\Desktop\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
+  "projectFilePath": "C:\\Users\\csesz\\Desktop\\MSC_2\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\csesz\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\csesz\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

@@ -28,7 +28,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatListModule} from '@angular/material/list';
-
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,12 @@ import {MatListModule} from '@angular/material/list';
   ],
   providers: [
     provideAnimationsAsync(),
-    provideRouter(routes)
+    provideRouter(routes),
+    providePrimeNG({
+      theme: { 
+        preset: Aura
+      }
+    })
   ],
   bootstrap: [AppComponent],
   exports: [MatSliderModule,

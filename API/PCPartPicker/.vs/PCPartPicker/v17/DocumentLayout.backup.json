@@ -1,90 +1,94 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\",
+  "WorkspaceRootPath": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\controllers\\partscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:controllers\\partscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\motherboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\motherboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\interface\\iparts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:interface\\iparts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\repository\\partsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:repository\\partsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\controllers\\partscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:controllers\\partscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\videocard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\videocard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\memory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\memory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\memorytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\memorytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\harddrive.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\harddrive.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\manufacturertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\manufacturertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\processor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\processor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\sockettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\sockettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\pcpartpicker.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:pcpartpicker.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\seriestype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\seriestype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\powersupply.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\powersupply.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\pcpartpicker.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:pcpartpicker.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\pccase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\pccase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\motherboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\motherboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\harddrivetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\harddrivetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\formfactortype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\formfactortype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\cpucooler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\cpucooler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\cpucooler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\chipsettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\chipsettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\videocard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\videocard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\pcpartpicker.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:pcpartpicker.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\memory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\memory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\memorytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\memorytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\harddrive.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\harddrive.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\manufacturertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\manufacturertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\processor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\processor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\sockettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\sockettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\seriestype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\seriestype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\powersupply.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\powersupply.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\pccase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\pccase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\harddrivetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\harddrivetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\formfactortype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\formfactortype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\chipsettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\chipsettype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -93,24 +97,12 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 333,
-          "SelectedChildIndex": 11,
+          "DockedWidth": 345,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Bookmark",
@@ -118,19 +110,62 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAB2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-01T13:34:36.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-03-01T13:34:34.015Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Motherboard.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Motherboard.cs",
+              "RelativeDocumentMoniker": "Models\\Motherboard.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Motherboard.cs",
+              "RelativeToolTip": "Models\\Motherboard.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAA/wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T21:24:34.724Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PCPartPicker",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
+              "RelativeDocumentMoniker": "PCPartPicker.csproj",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
+              "RelativeToolTip": "PCPartPicker.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-12-03T14:27:18.58Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "Pccase.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Pccase.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Pccase.cs",
               "RelativeDocumentMoniker": "Models\\Pccase.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Pccase.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Pccase.cs",
               "RelativeToolTip": "Models\\Pccase.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAABQwB4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -138,11 +173,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "Videocard.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Videocard.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Videocard.cs",
               "RelativeDocumentMoniker": "Models\\Videocard.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Videocard.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Videocard.cs",
               "RelativeToolTip": "Models\\Videocard.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAmwCQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -150,11 +185,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "FormfactorType.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\FormfactorType.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\FormfactorType.cs",
               "RelativeDocumentMoniker": "Models\\FormfactorType.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\FormfactorType.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\FormfactorType.cs",
               "RelativeToolTip": "Models\\FormfactorType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -162,11 +197,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "ManufacturerType.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ManufacturerType.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ManufacturerType.cs",
               "RelativeDocumentMoniker": "Models\\ManufacturerType.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ManufacturerType.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ManufacturerType.cs",
               "RelativeToolTip": "Models\\ManufacturerType.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -174,24 +209,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PartsController.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Controllers\\PartsController.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Controllers\\PartsController.cs",
               "RelativeDocumentMoniker": "Controllers\\PartsController.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Controllers\\PartsController.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Controllers\\PartsController.cs",
               "RelativeToolTip": "Controllers\\PartsController.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAiwGwAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-25T16:37:00.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-25T16:37:00.281Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "MemoryType.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\MemoryType.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\MemoryType.cs",
               "RelativeDocumentMoniker": "Models\\MemoryType.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\MemoryType.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\MemoryType.cs",
               "RelativeToolTip": "Models\\MemoryType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -199,11 +233,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "Harddrive.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Harddrive.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Harddrive.cs",
               "RelativeDocumentMoniker": "Models\\Harddrive.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Harddrive.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Harddrive.cs",
               "RelativeToolTip": "Models\\Harddrive.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAswB4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -211,59 +245,36 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PartsRepository.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Repository\\PartsRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\PartsRepository.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Repository\\PartsRepository.cs",
-              "RelativeToolTip": "Repository\\PartsRepository.cs",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAmwIkAAAALAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "MyDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\MyDbContext.cs",
+              "RelativeDocumentMoniker": "Models\\MyDbContext.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\MyDbContext.cs",
+              "RelativeToolTip": "Models\\MyDbContext.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAuwDEAAACRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-25T16:42:29.413Z"
+              "WhenOpened": "2024-10-08T15:15:45.118Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MyDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\MyDbContext.cs",
-              "RelativeDocumentMoniker": "Models\\MyDbContext.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\MyDbContext.cs",
-              "RelativeToolTip": "Models\\MyDbContext.cs",
-              "ViewState": "AgIAAO8AAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T15:15:45.118Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IParts.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Interface\\IParts.cs",
-              "RelativeDocumentMoniker": "Interface\\IParts.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Interface\\IParts.cs",
-              "RelativeToolTip": "Interface\\IParts.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-25T16:41:43.808Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Program.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABvAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-25T17:43:54.187Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "SocketType.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\SocketType.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\SocketType.cs",
               "RelativeDocumentMoniker": "Models\\SocketType.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\SocketType.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\SocketType.cs",
               "RelativeToolTip": "Models\\SocketType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -271,11 +282,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "Memory.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Memory.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Memory.cs",
               "RelativeDocumentMoniker": "Models\\Memory.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Memory.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Memory.cs",
               "RelativeToolTip": "Models\\Memory.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAUwCAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -283,11 +294,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "Processor.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Processor.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Processor.cs",
               "RelativeDocumentMoniker": "Models\\Processor.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Processor.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Processor.cs",
               "RelativeToolTip": "Models\\Processor.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -295,11 +306,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "SeriesType.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\SeriesType.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\SeriesType.cs",
               "RelativeDocumentMoniker": "Models\\SeriesType.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\SeriesType.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\SeriesType.cs",
               "RelativeToolTip": "Models\\SeriesType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -307,11 +318,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "Powersupply.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Powersupply.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Powersupply.cs",
               "RelativeDocumentMoniker": "Models\\Powersupply.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Powersupply.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Powersupply.cs",
               "RelativeToolTip": "Models\\Powersupply.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -319,11 +330,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "HarddriveType.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\HarddriveType.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\HarddriveType.cs",
               "RelativeDocumentMoniker": "Models\\HarddriveType.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\HarddriveType.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\HarddriveType.cs",
               "RelativeToolTip": "Models\\HarddriveType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -331,23 +342,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 8,
               "Title": "Cpucooler.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Cpucooler.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Cpucooler.cs",
               "RelativeDocumentMoniker": "Models\\Cpucooler.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Cpucooler.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Cpucooler.cs",
               "RelativeToolTip": "Models\\Cpucooler.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAABQwBgAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-13T14:45:58.18Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "ChipsetType.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ChipsetType.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ChipsetType.cs",
               "RelativeDocumentMoniker": "Models\\ChipsetType.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ChipsetType.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ChipsetType.cs",
               "RelativeToolTip": "Models\\ChipsetType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -355,34 +366,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 6,
               "Title": "PCPartPicker.http",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.http",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.http",
               "RelativeDocumentMoniker": "PCPartPicker.http",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.http",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.http",
               "RelativeToolTip": "PCPartPicker.http",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
               "WhenOpened": "2024-10-01T17:32:11.806Z"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 227,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Motherboard.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Motherboard.cs",
-              "RelativeDocumentMoniker": "Models\\Motherboard.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Motherboard.cs",
-              "RelativeToolTip": "Models\\Motherboard.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-16T16:57:54.36Z",
-              "EditorCaption": ""
             }
           ]
         }

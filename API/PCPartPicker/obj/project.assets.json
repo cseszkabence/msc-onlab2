@@ -4666,11 +4666,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\csesz\\Desktop\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
+      "projectUniqueName": "C:\\Users\\csesz\\Desktop\\MSC_2\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
       "projectName": "PCPartPicker",
-      "projectPath": "C:\\Users\\csesz\\Desktop\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
+      "projectPath": "C:\\Users\\csesz\\Desktop\\MSC_2\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
       "packagesPath": "C:\\Users\\csesz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\csesz\\Desktop\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\obj\\",
+      "outputPath": "C:\\Users\\csesz\\Desktop\\MSC_2\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4702,7 +4702,7 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       },
       "SdkAnalysisLevel": "9.0.100"
     },
@@ -4764,7 +4764,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

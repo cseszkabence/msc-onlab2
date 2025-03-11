@@ -5,12 +5,12 @@
 }
 
 .product-card {
-  width: 250px;  margin: 0;
+  width: 200px;  margin: 8px;
 }
 
 .product-card img {
   width: 100%; /* Set the width to fill the container */
-  height: 250px; /* Adjust the height as needed */
+  height: 180px; /* Adjust the height as needed */
   object-fit: fill; /* Ensures the image maintains aspect ratio while covering the area */
   border-radius: 8px; /* Optional: add rounded corners */
 }
