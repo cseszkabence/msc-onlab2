@@ -9,21 +9,22 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  animations: [
-    trigger('slideDownUp', [
-      state('void', style({ height: '0px', opacity: 0 })),
-      state('*', style({ height: '*', opacity: 1 })),
-      transition('void <=> *', animate('300ms ease-in-out')),
-    ]),
-    trigger('slideUpDown', [
-      state('void', style({ height: '0px', opacity: 0, transform: 'translateY(-100%)' })),
-      state('*', style({ height: '*', opacity: 1, transform: 'translateY(0)' })),
-      transition('void <=> *', animate('300ms ease-in-out')),
-    ])
-  ],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css',
+    animations: [
+        trigger('slideDownUp', [
+            state('void', style({ height: '0px', opacity: 0 })),
+            state('*', style({ height: '*', opacity: 1 })),
+            transition('void <=> *', animate('300ms ease-in-out')),
+        ]),
+        trigger('slideUpDown', [
+            state('void', style({ height: '0px', opacity: 0, transform: 'translateY(-100%)' })),
+            state('*', style({ height: '*', opacity: 1, transform: 'translateY(0)' })),
+            transition('void <=> *', animate('300ms ease-in-out')),
+        ])
+    ],
+    standalone: false
 })
 export class AppComponent implements OnInit{
 

@@ -8,16 +8,17 @@ import { firstValueFrom } from 'rxjs';
 import { Configuration } from '../../model/Configuration';
 
 @Component({
-  selector: 'app-configurator',
-  templateUrl: './configurator.component.html',
-  styleUrl: './configurator.component.css',
-  animations: [
-    trigger('slideDownUp', [
-      state('void', style({ height: '0px', opacity: 0 })),
-      state('*', style({ height: '*', opacity: 1 })),
-      transition('void <=> *', animate('300ms ease-in-out')),
-    ]),
-  ],
+    selector: 'app-configurator',
+    templateUrl: './configurator.component.html',
+    styleUrl: './configurator.component.css',
+    animations: [
+        trigger('slideDownUp', [
+            state('void', style({ height: '0px', opacity: 0 })),
+            state('*', style({ height: '*', opacity: 1 })),
+            transition('void <=> *', animate('300ms ease-in-out')),
+        ]),
+    ],
+    standalone: false
 })
 export class ConfiguratorComponent {
 
