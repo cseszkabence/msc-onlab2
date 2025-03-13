@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Motherboard } from '../model/Motherboard';
+import { Motherboard } from '../../../model/Motherboard';
 import { BehaviorSubject, distinctUntilChanged, filter, firstValueFrom, map, Observable } from 'rxjs';
-import { Videocard } from '../model/Videocard';
-import { Pccase } from '../model/Pccase';
-import { Memory } from '../model/Memory';
-import { Harddrive } from '../model/Harddrive';
-import { Powersupply } from '../model/Powersupply';
-import { Cpucooler } from '../model/Cpucooler';
-import { Processor } from '../model/Processor';
-import { pcpart } from '../model/Pcpart';
+import { Videocard } from '../../../model/Videocard';
+import { Pccase } from '../../../model/Pccase';
+import { Memory } from '../../../model/Memory';
+import { Harddrive } from '../../../model/Harddrive';
+import { Powersupply } from '../../../model/Powersupply';
+import { Cpucooler } from '../../../model/Cpucooler';
+import { Processor } from '../../../model/Processor';
+import { pcpart } from '../../../model/Pcpart';
 
 export interface FilterOption {
   name: string;

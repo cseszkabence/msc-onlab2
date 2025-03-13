@@ -4,7 +4,7 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
 import { RouterModule } from '@angular/router';
 import { MatSliderModule } from '@angular/material/slider';
 import { map, Observable, Subscription } from 'rxjs';
-import { Filter, filterProductsByName, ProductServiceService } from '../product-service.service';
+import { Filter, filterProductsByName, ProductServiceService } from '../shared/products/product-service.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import {Processor } from '../../model/Processor';
 import { pcpart } from '../../model/Pcpart';

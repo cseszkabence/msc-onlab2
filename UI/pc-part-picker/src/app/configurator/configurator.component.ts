@@ -3,7 +3,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import { ProductServiceService } from '../product-service.service';
+import { ProductServiceService } from '../shared/products/product-service.service';
 import { firstValueFrom } from 'rxjs';
 import { Configuration } from '../../model/Configuration';
 import { TableModule } from 'primeng/table';

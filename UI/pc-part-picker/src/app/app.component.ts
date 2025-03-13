@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Motherboard } from '../model/Motherboard';
-import { filterProductsByName, ProductServiceService } from './product-service.service';
+import { filterProductsByName, ProductServiceService } from './shared/products/product-service.service';
 import { Observable } from 'rxjs';
 import { Processor } from '../model/Processor';
 import { Router, RouterOutlet } from '@angular/router';
@@ -11,7 +11,8 @@ import { Button } from 'primeng/button';
 import { NgStyle, NgIf, NgFor } from '@angular/common';
 import { InputGroup } from 'primeng/inputgroup';
 import { FormsModule } from '@angular/forms';
-
+import { UserComponent } from './user/user.component';
+import { RegistrationComponent } from "./user/registration/registration.component";
 
 @Component({
     selector: 'app-root',
@@ -29,7 +30,7 @@ import { FormsModule } from '@angular/forms';
             transition('void <=> *', animate('300ms ease-in-out')),
         ])
     ],
-    imports: [Toolbar, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet]
+    imports: [Toolbar, RegistrationComponent, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, UserComponent, RegistrationComponent]
 })
 export class AppComponent implements OnInit{
 
