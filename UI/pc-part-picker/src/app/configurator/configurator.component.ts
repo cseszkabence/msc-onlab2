@@ -6,6 +6,11 @@ import { MatTableModule } from '@angular/material/table';
 import { ProductServiceService } from '../product-service.service';
 import { firstValueFrom } from 'rxjs';
 import { Configuration } from '../../model/Configuration';
+import { TableModule } from 'primeng/table';
+import { PrimeTemplate } from 'primeng/api';
+import { NgIf, CurrencyPipe } from '@angular/common';
+import { Button } from 'primeng/button';
+import { Listbox } from 'primeng/listbox';
 
 @Component({
     selector: 'app-configurator',
@@ -18,7 +23,7 @@ import { Configuration } from '../../model/Configuration';
             transition('void <=> *', animate('300ms ease-in-out')),
         ]),
     ],
-    standalone: false
+    imports: [TableModule, PrimeTemplate, NgIf, Button, Listbox, CurrencyPipe]
 })
 export class ConfiguratorComponent {
 

@@ -38,8 +38,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/styles/root.css"
-            ],
+              "src/styles/root.css"            ],
             "scripts": []
           },
           "configurations": {

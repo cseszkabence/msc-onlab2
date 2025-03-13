@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Motherboard } from '../model/Motherboard';
-import { BehaviorSubject, filter, firstValueFrom, map, Observable } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, filter, firstValueFrom, map, Observable } from 'rxjs';
 import { Videocard } from '../model/Videocard';
 import { Pccase } from '../model/Pccase';
 import { Memory } from '../model/Memory';
@@ -29,7 +29,9 @@ export interface Filter {
 export class ProductServiceService {
   private APIUrl = "http://localhost:5147/api"
   productsSubject = new BehaviorSubject<pcpart[]>([]);
-  products$ = this.productsSubject.asObservable();
+  products$ = this.productsSubject.asObservable().pipe(
+    distinctUntilChanged() // Ensures emissions happen only when data changes
+  );
 
   private filtersSubject = new BehaviorSubject<Filter[]>([]);
   filters$: Observable<Filter[]> = this.filtersSubject.asObservable();

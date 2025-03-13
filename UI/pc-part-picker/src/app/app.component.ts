@@ -5,7 +5,12 @@ import { Motherboard } from '../model/Motherboard';
 import { filterProductsByName, ProductServiceService } from './product-service.service';
 import { Observable } from 'rxjs';
 import { Processor } from '../model/Processor';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { Toolbar } from 'primeng/toolbar';
+import { Button } from 'primeng/button';
+import { NgStyle, NgIf, NgFor } from '@angular/common';
+import { InputGroup } from 'primeng/inputgroup';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -24,7 +29,7 @@ import { Router } from '@angular/router';
             transition('void <=> *', animate('300ms ease-in-out')),
         ])
     ],
-    standalone: false
+    imports: [Toolbar, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet]
 })
 export class AppComponent implements OnInit{
 

@@ -1,37 +1,61 @@
 <html>
-<mat-toolbar>
-  <mat-toolbar-row>
+<p-toolbar>
+  <div class="p-toolbar-group-left">
     <span>PC PART PICKER</span>
-    <button mat-raised-button [ngStyle]="{'background-color': showProductsBar ? '#19241E' : '#0F1511'}" (click)="toggleProducts()" class="main-buttons">Products</button>
-    <button mat-raised-button (click)="navigateToConfigurator()" class="main-buttons">Configurator</button>
-    <button mat-raised-button [ngStyle]="{'background-color': showSearchBar ? '#19241E' : '#0F1511'}" (click)="toggleSearch()" class="main-buttons">Search</button>
-      <mat-form-field *ngIf="showSearchBar" @slideUpDown>
-         <mat-label>Search</mat-label>
-         <input matInput #txtVal (keydown.enter)="searchProducts()" placeholder="Search something..." [(ngModel)]="searchQuery">
-         @if (searchQuery) {
-           <button matSuffix mat-button aria-label="Clear" (click)="cleanSearch()">
-             <mat-icon>close</mat-icon>
-           </button>
-         }
-         <button matSuffix mat-button (click)="searchProducts()"><mat-icon >search</mat-icon></button>
-       </mat-form-field> 
-    <span class="example-spacer"></span>
-    <button mat-icon-button>
-      <mat-icon>shopping_cart</mat-icon>
-    </button>
-  </mat-toolbar-row>
-</mat-toolbar>
+    <p-button 
+      [ngStyle]="{'background-color': showProductsBar ? '#19241E' : '#0F1511'}" 
+      (click)="toggleProducts()" 
+      label="Products" 
+      class="main-buttons">
+    </p-button>
+    <p-button 
+      (click)="navigateToConfigurator()" 
+      label="Configurator" 
+      class="main-buttons">
+    </p-button>
+    <p-button 
+      [ngStyle]="{'background-color': showSearchBar ? '#19241E' : '#0F1511'}" 
+      (click)="toggleSearch()" 
+      label="Search" 
+      class="main-buttons">
+    </p-button>
 
+    <p-inputGroup *ngIf="showSearchBar" @slideUpDown>
+      <p-inputText 
+        #txtVal 
+        (keydown.enter)="searchProducts()" 
+        placeholder="Search something..." 
+        [(ngModel)]="searchQuery">
+      </p-inputText>
+      <p-button 
+        *ngIf="searchQuery" 
+        icon="pi pi-times" 
+        (click)="cleanSearch()" 
+        styleClass="p-button-text">
+      </p-button>
+      <p-button 
+        icon="pi pi-search" 
+        (click)="searchProducts()" 
+        styleClass="p-button-text">
+      </p-button>
+    </p-inputGroup>
+  </div>
+
+  <div class="p-toolbar-group-right">
+    <p-button icon="pi pi-shopping-cart" class="p-button-rounded p-button-text"></p-button>
+  </div>
+</p-toolbar>
 
 <div *ngIf="showProductsBar" @slideDownUp>
   <div class="card-container">
-    <button mat-flat-button *ngFor="let card of cards; let i = index" (click)="chooseProduct(i)">{{ card.title }}
-    </button>
+    <p-button 
+      *ngFor="let card of cards; let i = index" 
+      (click)="chooseProduct(i)" 
+      [label]="card.title" 
+      styleClass="p-button-outlined">
+    </p-button>
   </div>
 </div>
 
-
-
 <router-outlet></router-outlet>
-<!-- <app-products></app-products> -->
 </html>

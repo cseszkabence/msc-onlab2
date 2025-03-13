@@ -15,19 +15,44 @@ import { Powersupply } from '../../model/Powersupply';
 import { Videocard } from '../../model/Videocard';
 import { Memory } from '../../model/Memory';
 import { Motherboard } from '../../model/Motherboard';
+import { Splitter } from 'primeng/splitter';
+import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'primeng/accordion';
+import { NgFor, NgIf, AsyncPipe, CurrencyPipe } from '@angular/common';
+import { Ripple } from 'primeng/ripple';
+import { Checkbox } from 'primeng/checkbox';
+import { FormsModule } from '@angular/forms';
+import { Card } from 'primeng/card';
+import { PrimeTemplate } from 'primeng/api';
+import { Button } from 'primeng/button';
+import { Tag } from 'primeng/tag';
+import { DataView } from 'primeng/dataview';
+import { Rating } from 'primeng/rating';
+import { ButtonModule } from 'primeng/button';
+import { SelectButton } from 'primeng/selectbutton';
+import { CommonModule } from '@angular/common';
+import { signal } from '@angular/core';
+import { ScrollTopModule } from 'primeng/scrolltop';
 
 
 @Component({
     selector: 'app-products',
     templateUrl: './products.component.html',
     styleUrl: './products.component.css',
-    standalone: false
+    standalone: true,
+    imports: [DataView,ScrollTopModule, Rating, ButtonModule, SelectButton,Tag, CommonModule, Splitter, Accordion, NgFor, AccordionPanel, Ripple, AccordionHeader, AccordionContent, Checkbox, FormsModule, NgIf, Card, PrimeTemplate, Button, AsyncPipe, CurrencyPipe]
 })
 export class ProductsComponent implements OnInit {
 
   private subscriptions: Subscription[] = [];  // Track all subscriptions
 
   filters: Filter[] = [];
+  layout!: "list" | "grid";
+
+  options = ["list", "grid"];
+  warn: "success"|"secondary"|"info"|"warn"|"danger"|"contrast"|undefined;
+  getSeverity( ) {
+    return this.warn;
+}
 
   products$!: Observable<any[]>;
   allProducts!: pcpart[];

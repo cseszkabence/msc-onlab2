@@ -1,42 +1,4 @@
-@use '@angular/material' as mat;
-@include mat.core();
-
-$my-material-app-theme: mat.define-theme(
-  (
-    color: (
-      theme-type: light,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
-      use-system-variables: true, // 👈 Added
-    ),
-    typography: (
-      use-system-variables: true, // 👈 Added
-    ),
-    density: (
-      scale: 0,
-    ),
-  )
-);
-
-:root {
-  @include mat.all-component-themes($my-material-app-theme);
-  @include mat.system-level-colors($my-material-app-theme); // 👈 Added
-  @include mat.system-level-typography($my-material-app-theme); // 👈 Added
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--sys-background);
-  body .mdc-text-field--filled {
-    border-radius: 2em;
-  }
-}
-
-.transparent .mat-mdc-dialog-container {
-  --mdc-dialog-container-color: rgba(0, 0, 0, 0.0);
-}
-
-.transparent .mat-mdc-dialog-surface {
-  box-shadow: none !important;
-}
+@use "tailwindcss";
+@use "primeicons/primeicons.css";
+@use "primeflex/themes/primeone-light.css";
+@use "primeflex/themes/primeone-dark.css";
