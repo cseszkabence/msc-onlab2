@@ -1,35 +1,69 @@
-<div class="mb-4 h2">
-    Sign up
+<div class="w-full md:w-5/12 flex flex-col items-center justify-center gap-3 py-5">
+    <div class="header">
+        Sign up
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()"
+        class="w-full md:w-5/12 flex flex-col items-center justify-center gap-3 py-5">
+        <p-toast />
+        <div>
+            <p-floatlabel variant="on">
+                <input pInputText id="on_label_full_name" formControlName="fullName" autocomplete="off" />
+                <label for="on_label_full_name">Full Name</label>
+            </p-floatlabel>
+            <div class="error-feedback"
+                *ngIf="hasDisplayableError('fullName') && form.controls.fullName.hasError('required')">
+                Please enter your full name.
+            </div>
+        </div>
+        <div>
+            <p-floatlabel variant="on">
+                <input pInputText id="on_label_email" formControlName="email" autocomplete="off" />
+                <label for="on_label_email">Email</label>
+            </p-floatlabel>
+            <div class="error-feedback" *ngIf="hasDisplayableError('email')">
+                <div *ngIf="form.controls.email.hasError('required')">
+                    Please enter your email address.
+                </div>
+                <div *ngIf="form.controls.email.hasError('email')">
+                    Please enter a valid email address.
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <p-floatlabel variant="on">
+                <p-password id="on_label_password" formControlName="password" autocomplete="off" [feedback]="false"
+                    [toggleMask]="true" />
+                <label for="on_label_password">Password</label>
+            </p-floatlabel>
+            <div class="error-feedback" *ngIf="hasDisplayableError('password')">
+                <ng-container [ngSwitch]="form.controls.password.errors | firstKey">
+                    <div *ngSiwtchCase="'required'">
+                        Please enter your password.
+                    </div>
+                    <div *ngSwitchCase="'minlength'">
+                        The password must be at least 6 characters long.
+                    </div>
+                    <div *ngSwitchCase="'pattern'">
+                        One or more special character(s).
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div>
+            <p-floatlabel variant="on">
+                <p-password id="on_label_confirm_password" formControlName="confirmPassword" autocomplete="off"
+                    [feedback]="false" [toggleMask]="true" />
+                <label for="on_label_confirm_password">Confirm Password</label>
+            </p-floatlabel>
+            <div class="error-feedback"
+                *ngIf="hasDisplayableError('confirmPassword') && form.controls.confirmPassword.hasError('passwordMismatch')">
+                Password doesn't match.
+            </div>
+        </div>
+        <div class="m-3">
+            <p-button type="ngSubmit" label="Sign Up" icon="pi pi-user-plus" severity="success"
+                class="w-full max-w-[17.35rem]" />
+        </div>
+    </form>
 </div>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="m-3">
-        <p-floatlabel variant="on">
-            <input pInputText id="on_label_full_name" formControlName="fullName" autocomplete="off" />
-            <label for="on_label_full_name">Full Name</label>
-        </p-floatlabel>
-    </div>
-    <div class="m-3">
-        <p-floatlabel variant="on">
-            <input pInputText id="on_label_email" formControlName="email" autocomplete="off" />
-            <label for="on_label_email">Email</label>
-        </p-floatlabel>
-    </div>
-    <div class="m-3">
-        <p-floatlabel variant="on">
-            <p-password id="on_label_password" formControlName="password" autocomplete="off" [feedback]="false"
-                [toggleMask]="true" />
-            <label for="on_label_password">Password</label>
-        </p-floatlabel>
-    </div>
-    <div class="m-3">
-        <p-floatlabel variant="on">
-            <p-password id="on_label_confirm_password" formControlName="confirmPassword" autocomplete="off" [feedback]="false"
-                [toggleMask]="true" />
-            <label for="on_label_confirm_password">Confirm Password</label>
-        </p-floatlabel>
-    </div>
-    <div class="m-3">
-        <p-button type="ngSubmit" label="Sign Up" icon="pi pi-user-plus" severity="success" class="w-full max-w-[17.35rem]"
-            styleClass="w-full mx-auto" />
-    </div>
-</form>

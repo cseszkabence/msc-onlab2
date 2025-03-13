@@ -44,6 +44,7 @@ import { MyPreset } from './mytheme/mytheme';
 import { TagModule } from 'primeng/tag';
 import { DataViewModule } from 'primeng/dataview';
 import { ScrollTopModule } from 'primeng/scrolltop';
+import { ToastModule } from 'primeng/toast';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -65,7 +66,8 @@ export const appConfig: ApplicationConfig = {
           CheckboxModule,
           DataViewModule,
           TagModule,
-          ScrollTopModule
+          ScrollTopModule,
+          ToastModule
         ),
         provideRouter(routes),
         providePrimeNG({

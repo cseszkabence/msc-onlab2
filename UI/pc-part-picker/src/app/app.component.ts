@@ -15,25 +15,24 @@ import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from "./user/registration/registration.component";
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css',
-    animations: [
-        trigger('slideDownUp', [
-            state('void', style({ height: '0px', opacity: 0 })),
-            state('*', style({ height: '*', opacity: 1 })),
-            transition('void <=> *', animate('300ms ease-in-out')),
-        ]),
-        trigger('slideUpDown', [
-            state('void', style({ height: '0px', opacity: 0, transform: 'translateY(-100%)' })),
-            state('*', style({ height: '*', opacity: 1, transform: 'translateY(0)' })),
-            transition('void <=> *', animate('300ms ease-in-out')),
-        ])
-    ],
-    imports: [Toolbar, RegistrationComponent, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, UserComponent, RegistrationComponent]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
+  animations: [
+    trigger('slideDownUp', [
+      state('void', style({ height: '0px', opacity: 0 })),
+      state('*', style({ height: '*', opacity: 1 })),
+      transition('void <=> *', animate('300ms ease-in-out')),
+    ]),
+    trigger('slideUpDown', [
+      state('void', style({ height: '0px', opacity: 0, transform: 'translateY(-100%)' })),
+      state('*', style({ height: '*', opacity: 1, transform: 'translateY(0)' })),
+      transition('void <=> *', animate('300ms ease-in-out')),
+    ])
+  ],
+  imports: [Toolbar, RegistrationComponent, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, UserComponent, RegistrationComponent]
 })
-export class AppComponent implements OnInit{
-
+export class AppComponent implements OnInit {
 
   title = 'PC PART PICKER';
   categoryNumber: number = 0;
@@ -70,6 +69,10 @@ export class AppComponent implements OnInit{
 
   navigateToConfigurator() {
     this.router.navigateByUrl("/configurator-component").then(() => this.disableBars())
+  }
+
+  navigateToAccount() {
+    this.router.navigateByUrl("/user-component").then(() => this.disableBars())
   }
 
   ngOnInit() { }

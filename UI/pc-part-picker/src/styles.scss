@@ -2,3 +2,10 @@
 @use "primeicons/primeicons.css";
 @use "primeflex/themes/primeone-light.css";
 @use "primeflex/themes/primeone-dark.css";
+
+.error-feedback{
+    font-size: 0.9rem;
+    color: crimson;
+    margin: 0.3rem !important;
+    margin-top: 0.1rem !important;
+}
