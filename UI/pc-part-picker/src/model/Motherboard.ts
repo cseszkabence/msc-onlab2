@@ -1,13 +1,10 @@
 import { FormfactorType } from "./FormfactorType";
 import { ManufacturerType } from "./ManufacturerType";
 import { MemoryType } from "./MemoryType";
+import { PcPart } from "./Pcpart";
 import { SocketType } from "./SocketType";
 
-export interface Motherboard {
-    type_name: 'Motherboard';
-    motherboardid: number;
-    name: string | null;
-    price: number | null;
+export interface Motherboard extends PcPart{
     socket: string | null;
     formFactor: string | null;
     maxMemory: number | null;

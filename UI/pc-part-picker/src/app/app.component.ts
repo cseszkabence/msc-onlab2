@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Motherboard } from '../model/Motherboard';
@@ -13,6 +13,10 @@ import { InputGroup } from 'primeng/inputgroup';
 import { FormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from "./user/registration/registration.component";
+import { AuthService } from './shared/services/auth/auth.service';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { CartService } from './shared/services/cart/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -30,20 +34,26 @@ import { RegistrationComponent } from "./user/registration/registration.componen
       transition('void <=> *', animate('300ms ease-in-out')),
     ])
   ],
-  imports: [Toolbar, RegistrationComponent, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, UserComponent, RegistrationComponent]
+  providers: [MessageService],
+  imports: [Toolbar, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, ToastModule]
 })
 export class AppComponent implements OnInit {
 
   title = 'PC PART PICKER';
   categoryNumber: number = 0;
+  isLoggedIn=false;
 
   constructor(
     private productService: ProductServiceService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
+    private messageService: MessageService,
   ) { }
 
+  cartService = inject(CartService)
   showSearchBar: boolean = false;
   showProductsBar: boolean = false;
+
 
   cards = [
     { title: 'Processor', content: ' ' },
@@ -75,7 +85,11 @@ export class AppComponent implements OnInit {
     this.router.navigateByUrl("/user-component").then(() => this.disableBars())
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.authService.loginStatus$.subscribe(status => {
+      this.isLoggedIn = status;
+    });
+  }
 
   disableBars() {
     this.showSearchBar = false;
@@ -98,6 +112,15 @@ export class AppComponent implements OnInit {
   async chooseProduct(n: number) {
     this.categoryNumber = n;
     await this.productService.chooseProduct(n);
+  }
+
+  onLogout(){
+    this.authService.onLogout();
+    this.messageService.add({ severity: 'success', summary: 'Logout successful!', detail: '', life: 3000 });
+  }
+
+  navigateToCart() {
+    this.router.navigateByUrl("/cart-component").then(() => this.disableBars())
   }
 
 }

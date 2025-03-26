@@ -11,27 +11,35 @@ import { AuthService } from '../shared/services/auth/auth.service';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api'
 import { PasswordModule } from 'primeng/password';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { waitForAsync } from '@angular/core/testing';
+
+async function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 @Component({
   selector: 'app-user',
   standalone: true,
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
-  imports: [RegistrationComponent, ButtonModule, DividerModule, ToastModule, InputTextModule, CommonModule, ReactiveFormsModule, FloatLabelModule, PasswordModule],
+  imports: [ButtonModule, ProgressSpinnerModule, DividerModule, ToastModule, InputTextModule, CommonModule, ReactiveFormsModule, FloatLabelModule, PasswordModule],
   providers: [MessageService]
 })
 export class UserComponent {
-  constructor(private router: Router, public formBuilder: FormBuilder, private service: AuthService,private messageService: MessageService
+  constructor(private router: Router, public formBuilder: FormBuilder, private authService: AuthService,private messageService: MessageService
   ) { }
 
   isSubmitted: boolean = false;
+  isLoading: boolean = false;
 
   form = this.formBuilder.group({
     email: ['', Validators.required],
     password: ['', Validators.required],
   })
 
-
+  
+  
   navigateToRegistration() {
     this.router.navigateByUrl("/registration-component");
   }
@@ -42,10 +50,14 @@ export class UserComponent {
   onSubmit(){
     this.isSubmitted = true;
     if(this.form.valid){
-      this.service.signin(this.form.value).subscribe({
-        next:(res:any)=>{
+      this.isLoading = true;
+      this.authService.signin(this.form.value).subscribe({
+        next:async (res:any)=>{
+          await sleep(3000);
+          localStorage.setItem('token',res.token);
+          this.authService.setSubject();
           this.messageService.add({ severity: 'success', summary: 'Login successful!', detail: '', life: 3000 });
-          this.router.navigateByUrl("/configurator-component");
+          this.router.navigateByUrl("/configurator-component").then(()=>this.isLoading=false);
         },
         error: err => {
           if(err.status == 400){
@@ -61,7 +73,6 @@ export class UserComponent {
   }
 
   onLogout(){
-    localStorage.removeItem('token');
-    this.messageService.add({ severity: 'success', summary: 'Logout successful!', detail: '', life: 3000 });
+    this.authService.onLogout();
   }
 }

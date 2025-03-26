@@ -5,7 +5,7 @@ namespace PCPartPicker.Models;
 
 public partial class Harddrive
 {
-    public int Harddriveid { get; set; }
+    public int Id { get; set; }
 
     public string? Name { get; set; }
 
@@ -24,6 +24,8 @@ public partial class Harddrive
     public int? ManufacturerTypeId { get; set; }
 
     public int? DriveTypeId { get; set; }
+
+    public virtual ICollection<Configuration> Configurations { get; set; } = new List<Configuration>();
 
     public virtual HarddriveType? DriveType { get; set; }
 

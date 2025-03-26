@@ -1,0 +1,8 @@
+<div *ngFor="let item of cartItems" class="w-full md:w-5/12 flex flex-col items-center justify-center gap-3 py-5">
+    <p>{{ item.partType }} #{{ item.partId }} - Qty: {{ item.quantity }}</p>
+    <p-button (click)="updateCart(item, -1)">-</p-button>
+    <p-button (click)="updateCart(item, 1)">+</p-button>
+    <p-button (click)="updateCart(item, -item.quantity)" severity="danger">Remove</p-button>
+</div>
+
+<p-button (click)="clearCart()">Clear Cart</p-button>

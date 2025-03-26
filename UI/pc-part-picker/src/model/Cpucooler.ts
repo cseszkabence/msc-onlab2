@@ -1,10 +1,7 @@
 import { ManufacturerType } from "./ManufacturerType";
+import { PcPart } from "./Pcpart";
 
-export interface Cpucooler {
-    type_name: 'Cpucooler'
-    cpucoolerid: number;
-    name: string | null;
-    price: number | null;
+export interface Cpucooler extends PcPart{
     rpm: number | null;
     noiseLevel: number | null;
     color: string | null;

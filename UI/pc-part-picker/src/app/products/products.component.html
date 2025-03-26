@@ -54,7 +54,7 @@
                 <div class="flex flex-row-reverse md:flex-row gap-2">
                   <button pButton icon="pi pi-heart" [outlined]="true"></button>
                   <button pButton icon="pi pi-shopping-cart" label="Buy Now"
-                    class="flex-auto md:flex-initial whitespace-nowrap"></button>
+                    class="flex-auto md:flex-initial whitespace-nowrap" (click)="addToCart(product)"></button>
                 </div>
               </div>
             </div>
@@ -71,8 +71,6 @@
                   <img class="rounded w-full"
                     [src]="getImagePath(product)"
                     [alt]="product.name" style="max-width: 300px" />
-                  <p-tag [value]="product.inventoryStatus" [severity]="getSeverity()" class="absolute"
-                    styleClass="dark:!bg-surface-900" [style.left.px]="4" [style.top.px]="4" />
                 </div>
               </div>
               <div class="pt-6">
@@ -94,7 +92,7 @@
                 <div class="flex flex-col gap-6 mt-6">
                   <span class="text-2xl font-semibold">{{ product.price | currency: 'USD' }}</span>
                   <div class="flex gap-2">
-                    <button pButton icon="pi pi-shopping-cart" label="Buy Now"
+                    <button pButton icon="pi pi-shopping-cart" label="Buy Now" (click)="addToCart(product)"
                       
                       class="flex-auto whitespace-nowrap"></button>
                     <button pButton icon="pi pi-heart" outlined></button>

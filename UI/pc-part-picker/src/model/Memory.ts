@@ -1,11 +1,8 @@
 import { ManufacturerType } from "./ManufacturerType";
 import { MemoryType } from "./MemoryType";
+import { PcPart } from "./Pcpart";
 
-export interface Memory {
-    type_name: 'Memory';
-    memoryid: number;
-    name: string | null;
-    price: number | null;
+export interface Memory extends PcPart{
     speed: number | null;
     modules: string | null;
     pricePerGb: number | null;

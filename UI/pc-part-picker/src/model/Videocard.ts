@@ -1,12 +1,9 @@
 import { ChipsetType } from "./ChipsetType";
 import { ManufacturerType } from "./ManufacturerType";
+import { PcPart } from "./Pcpart";
 import { SeriesType } from "./SeriesType";
 
-export interface Videocard {
-    type_name: 'Videocard';
-    videocardid: number;
-    name: string | null;
-    price: number | null;
+export interface Videocard extends PcPart {
     chipset: string | null;
     memory: number | null;
     coreClock: number | null;

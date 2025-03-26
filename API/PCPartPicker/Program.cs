@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PCPartPicker.Models;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -125,6 +126,62 @@ app.MapPost("/api/signin", async (
     }
 });
 
+// Shopping Cart Endpoints
+
+app.MapGet("/api/cart", async (string userId, MyDbContext db) =>
+{
+    var items = await db.CartItems
+        .Where(c => c.UserId == userId)
+        .ToListAsync();
+
+    return Results.Ok(items);
+});
+
+app.MapPost("/api/cart", async ([FromBody] CartItem input, MyDbContext db) =>
+{
+    var existingItem = await db.CartItems.FirstOrDefaultAsync(c =>
+        c.UserId == input.UserId &&
+        c.PartType == input.PartType &&
+        c.PartId == input.PartId);
+
+    if (existingItem != null)
+    {
+        existingItem.Quantity += input.Quantity;
+    }
+    else
+    {
+        db.CartItems.Add(input);
+    }
+
+    await db.SaveChangesAsync();
+    return Results.Ok();
+});
+
+app.MapPost("/api/cart/update", async ([FromBody] CartItem input, MyDbContext db) =>
+{
+    var item = await db.CartItems.FirstOrDefaultAsync(c =>
+        c.UserId == input.UserId &&
+        c.PartType == input.PartType &&
+        c.PartId == input.PartId);
+
+    if (item != null)
+    {
+        item.Quantity += input.Quantity;
+
+        if (item.Quantity <= 0)
+        {
+            db.CartItems.Remove(item);
+        }
+    }
+    else if (input.Quantity > 0)
+    {
+        db.CartItems.Add(input);
+    }
+
+    await db.SaveChangesAsync();
+
+    return Results.Ok();
+});
 
 app.Run();
 

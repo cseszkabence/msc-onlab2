@@ -5,7 +5,7 @@ namespace PCPartPicker.Models;
 
 public partial class Motherboard
 {
-    public int Motherboardid { get; set; }
+    public int Id { get; set; }
 
     public string? Name { get; set; }
 
@@ -28,6 +28,8 @@ public partial class Motherboard
     public int? MemoryTypeId { get; set; }
 
     public int? FormFactoryTypeId { get; set; }
+
+    public virtual ICollection<Configuration> Configurations { get; set; } = new List<Configuration>();
 
     public virtual FormfactorType? FormFactoryType { get; set; }
 

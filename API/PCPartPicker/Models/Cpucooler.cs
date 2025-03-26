@@ -5,7 +5,7 @@ namespace PCPartPicker.Models;
 
 public partial class Cpucooler
 {
-    public int Cpucoolerid { get; set; }
+    public int Id { get; set; }
 
     public string? Name { get; set; }
 
@@ -20,6 +20,8 @@ public partial class Cpucooler
     public decimal? Size { get; set; }
 
     public int? ManufacturerTypeId { get; set; }
+
+    public virtual ICollection<Configuration> Configurations { get; set; } = new List<Configuration>();
 
     public virtual ManufacturerType? ManufacturerType { get; set; }
 }

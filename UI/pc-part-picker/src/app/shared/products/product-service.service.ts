@@ -9,7 +9,7 @@ import { Harddrive } from '../../../model/Harddrive';
 import { Powersupply } from '../../../model/Powersupply';
 import { Cpucooler } from '../../../model/Cpucooler';
 import { Processor } from '../../../model/Processor';
-import { pcpart } from '../../../model/Pcpart';
+import { PcPart } from '../../../model/Pcpart';
 
 export interface FilterOption {
   name: string;
@@ -28,7 +28,7 @@ export interface Filter {
 
 export class ProductServiceService {
   private APIUrl = "http://localhost:5147/api"
-  productsSubject = new BehaviorSubject<pcpart[]>([]);
+  productsSubject = new BehaviorSubject<PcPart[]>([]);
   products$ = this.productsSubject.asObservable().pipe(
     distinctUntilChanged() // Ensures emissions happen only when data changes
   );
@@ -295,35 +295,51 @@ export class ProductServiceService {
   }
 
   getMotheboard(): Observable<Motherboard[]> {
-    return this.httpClient.get<Motherboard[]>(this.APIUrl + '/Parts/GetMotherboard')
+    return this.httpClient.get<any[]>(this.APIUrl + '/Parts/GetMotherboard').pipe(
+      map(data => data.map(createMotherboard))
+    );
   }
 
   getProcessor(): Observable<Processor[]> {
-    return this.httpClient.get<Processor[]>(this.APIUrl + '/Parts/GetProcessor')
+    return this.httpClient.get<any[]>(this.APIUrl + '/Parts/GetProcessor').pipe(
+      map(data => data.map(createProcessor))
+    );
   }
 
   getVideocard(): Observable<Videocard[]> {
-    return this.httpClient.get<Videocard[]>(this.APIUrl + '/Parts/GetVideocard')
+    return this.httpClient.get<any[]>(this.APIUrl + '/Parts/GetVideocard').pipe(
+      map(data => data.map(createVideocard))
+    );
   }
 
   getCase(): Observable<Pccase[]> {
-    return this.httpClient.get<Pccase[]>(this.APIUrl + '/Parts/GetCase')
+    return this.httpClient.get<any[]>(this.APIUrl + '/Parts/GetCase').pipe(
+      map(data => data.map(createPccase))
+    );
   }
 
   getMemory(): Observable<Memory[]> {
-    return this.httpClient.get<Memory[]>(this.APIUrl + '/Parts/GetMemory')
+    return this.httpClient.get<any[]>(this.APIUrl + '/Parts/GetMemory').pipe(
+      map(data => data.map(createMemory))
+    );
   }
 
   getHarddrive(): Observable<Harddrive[]> {
-    return this.httpClient.get<Harddrive[]>(this.APIUrl + '/Parts/GetHarddrive')
+    return this.httpClient.get<any[]>(this.APIUrl + '/Parts/GetHarddrive').pipe(
+      map(data => data.map(createHarddrive))
+    );
   }
 
   getPowersupply(): Observable<Powersupply[]> {
-    return this.httpClient.get<Powersupply[]>(this.APIUrl + '/Parts/GetPowersupply')
+    return this.httpClient.get<any[]>(this.APIUrl + '/Parts/GetPowersupply').pipe(
+      map(data => data.map(createPowersupply))
+    );
   }
 
   getProcessorCooler(): Observable<Cpucooler[]> {
-    return this.httpClient.get<Cpucooler[]>(this.APIUrl + '/Parts/GetProcessorCooler')
+    return this.httpClient.get<any[]>(this.APIUrl + '/Parts/GetProcessorCooler').pipe(
+      map(data => data.map(createCpucooler))
+    );
   }
 
   mockData = [
@@ -790,4 +806,60 @@ export function isMotherboard(item: any): item is Motherboard {
 
 export function isPSU(item: any): item is Powersupply {
   return "formFactor" in item;
+}
+
+export function createProcessor(data: any): Processor {
+  return {
+    ...data,
+    type_name: 'Processor'
+  } as Processor;
+}
+
+export function createMotherboard(data: any): Motherboard {
+  return {
+    ...data,
+    type_name: 'Motherboard'
+  } as Motherboard;
+}
+
+export function createCpucooler(data: any): Cpucooler {
+  return {
+    ...data,
+    type_name: 'Cpucooler'
+  } as Cpucooler;
+}
+
+export function createHarddrive(data: any): Harddrive {
+  return {
+    ...data,
+    type_name: 'Harddrive'
+  } as Harddrive;
+}
+
+export function createMemory(data: any): Memory {
+  return {
+    ...data,
+    type_name: 'Memory'
+  } as Memory;
+}
+
+export function createPccase(data: any): Pccase {
+  return {
+    ...data,
+    type_name: 'Pccase'
+  } as Pccase;
+}
+
+export function createPowersupply(data: any): Powersupply {
+  return {
+    ...data,
+    type_name: 'Powersupply'
+  } as Powersupply;
+}
+
+export function createVideocard(data: any): Videocard {
+  return {
+    ...data,
+    type_name: 'Videocard'
+  } as Videocard;
 }

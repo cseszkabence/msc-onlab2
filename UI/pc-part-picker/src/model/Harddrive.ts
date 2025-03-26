@@ -1,11 +1,8 @@
 import { HarddriveType } from "./HarddriveType";
 import { ManufacturerType } from "./ManufacturerType";
+import { PcPart } from "./Pcpart";
 
-export interface Harddrive {
-    type_name: 'Harddrive';
-    harddriveid: number;
-    name: string | null;
-    price: number | null;
+export interface Harddrive extends PcPart {
     capacity: number | null;
     pricePerGb: number | null;
     type: string | null;

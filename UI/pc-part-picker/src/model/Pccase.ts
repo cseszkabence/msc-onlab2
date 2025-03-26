@@ -1,11 +1,8 @@
 import { FormfactorType } from "./FormfactorType";
 import { ManufacturerType } from "./ManufacturerType";
+import { PcPart } from "./Pcpart";
 
-export interface Pccase {
-    type_name: 'Pccase';
-    pccaseid: number;
-    name: string | null;
-    price: number | null;
+export interface Pccase extends PcPart{
     formFactor: string | null;
     color: string | null;
     sidePanel: string | null;

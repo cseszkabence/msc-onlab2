@@ -1,11 +1,8 @@
 import { FormfactorType } from "./FormfactorType";
 import { ManufacturerType } from "./ManufacturerType";
+import { PcPart } from "./Pcpart";
 
-export interface Powersupply {
-    type_name: 'Powersupply';
-    powersupplyid: number;
-    name: string | null;
-    price: number | null;
+export interface Powersupply extends PcPart{
     type: string | null;
     efficiency: string | null;
     wattage: number | null;

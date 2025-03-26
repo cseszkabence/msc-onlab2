@@ -7,4 +7,9 @@ import { Powersupply } from "./Powersupply";
 import { Processor } from "./Processor";
 import { Videocard } from "./Videocard";
 
-export type pcpart = Processor | Cpucooler | Motherboard | Memory | Harddrive | Pccase | Videocard | Powersupply;
+export interface PcPart{
+    id: number,
+    type_name: string,
+    name: string | null;
+    price: number | null;
+};

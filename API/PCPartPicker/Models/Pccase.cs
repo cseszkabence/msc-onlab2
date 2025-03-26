@@ -5,7 +5,7 @@ namespace PCPartPicker.Models;
 
 public partial class Pccase
 {
-    public int Pccaseid { get; set; }
+    public int Id { get; set; }
 
     public string? Name { get; set; }
 
@@ -24,6 +24,8 @@ public partial class Pccase
     public int? FormFactorTypeId { get; set; }
 
     public int? ManufacturerTypeId { get; set; }
+
+    public virtual ICollection<Configuration> Configurations { get; set; } = new List<Configuration>();
 
     public virtual FormfactorType? FormFactorType { get; set; }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace PCPartPicker.Models;
@@ -16,7 +15,23 @@ public partial class MyDbContext : DbContext
     {
     }
 
+    public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+
+    public virtual DbSet<AspNetRoleClaim> AspNetRoleClaims { get; set; }
+
+    public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+
+    public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+
+    public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+
+    public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
+
+    public virtual DbSet<CartItem> CartItems { get; set; }
+
     public virtual DbSet<ChipsetType> ChipsetTypes { get; set; }
+
+    public virtual DbSet<Configuration> Configurations { get; set; }
 
     public virtual DbSet<Cpucooler> Cpucoolers { get; set; }
 
@@ -34,6 +49,10 @@ public partial class MyDbContext : DbContext
 
     public virtual DbSet<Motherboard> Motherboards { get; set; }
 
+    public virtual DbSet<Order> Orders { get; set; }
+
+    public virtual DbSet<OrderItem> OrderItems { get; set; }
+
     public virtual DbSet<Pccase> Pccases { get; set; }
 
     public virtual DbSet<Powersupply> Powersupplies { get; set; }
@@ -44,17 +63,99 @@ public partial class MyDbContext : DbContext
 
     public virtual DbSet<SocketType> SocketTypes { get; set; }
 
+    public virtual DbSet<User> Users { get; set; }
+
     public virtual DbSet<Videocard> Videocards { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=localhost;Database=pcpartpicker;Trusted_Connection=True;Encrypt=False;TrustServerCertificate=True;MultipleActiveResultSets=true");
+        => optionsBuilder.UseSqlServer("Server=localhost;Database=pcpartpicker;Trusted_Connection=True;MultipleActiveResultSets=true;encrypt=false");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AS");
+
+        modelBuilder.Entity<AspNetRole>(entity =>
+        {
+            entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
+                .IsUnique()
+                .HasFilter("([NormalizedName] IS NOT NULL)");
+
+            entity.Property(e => e.Name).HasMaxLength(256);
+            entity.Property(e => e.NormalizedName).HasMaxLength(256);
+        });
+
+        modelBuilder.Entity<AspNetRoleClaim>(entity =>
+        {
+            entity.HasIndex(e => e.RoleId, "IX_AspNetRoleClaims_RoleId");
+
+            entity.HasOne(d => d.Role).WithMany(p => p.AspNetRoleClaims).HasForeignKey(d => d.RoleId);
+        });
+
+        modelBuilder.Entity<AspNetUser>(entity =>
+        {
+            entity.HasIndex(e => e.NormalizedEmail, "EmailIndex");
+
+            entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
+                .IsUnique()
+                .HasFilter("([NormalizedUserName] IS NOT NULL)");
+
+            entity.Property(e => e.Discriminator)
+                .HasMaxLength(13)
+                .HasDefaultValue("");
+            entity.Property(e => e.Email).HasMaxLength(256);
+            entity.Property(e => e.FullName).HasMaxLength(150);
+            entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
+            entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
+            entity.Property(e => e.UserName).HasMaxLength(256);
+
+            entity.HasMany(d => d.Roles).WithMany(p => p.Users)
+                .UsingEntity<Dictionary<string, object>>(
+                    "AspNetUserRole",
+                    r => r.HasOne<AspNetRole>().WithMany().HasForeignKey("RoleId"),
+                    l => l.HasOne<AspNetUser>().WithMany().HasForeignKey("UserId"),
+                    j =>
+                    {
+                        j.HasKey("UserId", "RoleId");
+                        j.ToTable("AspNetUserRoles");
+                        j.HasIndex(new[] { "RoleId" }, "IX_AspNetUserRoles_RoleId");
+                    });
+        });
+
+        modelBuilder.Entity<AspNetUserClaim>(entity =>
+        {
+            entity.HasIndex(e => e.UserId, "IX_AspNetUserClaims_UserId");
+
+            entity.HasOne(d => d.User).WithMany(p => p.AspNetUserClaims).HasForeignKey(d => d.UserId);
+        });
+
+        modelBuilder.Entity<AspNetUserLogin>(entity =>
+        {
+            entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
+
+            entity.HasIndex(e => e.UserId, "IX_AspNetUserLogins_UserId");
+
+            entity.HasOne(d => d.User).WithMany(p => p.AspNetUserLogins).HasForeignKey(d => d.UserId);
+        });
+
+        modelBuilder.Entity<AspNetUserToken>(entity =>
+        {
+            entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
+
+            entity.HasOne(d => d.User).WithMany(p => p.AspNetUserTokens).HasForeignKey(d => d.UserId);
+        });
+
+        modelBuilder.Entity<CartItem>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__CartItem__3214EC07DE21E7B8");
+
+            entity.Property(e => e.PartType).HasMaxLength(50);
+            entity.Property(e => e.UserId).HasMaxLength(100);
+        });
+
         modelBuilder.Entity<ChipsetType>(entity =>
         {
-            entity.HasKey(e => e.ChipsetTypeId).HasName("PK__chipset___8AE4C0E345085260");
+            entity.HasKey(e => e.ChipsetTypeId).HasName("PK__chipset___8AE4C0E34C588E3B");
 
             entity.ToTable("chipset_type");
 
@@ -65,13 +166,56 @@ public partial class MyDbContext : DbContext
                 .HasColumnName("type");
         });
 
+        modelBuilder.Entity<Configuration>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Configur__3214EC07E9CFA21A");
+
+            entity.ToTable("Configuration");
+
+            entity.HasOne(d => d.Case).WithMany(p => p.Configurations)
+                .HasForeignKey(d => d.CaseId)
+                .HasConstraintName("FK__Configura__CaseI__0E6E26BF");
+
+            entity.HasOne(d => d.Cooler).WithMany(p => p.Configurations)
+                .HasForeignKey(d => d.CoolerId)
+                .HasConstraintName("FK__Configura__Coole__10566F31");
+
+            entity.HasOne(d => d.Memory).WithMany(p => p.Configurations)
+                .HasForeignKey(d => d.MemoryId)
+                .HasConstraintName("FK__Configura__Memor__0C85DE4D");
+
+            entity.HasOne(d => d.Motherboard).WithMany(p => p.Configurations)
+                .HasForeignKey(d => d.MotherboardId)
+                .HasConstraintName("FK__Configura__Mothe__09A971A2");
+
+            entity.HasOne(d => d.Powersupply).WithMany(p => p.Configurations)
+                .HasForeignKey(d => d.PowersupplyId)
+                .HasConstraintName("FK__Configura__Power__0D7A0286");
+
+            entity.HasOne(d => d.Processor).WithMany(p => p.Configurations)
+                .HasForeignKey(d => d.ProcessorId)
+                .HasConstraintName("FK__Configura__Proce__0A9D95DB");
+
+            entity.HasOne(d => d.Storage).WithMany(p => p.Configurations)
+                .HasForeignKey(d => d.StorageId)
+                .HasConstraintName("FK__Configura__Stora__0F624AF8");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Configurations)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK__Configura__UserI__08B54D69");
+
+            entity.HasOne(d => d.Videocard).WithMany(p => p.Configurations)
+                .HasForeignKey(d => d.VideocardId)
+                .HasConstraintName("FK__Configura__Video__0B91BA14");
+        });
+
         modelBuilder.Entity<Cpucooler>(entity =>
         {
-            entity.HasKey(e => e.Cpucoolerid).HasName("PK__cpucoole__3CC8340A98115DAE");
+            entity.HasKey(e => e.Id).HasName("PK__cpucoole__3CC8340A130CC43A");
 
             entity.ToTable("cpucooler");
 
-            entity.Property(e => e.Cpucoolerid).HasColumnName("cpucoolerid");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Color)
                 .HasMaxLength(512)
                 .IsUnicode(false)
@@ -101,7 +245,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<FormfactorType>(entity =>
         {
-            entity.HasKey(e => e.FormfactorId).HasName("PK__formfact__F8C41484AC2DAB3F");
+            entity.HasKey(e => e.FormfactorId).HasName("PK__formfact__F8C41484C0183579");
 
             entity.ToTable("formfactor_type");
 
@@ -114,11 +258,11 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Harddrive>(entity =>
         {
-            entity.HasKey(e => e.Harddriveid).HasName("PK__harddriv__E6AB2F6BC056780F");
+            entity.HasKey(e => e.Id).HasName("PK__harddriv__E6AB2F6BC2E3E7DA");
 
             entity.ToTable("harddrive");
 
-            entity.Property(e => e.Harddriveid).HasColumnName("harddriveid");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Cache)
                 .HasColumnType("decimal(18, 0)")
                 .HasColumnName("cache");
@@ -157,7 +301,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<HarddriveType>(entity =>
         {
-            entity.HasKey(e => e.HarddirveTypeId).HasName("PK__harddriv__A4B39B9973715212");
+            entity.HasKey(e => e.HarddirveTypeId).HasName("PK__harddriv__A4B39B9994C82C0B");
 
             entity.ToTable("harddrive_type");
 
@@ -170,7 +314,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<ManufacturerType>(entity =>
         {
-            entity.HasKey(e => e.ManufacturerTypeId).HasName("PK__manufact__AA802FFDCECF8328");
+            entity.HasKey(e => e.ManufacturerTypeId).HasName("PK__manufact__AA802FFD80347698");
 
             entity.ToTable("manufacturer_type");
 
@@ -183,11 +327,11 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Memory>(entity =>
         {
-            entity.HasKey(e => e.Memoryid).HasName("PK__memory__96A0586D1B923EA8");
+            entity.HasKey(e => e.Id).HasName("PK__memory__96A0586DF3311CEB");
 
             entity.ToTable("memory");
 
-            entity.Property(e => e.Memoryid).HasColumnName("memoryid");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.CasLatency)
                 .HasColumnType("decimal(18, 0)")
                 .HasColumnName("cas_latency");
@@ -229,7 +373,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<MemoryType>(entity =>
         {
-            entity.HasKey(e => e.MemoryTypeId).HasName("PK__memory_t__00D6009CF04692E1");
+            entity.HasKey(e => e.MemoryTypeId).HasName("PK__memory_t__00D6009C161AE41C");
 
             entity.ToTable("memory_type");
 
@@ -242,11 +386,11 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Motherboard>(entity =>
         {
-            entity.HasKey(e => e.Motherboardid).HasName("PK__motherbo__68B7A0F06A2C65AA");
+            entity.HasKey(e => e.Id).HasName("PK__motherbo__68B7A0F0D17DF627");
 
             entity.ToTable("motherboard");
 
-            entity.Property(e => e.Motherboardid).HasColumnName("motherboardid");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Color)
                 .HasMaxLength(512)
                 .IsUnicode(false)
@@ -290,13 +434,47 @@ public partial class MyDbContext : DbContext
                 .HasConstraintName("FK_motherboard_socket_type");
         });
 
+        modelBuilder.Entity<Order>(entity =>
+        {
+            entity.HasKey(e => e.OrderId).HasName("PK__Orders__C3905BAFDCC59907");
+
+            entity.Property(e => e.OrderId).HasColumnName("OrderID");
+            entity.Property(e => e.OrderDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.Status).HasMaxLength(50);
+            entity.Property(e => e.TotalPrice).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Orders__UserID__151B244E");
+        });
+
+        modelBuilder.Entity<OrderItem>(entity =>
+        {
+            entity.HasKey(e => e.OrderItemId).HasName("PK__OrderIte__57ED06A12B76AE19");
+
+            entity.Property(e => e.OrderItemId).HasColumnName("OrderItemID");
+            entity.Property(e => e.OrderId).HasColumnName("OrderID");
+            entity.Property(e => e.PartId).HasColumnName("PartID");
+            entity.Property(e => e.PartTypeId).HasColumnName("PartTypeID");
+            entity.Property(e => e.UnitPrice).HasColumnType("decimal(10, 2)");
+
+            entity.HasOne(d => d.Order).WithMany(p => p.OrderItems)
+                .HasForeignKey(d => d.OrderId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__OrderItem__Order__19DFD96B");
+        });
+
         modelBuilder.Entity<Pccase>(entity =>
         {
-            entity.HasKey(e => e.Pccaseid).HasName("PK__pccase__0E7DBE437AF61FCA");
+            entity.HasKey(e => e.Id).HasName("PK__pccase__0E7DBE43A310AF49");
 
             entity.ToTable("pccase");
 
-            entity.Property(e => e.Pccaseid).HasColumnName("pccaseid");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Color)
                 .HasMaxLength(512)
                 .IsUnicode(false)
@@ -334,11 +512,11 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Powersupply>(entity =>
         {
-            entity.HasKey(e => e.Powersupplyid).HasName("PK__powersup__C379066F116915C6");
+            entity.HasKey(e => e.Id).HasName("PK__powersup__C379066FE691A8CD");
 
             entity.ToTable("powersupply");
 
-            entity.Property(e => e.Powersupplyid).HasColumnName("powersupplyid");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Color)
                 .HasMaxLength(512)
                 .IsUnicode(false)
@@ -379,16 +557,16 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Processor>(entity =>
         {
-            entity.HasKey(e => e.Processorid).HasName("PK__processo__E30F8F294E0EB780");
+            entity.HasKey(e => e.Id).HasName("PK__processo__E30F8F2983086545");
 
             entity.ToTable("processor");
 
-            entity.Property(e => e.Processorid).HasColumnName("processorid");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.BoostClock)
-                .HasColumnType("decimal(18, 0)")
+                .HasColumnType("decimal(18, 1)")
                 .HasColumnName("boost_clock");
             entity.Property(e => e.CoreClock)
-                .HasColumnType("decimal(18, 0)")
+                .HasColumnType("decimal(18, 1)")
                 .HasColumnName("core_clock");
             entity.Property(e => e.CoreCount).HasColumnName("core_count");
             entity.Property(e => e.Graphics)
@@ -423,7 +601,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<SeriesType>(entity =>
         {
-            entity.HasKey(e => e.SeriesTypeId).HasName("PK__series_t__BE02A4A83DDFF9D4");
+            entity.HasKey(e => e.SeriesTypeId).HasName("PK__series_t__BE02A4A882ED2B20");
 
             entity.ToTable("series_type");
 
@@ -436,7 +614,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<SocketType>(entity =>
         {
-            entity.HasKey(e => e.SocketId).HasName("PK__socket_t__58609DBF4F5D8D42");
+            entity.HasKey(e => e.SocketId).HasName("PK__socket_t__58609DBFD57F45BC");
 
             entity.ToTable("socket_type");
 
@@ -447,13 +625,23 @@ public partial class MyDbContext : DbContext
                 .HasColumnName("type");
         });
 
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC0737DE25E9");
+
+            entity.HasIndex(e => e.EmailAddress, "UQ__Users__49A147402F469F90").IsUnique();
+
+            entity.Property(e => e.EmailAddress).HasMaxLength(255);
+            entity.Property(e => e.Password).HasMaxLength(255);
+        });
+
         modelBuilder.Entity<Videocard>(entity =>
         {
-            entity.HasKey(e => e.Videocardid).HasName("PK__videocar__8B8C23C4EB5BDA51");
+            entity.HasKey(e => e.Id).HasName("PK__videocar__8B8C23C4C1B60D4C");
 
             entity.ToTable("videocard");
 
-            entity.Property(e => e.Videocardid).HasColumnName("videocardid");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.BoostClock).HasColumnName("boost_clock");
             entity.Property(e => e.Chipset)
                 .HasMaxLength(512)

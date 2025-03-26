@@ -5,7 +5,7 @@ namespace PCPartPicker.Models;
 
 public partial class Videocard
 {
-    public int Videocardid { get; set; }
+    public int Id { get; set; }
 
     public string? Name { get; set; }
 
@@ -30,6 +30,8 @@ public partial class Videocard
     public int? SeriesTypeId { get; set; }
 
     public virtual ChipsetType? ChipsetType { get; set; }
+
+    public virtual ICollection<Configuration> Configurations { get; set; } = new List<Configuration>();
 
     public virtual ManufacturerType? ManufacturerType { get; set; }
 

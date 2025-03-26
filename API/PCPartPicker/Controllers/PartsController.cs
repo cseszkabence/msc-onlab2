@@ -25,7 +25,7 @@ namespace PCPartPicker.Controllers
         .Include(p => p.SeriesType)
         .Select(p => new
         {
-            p.Videocardid,
+            p.Id,
             p.Name,
             p.Price,
             p.Chipset,
@@ -49,7 +49,7 @@ namespace PCPartPicker.Controllers
         .Include(p => p.FormFactorType)
         .Select(p => new
         {
-            p.Pccaseid,
+            p.Id,
             p.Name,
             p.Price,
             p.FormFactor,
@@ -72,7 +72,7 @@ namespace PCPartPicker.Controllers
         .Include(p => p.DriveType)
         .Select(p => new
         {
-            p.Harddriveid,
+            p.Id,
             p.Name,
             p.Price,
             p.Capacity,
@@ -95,7 +95,7 @@ namespace PCPartPicker.Controllers
         .Include(p => p.TypeNavigation)
         .Select(p => new
         {
-            p.Memoryid,
+            p.Id,
             p.Name,
             p.Price,
             p.Speed,
@@ -121,7 +121,7 @@ namespace PCPartPicker.Controllers
         .Include(p => p.FormFactoryType)
         .Select(p => new
         {
-            p.Motherboardid,
+            p.Id,
             p.Name,
             p.Price,
             p.Socket,
@@ -146,7 +146,7 @@ namespace PCPartPicker.Controllers
         .Include(p => p.FormFactor)
         .Select(p => new
         {
-            p.Powersupplyid,
+            p.Id,
             p.Name,
             p.Price,
             p.Type,
@@ -169,7 +169,7 @@ namespace PCPartPicker.Controllers
         .Include(p => p.SeriesType)
         .Select(p => new
         {
-            p.Processorid,
+            p.Id,
             p.Name,
             p.Price,
             p.SocketTypeId,
@@ -193,7 +193,7 @@ namespace PCPartPicker.Controllers
         .Include(p => p.ManufacturerType)
         .Select(p => new
         {
-            p.Cpucoolerid,
+            p.Id,
             p.Name,
             p.Price,
             p.Rpm,

@@ -5,7 +5,7 @@ namespace PCPartPicker.Models;
 
 public partial class Memory
 {
-    public int Memoryid { get; set; }
+    public int Id { get; set; }
 
     public string? Name { get; set; }
 
@@ -26,6 +26,8 @@ public partial class Memory
     public int? ManufacturerTypeId { get; set; }
 
     public int? Type { get; set; }
+
+    public virtual ICollection<Configuration> Configurations { get; set; } = new List<Configuration>();
 
     public virtual ManufacturerType? ManufacturerType { get; set; }
 
