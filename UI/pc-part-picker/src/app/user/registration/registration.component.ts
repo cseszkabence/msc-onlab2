@@ -11,7 +11,7 @@ import { ToastModule } from 'primeng/toast'
 import { MessageService } from 'primeng/api'
 
 @Component({
-  selector: 'app-registration',
+  selector: 'registration-component',
   standalone: true,
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.css',

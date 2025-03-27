@@ -4,7 +4,7 @@ import { ProductsComponent } from './products/products.component';
 import { ConfiguratorComponent } from './configurator/configurator.component';
 import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from './user/registration/registration.component';
-import { CartComponent } from './cart/cart/cart.component';
+import { CartComponent } from './cart/cart.component';
 
 export const routes: Routes = [{
   path: 'products-component',

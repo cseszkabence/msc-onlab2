@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CartItem } from '../../../model/CartItem';
-import { CartService } from '../../shared/services/cart/cart.service';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { CartItem } from '../../model/CartItem';
+import { CartService } from '../shared/services/cart/cart.service';
 
 @Component({
   selector: 'app-cart',

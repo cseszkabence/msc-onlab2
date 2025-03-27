@@ -1,0 +1,21 @@
+.main-buttons {
+    margin: 12px 12px 12px 12px;
+    height: 56px;
+}
+
+.card-container {
+    display: flex;
+    background: var(--sys-background);
+    /* border-bottom-style: solid; */
+    border-color: var(--sys-primary);
+    flex-wrap: wrap;
+    /* Ensure the cards wrap to the next row */
+    justify-content: space-around;
+    /* Space out cards evenly */
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}

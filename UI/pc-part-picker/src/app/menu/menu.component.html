@@ -1,0 +1,42 @@
+<p-toolbar>
+    <div class="p-toolbar-group-left">
+        <span>PC PART PICKER</span>
+        <p-button [ngStyle]="{'background-color': showProductsBar ? '#19241E' : '#0F1511'}" (click)="toggleProducts()"
+            label="Products" class="main-buttons">
+        </p-button>
+        <p-button (click)="navigateToConfigurator()" label="Configurator" class="main-buttons">
+        </p-button>
+
+        <p-button [ngStyle]="{'background-color': showSearchBar ? '#19241E' : '#0F1511'}" (click)="toggleSearch()"
+            label="Search" class="main-buttons">
+        </p-button>
+
+        <p-inputGroup *ngIf="showSearchBar" @slideUpDown>
+            <p-inputText #txtVal (keydown.enter)="searchProducts()" placeholder="Search something..."
+                [(ngModel)]="searchQuery">
+            </p-inputText>
+            <p-button *ngIf="searchQuery" icon="pi pi-times" (click)="cleanSearch()" styleClass="p-button-text">
+            </p-button>
+            <p-button icon="pi pi-search" (click)="searchProducts()" styleClass="p-button-text">
+            </p-button>
+        </p-inputGroup>
+    </div>
+
+    <div class="p-toolbar-group-right">
+        <p-button *ngIf="!isLoggedIn" (click)="navigateToAccount()" label="Login" class="main-buttons" severity="info">
+        </p-button>
+        <p-button *ngIf="isLoggedIn" (click)="onLogout()" label="Logout" class="main-buttons" severity="danger">
+        </p-button>
+        <p-button icon="pi pi-shopping-cart" class="p-button-rounded p-button-text"
+            (click)="navigateToCart()"></p-button>
+    </div>
+</p-toolbar>
+
+
+<div *ngIf="showProductsBar" @slideDownUp>
+    <div class="card-container">
+        <p-button *ngFor="let card of cards; let i = index" (click)="chooseProduct(i)" [label]="card.title"
+            styleClass="p-button-outlined">
+        </p-button>
+    </div>
+</div>

@@ -45,6 +45,7 @@ import { TagModule } from 'primeng/tag';
 import { DataViewModule } from 'primeng/dataview';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { ToastModule } from 'primeng/toast';
+import { LoginComponent } from './user/login/login.component';
 
 export const appConfig: ApplicationConfig = {
     providers: [
