@@ -11,6 +11,7 @@ import { Toolbar } from 'primeng/toolbar';
 import { AuthService } from '../shared/services/auth/auth.service';
 import { CartService } from '../shared/services/cart/cart.service';
 import { ProductServiceService } from '../shared/services/products/product-service.service';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'menu-component',
@@ -30,13 +31,14 @@ import { ProductServiceService } from '../shared/services/products/product-servi
   ],
   providers: [MessageService],
   imports: [Toolbar, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, ToastModule],
-  standalone:true
+  standalone: true
 })
-export class MenuComponent  implements OnInit{
+export class MenuComponent implements OnInit {
 
   title = 'PC PART PICKER';
   categoryNumber: number = 0;
-  isLoggedIn=false;
+  isLoggedIn = false;
+  cartSize$!: Observable<number>;
 
   constructor(
     private productService: ProductServiceService,
@@ -80,10 +82,13 @@ export class MenuComponent  implements OnInit{
     this.router.navigateByUrl("/user-component").then(() => this.disableBars())
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.authService.loginStatus$.subscribe(status => {
       this.isLoggedIn = status;
     });
+    this.cartSize$ = this.cartService.getCartObservable().pipe(
+      map(cart => cart.reduce((sum, item) => sum + item.quantity, 0))
+    );
   }
 
   disableBars() {
@@ -109,12 +114,18 @@ export class MenuComponent  implements OnInit{
     await this.productService.chooseProduct(n);
   }
 
-  onLogout(){
+  onLogout() {
     this.authService.onLogout();
     this.messageService.add({ severity: 'success', summary: 'Logout successful!', detail: '', life: 3000 });
   }
 
   navigateToCart() {
     this.router.navigateByUrl("/cart-component").then(() => this.disableBars())
+  }
+
+  getCartSize(): Observable<number> {
+    return this.cartService.getCart().pipe(
+      map(cart => cart.reduce((total, item) => total + item.quantity, 0))
+    );
   }
 }

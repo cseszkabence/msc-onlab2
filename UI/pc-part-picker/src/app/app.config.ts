@@ -46,6 +46,8 @@ import { DataViewModule } from 'primeng/dataview';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { ToastModule } from 'primeng/toast';
 import { LoginComponent } from './user/login/login.component';
+import { provideNgxStripe } from 'ngx-stripe';
+
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -80,6 +82,7 @@ export const appConfig: ApplicationConfig = {
           }
         }),
         provideAnimationsAsync(),
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi()),
+        provideNgxStripe()
       ]
   };

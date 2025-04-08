@@ -5,6 +5,8 @@ import { ConfiguratorComponent } from './configurator/configurator.component';
 import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { CartComponent } from './cart/cart.component';
+import { NgxStripeModule } from 'ngx-stripe';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 export const routes: Routes = [{
   path: 'products-component',
@@ -26,11 +28,16 @@ export const routes: Routes = [{
 {
   path: 'cart-component',
   component: CartComponent
+},
+
+{
+  path: 'checkout-component',
+  component: CheckoutComponent
 }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), NgxStripeModule.forRoot('pk_test_51Q2EtTB2B1CUn6npnZe7bRixfPQnqYFUZnSqpu7C3uN7yOuXivIm5g17sx2DSXBNoW54AgGGI8Gr375xJwsTaBz100kdXsqT4p')],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

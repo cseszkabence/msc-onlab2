@@ -2,13 +2,18 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PCPartPicker.Models;
+using Stripe;
+using Stripe.Checkout;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using WireMock.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -183,6 +188,41 @@ app.MapPost("/api/cart/update", async ([FromBody] CartItem input, MyDbContext db
     return Results.Ok();
 });
 
+StripeConfiguration.ApiKey = "sk_test_51Q2EtTB2B1CUn6npLoD8gQBOnS2y08mvD9hLyy449A6KcXh0xlFuOUQ7QOtPvzH47KqSGtsRfWHc4YORhoWHTV5T00PcQYlgDd";
+
+// Define the endpoint for creating a checkout session
+app.MapPost("/api/create-checkout-session", async ([FromBody] CreatePaymentRequest request, HttpContext context) =>
+{
+    var options = new SessionCreateOptions
+    {
+        LineItems = request.Products.Select(product => new SessionLineItemOptions
+        {
+            PriceData = new SessionLineItemPriceDataOptions
+            {
+                UnitAmount = 5 * 100, // Convert to cents
+                Currency = "usd",
+                ProductData = new SessionLineItemPriceDataProductDataOptions
+                {
+                    Name = product.PartType,
+                },
+            },
+            Quantity = product.Quantity,
+        }).ToList(),
+        Mode = "payment",
+        SuccessUrl = "http://localhost:4200/configurator-component",
+        CancelUrl = "http://localhost:4200/products-component",
+    };
+
+    var service = new SessionService();
+    var session = await service.CreateAsync(options);
+
+    return Results.Ok(new
+    {
+        Url = session.Url,
+        sessionId = session.Id
+    });
+});
+
 app.Run();
 
 public class UserRegistrationModel
@@ -196,4 +236,17 @@ public class LoginModel
 {
     public string Email { get; set; }
     public string Password { get; set; }
+}
+
+// Models for the request
+public class CreatePaymentRequest
+{
+    public List<CartItem> Products { get; set; }
+}
+
+public class Product
+{
+    public string Name { get; set; }
+    public int Price { get; set; }
+    public int Quantity { get; set; }
 }
