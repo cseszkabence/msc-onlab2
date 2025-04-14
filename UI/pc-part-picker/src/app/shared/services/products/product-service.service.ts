@@ -342,6 +342,10 @@ export class ProductServiceService {
     );
   }
 
+  getPart(partId: number, typeName: string): Observable<any> {
+    return this.httpClient.get<any>(this.APIUrl + '/parts/getPart' + '?partId=' + partId + '&partType=' + typeName)
+  }
+
   mockData = [
     {
       "processorid": 1,

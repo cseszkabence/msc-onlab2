@@ -1,9 +1,10 @@
-﻿using System;
+﻿using PCPartPicker.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace PCPartPicker.Models;
 
-public partial class Pccase
+public partial class Pccase : IComponent
 {
     public int Id { get; set; }
 

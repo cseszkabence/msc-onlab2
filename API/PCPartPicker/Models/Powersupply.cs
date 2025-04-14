@@ -1,9 +1,10 @@
-﻿using System;
+﻿using PCPartPicker.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace PCPartPicker.Models;
 
-public partial class Powersupply
+public partial class Powersupply : IComponent
 {
     public int Id { get; set; }
 

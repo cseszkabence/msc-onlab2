@@ -1,9 +1,10 @@
-﻿using System;
+﻿using PCPartPicker.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace PCPartPicker.Models;
 
-public partial class Videocard
+public partial class Videocard : IComponent
 {
     public int Id { get; set; }
 

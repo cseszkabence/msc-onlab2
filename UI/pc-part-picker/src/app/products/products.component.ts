@@ -1,7 +1,6 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ProductDetailsComponent } from '../product-details/product-details.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatSliderModule } from '@angular/material/slider';
 import { map, Observable, Subscription } from 'rxjs';
 import { Filter, filterProductsByName, ProductServiceService } from '../shared/services/products/product-service.service';
@@ -62,7 +61,8 @@ export class ProductsComponent implements OnInit {
 
   enabledFilters = 0;
 
-  constructor(private productService: ProductServiceService, public dialog: MatDialog) { }
+  constructor(private productService: ProductServiceService, public dialog: MatDialog, private router: Router,
+  ) { }
 
   ngOnInit(): void {
     this.layout = 'list';
@@ -181,12 +181,6 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  openProductDetails(product: any): void {
-    this.dialog.open(ProductDetailsComponent, {
-      width: '400px',
-      data: product
-    });
-  }
   private isProcessor(product: PcPart): product is Processor {
     return product.type_name === 'Processor';
   }
@@ -226,6 +220,10 @@ export class ProductsComponent implements OnInit {
     };
 
     this.cartService.addToCart(item).subscribe();
+  }
+
+  navigateToDetails(partId: number, partType: string) {
+    this.router.navigateByUrl(`/product-details-component/${partId}/${partType}`)
   }
 }
 

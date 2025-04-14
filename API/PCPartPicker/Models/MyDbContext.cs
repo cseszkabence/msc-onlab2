@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using PCPartPicker.Interfaces;
 
 namespace PCPartPicker.Models;
 
@@ -687,21 +688,21 @@ public partial class MyDbContext : DbContext
         switch (partType)
         {
             case "Processor":
-                return Processors.Where(x => x.Id == partId).First().Name;
+                return Processors.Where(x => x.Id == partId).FirstOrDefault().Name;
             case "Motherboard":
-                return Motherboards.Where(x => x.Id == partId).First().Name;
+                return Motherboards.Where(x => x.Id == partId).FirstOrDefault().Name;
             case "Memory":
-                return Memories.Where(x => x.Id == partId).First().Name;
+                return Memories.Where(x => x.Id == partId).FirstOrDefault().Name;
             case "Videocard":
-                return Videocards.Where(x => x.Id == partId).First().Name;
+                return Videocards.Where(x => x.Id == partId).FirstOrDefault().Name;
             case "Storage":
-                return Harddrives.Where(x => x.Id == partId).First().Name;
+                return Harddrives.Where(x => x.Id == partId).FirstOrDefault().Name;
             case "Powersupply":
-                return Powersupplies.Where(x => x.Id == partId).First().Name;
+                return Powersupplies.Where(x => x.Id == partId).FirstOrDefault().Name;
             case "Pccase":
-                return Pccases.Where(x => x.Id == partId).First().Name;
+                return Pccases.Where(x => x.Id == partId).FirstOrDefault().Name;
             case "Cpucooler":
-                return Cpucoolers.Where(x => x.Id == partId).First().Name;
+                return Cpucoolers.Where(x => x.Id == partId).FirstOrDefault().Name;
             default:
                 return "";
         }
@@ -712,23 +713,48 @@ public partial class MyDbContext : DbContext
         switch (partType)
         {
             case "Processor":
-                return Processors.Where(x => x.Id == partId).First().Price;
+                return Processors.Where(x => x.Id == partId).FirstOrDefault().Price;
             case "Motherboard":
-                return Motherboards.Where(x => x.Id == partId).First().Price;
+                return Motherboards.Where(x => x.Id == partId).FirstOrDefault().Price;
             case "Memory":
-                return Memories.Where(x => x.Id == partId).First().Price;
+                return Memories.Where(x => x.Id == partId).FirstOrDefault().Price;
             case "Videocard":
-                return Videocards.Where(x => x.Id == partId).First().Price;
+                return Videocards.Where(x => x.Id == partId).FirstOrDefault().Price;
             case "Storage":
-                return Harddrives.Where(x => x.Id == partId).First().Price;
+                return Harddrives.Where(x => x.Id == partId).FirstOrDefault().Price;
             case "Powersupply":
-                return Powersupplies.Where(x => x.Id == partId).First().Price;
+                return Powersupplies.Where(x => x.Id == partId).FirstOrDefault().Price;
             case "Pccase":
-                return Pccases.Where(x => x.Id == partId).First().Price;
+                return Pccases.Where(x => x.Id == partId).FirstOrDefault().Price;
             case "Cpucooler":
-                return Cpucoolers.Where(x => x.Id == partId).First().Price;
+                return Cpucoolers.Where(x => x.Id == partId).FirstOrDefault().Price;
             default:
                 return 0;
+        }
+    }
+
+    public async Task<IComponent> ComponentLookup(int partId, string partType)
+    {
+        switch (partType)
+        {
+            case "Processor":
+                return Processors.Where(x => x.Id == partId).FirstOrDefault();
+            case "Motherboard":
+                return Motherboards.Where(x => x.Id == partId).FirstOrDefault();
+            case "Memory":
+                return Memories.Where(x => x.Id == partId).FirstOrDefault();
+            case "Videocard":
+                return Videocards.Where(x => x.Id == partId).FirstOrDefault();
+            case "Storage":
+                return Harddrives.Where(x => x.Id == partId).FirstOrDefault();
+            case "Powersupply":
+                return Powersupplies.Where(x => x.Id == partId).FirstOrDefault();
+            case "Pccase":
+                return Pccases.Where(x => x.Id == partId).FirstOrDefault();
+            case "Cpucooler":
+                return Cpucoolers.Where(x => x.Id == partId).FirstOrDefault();
+            default:
+                return null;
         }
     }
 

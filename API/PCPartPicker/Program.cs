@@ -241,6 +241,13 @@ app.MapPost("/api/email/sendmail", async (
     }
 });
 
+app.MapGet("/api/parts/getPart", async (int partId, string partType, MyDbContext db) =>
+{
+    var item = await db.ComponentLookup(partId, partType);
+
+    return Results.Ok(item);
+});
+
 app.Run();
 
 public class UserRegistrationModel

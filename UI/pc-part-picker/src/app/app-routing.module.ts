@@ -9,6 +9,7 @@ import { NgxStripeModule } from 'ngx-stripe';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CheckoutsuccessComponent } from './checkout/checkoutsuccess/checkoutsuccess.component';
 import { CheckoutcancelComponent } from './checkout/checkoutcancel/checkoutcancel.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 export const routes: Routes = [{
   path: 'products-component',
@@ -45,6 +46,11 @@ export const routes: Routes = [{
 {
   path: 'checkoutcancel-component',
   component: CheckoutcancelComponent
+},
+
+{
+  path: 'product-details-component/:id/:type',
+  component: ProductDetailsComponent
 }
 ];
 
