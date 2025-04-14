@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PCPartPicker.Models;
+using PCPartPicker.Services;
 using Stripe;
 using Stripe.Checkout;
 using System;
@@ -55,6 +56,7 @@ builder.Services.AddControllersWithViews()
                 .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddIdentityApiEndpoints<AppUser>()
     .AddEntityFrameworkStores<IdentityContext>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 var app = builder.Build();
 
 app.UseCors(cors => cors.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
@@ -191,7 +193,7 @@ app.MapPost("/api/cart/update", async ([FromBody] CartItem input, MyDbContext db
 StripeConfiguration.ApiKey = "sk_test_51Q2EtTB2B1CUn6npLoD8gQBOnS2y08mvD9hLyy449A6KcXh0xlFuOUQ7QOtPvzH47KqSGtsRfWHc4YORhoWHTV5T00PcQYlgDd";
 
 // Define the endpoint for creating a checkout session
-app.MapPost("/api/create-checkout-session", async ([FromBody] CreatePaymentRequest request, HttpContext context) =>
+app.MapPost("/api/create-checkout-session", async ([FromBody] CreatePaymentRequest request, MyDbContext db) =>
 {
     var options = new SessionCreateOptions
     {
@@ -199,18 +201,18 @@ app.MapPost("/api/create-checkout-session", async ([FromBody] CreatePaymentReque
         {
             PriceData = new SessionLineItemPriceDataOptions
             {
-                UnitAmount = 5 * 100, // Convert to cents
+                UnitAmount = (long?)(db.ComponentLookupForPrice(product.PartId, product.PartType) * 100), // Convert to cents
                 Currency = "usd",
                 ProductData = new SessionLineItemPriceDataProductDataOptions
                 {
-                    Name = product.PartType,
+                    Name = db.ComponentLookupForName(product.PartId, product.PartType)
                 },
             },
             Quantity = product.Quantity,
         }).ToList(),
         Mode = "payment",
-        SuccessUrl = "http://localhost:4200/configurator-component",
-        CancelUrl = "http://localhost:4200/products-component",
+        SuccessUrl = "http://localhost:4200/checkoutsuccess-component",
+        CancelUrl = "http://localhost:4200/checkoutcancel-component",
     };
 
     var service = new SessionService();
@@ -221,6 +223,22 @@ app.MapPost("/api/create-checkout-session", async ([FromBody] CreatePaymentReque
         Url = session.Url,
         sessionId = session.Id
     });
+});
+
+app.MapPost("/api/email/sendmail", async (
+    IEmailService emailService,
+    [FromBody] EmailModel emailModel
+    ) =>
+{
+    var result = await emailService.SendEmail(emailModel);
+    if (result)
+    {
+        return Results.Ok(new { message = "Email sent successfully." });
+    }
+    else
+    {
+        return Results.BadRequest(new { message = "Error sending email." });
+    }
 });
 
 app.Run();

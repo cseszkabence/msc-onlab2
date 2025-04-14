@@ -12,6 +12,8 @@ import { AuthService } from '../shared/services/auth/auth.service';
 import { CartService } from '../shared/services/cart/cart.service';
 import { ProductServiceService } from '../shared/services/products/product-service.service';
 import { map, Observable } from 'rxjs';
+import { BadgeModule } from 'primeng/badge';
+import { OverlayBadgeModule } from 'primeng/overlaybadge';
 
 @Component({
   selector: 'menu-component',
@@ -30,7 +32,7 @@ import { map, Observable } from 'rxjs';
     ])
   ],
   providers: [MessageService],
-  imports: [Toolbar, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, ToastModule],
+  imports: [Toolbar, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, ToastModule, BadgeModule, OverlayBadgeModule],
   standalone: true
 })
 export class MenuComponent implements OnInit {
@@ -39,6 +41,7 @@ export class MenuComponent implements OnInit {
   categoryNumber: number = 0;
   isLoggedIn = false;
   cartSize$!: Observable<number>;
+  cartSize: number = 0;
 
   constructor(
     private productService: ProductServiceService,
@@ -89,6 +92,7 @@ export class MenuComponent implements OnInit {
     this.cartSize$ = this.cartService.getCartObservable().pipe(
       map(cart => cart.reduce((sum, item) => sum + item.quantity, 0))
     );
+    this.cartSize$.subscribe(val => this.cartSize = val)
   }
 
   disableBars() {

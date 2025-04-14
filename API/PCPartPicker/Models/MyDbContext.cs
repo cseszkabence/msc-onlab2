@@ -682,6 +682,55 @@ public partial class MyDbContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
+    public string ComponentLookupForName(int partId, string partType)
+    {
+        switch (partType)
+        {
+            case "Processor":
+                return Processors.Where(x => x.Id == partId).First().Name;
+            case "Motherboard":
+                return Motherboards.Where(x => x.Id == partId).First().Name;
+            case "Memory":
+                return Memories.Where(x => x.Id == partId).First().Name;
+            case "Videocard":
+                return Videocards.Where(x => x.Id == partId).First().Name;
+            case "Storage":
+                return Harddrives.Where(x => x.Id == partId).First().Name;
+            case "Powersupply":
+                return Powersupplies.Where(x => x.Id == partId).First().Name;
+            case "Pccase":
+                return Pccases.Where(x => x.Id == partId).First().Name;
+            case "Cpucooler":
+                return Cpucoolers.Where(x => x.Id == partId).First().Name;
+            default:
+                return "";
+        }
+    }
+
+    public decimal? ComponentLookupForPrice(int partId, string partType)
+    {
+        switch (partType)
+        {
+            case "Processor":
+                return Processors.Where(x => x.Id == partId).First().Price;
+            case "Motherboard":
+                return Motherboards.Where(x => x.Id == partId).First().Price;
+            case "Memory":
+                return Memories.Where(x => x.Id == partId).First().Price;
+            case "Videocard":
+                return Videocards.Where(x => x.Id == partId).First().Price;
+            case "Storage":
+                return Harddrives.Where(x => x.Id == partId).First().Price;
+            case "Powersupply":
+                return Powersupplies.Where(x => x.Id == partId).First().Price;
+            case "Pccase":
+                return Pccases.Where(x => x.Id == partId).First().Price;
+            case "Cpucooler":
+                return Cpucoolers.Where(x => x.Id == partId).First().Price;
+            default:
+                return 0;
+        }
+    }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

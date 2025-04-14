@@ -7,6 +7,8 @@ import { RegistrationComponent } from './user/registration/registration.componen
 import { CartComponent } from './cart/cart.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CheckoutsuccessComponent } from './checkout/checkoutsuccess/checkoutsuccess.component';
+import { CheckoutcancelComponent } from './checkout/checkoutcancel/checkoutcancel.component';
 
 export const routes: Routes = [{
   path: 'products-component',
@@ -33,6 +35,16 @@ export const routes: Routes = [{
 {
   path: 'checkout-component',
   component: CheckoutComponent
+},
+
+{
+  path: 'checkoutsuccess-component',
+  component: CheckoutsuccessComponent
+},
+
+{
+  path: 'checkoutcancel-component',
+  component: CheckoutcancelComponent
 }
 ];
 

@@ -894,6 +894,19 @@
           "lib/netstandard2.1/JsonConverter.Abstractions.dll": {}
         }
       },
+      "Mailjet.Api/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.1/Mailjet.Client.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/Mailjet.Client.dll": {}
+        }
+      },
       "MetadataReferenceService.Abstractions/0.0.1": {
         "type": "package",
         "dependencies": {
@@ -5528,6 +5541,18 @@
         "lib/netstandard1.3/JsonConverter.Abstractions.dll",
         "lib/netstandard2.0/JsonConverter.Abstractions.dll",
         "lib/netstandard2.1/JsonConverter.Abstractions.dll"
+      ]
+    },
+    "Mailjet.Api/3.0.0": {
+      "sha512": "/VeXC5+Q4e6YKcLm7yQVEJ5rBioJuXR7WVkVUVXgO/wkrd54+kGaB5/4F31iy7N4X07D97Gjxl8NlVNtcgHLsg==",
+      "type": "package",
+      "path": "mailjet.api/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard1.1/Mailjet.Client.dll",
+        "mailjet.api.3.0.0.nupkg.sha512",
+        "mailjet.api.nuspec"
       ]
     },
     "MetadataReferenceService.Abstractions/0.0.1": {
@@ -12936,6 +12961,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Mailjet.Api >= 3.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 9.0.3",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 9.0.3",
       "Microsoft.Data.SqlClient >= 6.0.1",
@@ -13000,6 +13026,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "Mailjet.Api": {
+            "target": "Package",
+            "version": "[3.0.0, )"
+          },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
             "version": "[9.0.3, )"

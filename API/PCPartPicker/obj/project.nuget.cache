@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3Jo7OL8/1XI=",
+  "dgSpecHash": "4pJLRz9XpnQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\csesz\\Desktop\\MSC_2\\önlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
   "expectedPackageFiles": [
@@ -74,6 +74,7 @@
     "C:\\Users\\csesz\\.nuget\\packages\\jmespath.net\\1.0.330\\jmespath.net.1.0.330.nupkg.sha512",
     "C:\\Users\\csesz\\.nuget\\packages\\jmespath.net.parser\\1.0.330\\jmespath.net.parser.1.0.330.nupkg.sha512",
     "C:\\Users\\csesz\\.nuget\\packages\\jsonconverter.abstractions\\0.7.0\\jsonconverter.abstractions.0.7.0.nupkg.sha512",
+    "C:\\Users\\csesz\\.nuget\\packages\\mailjet.api\\3.0.0\\mailjet.api.3.0.0.nupkg.sha512",
     "C:\\Users\\csesz\\.nuget\\packages\\metadatareferenceservice.abstractions\\0.0.1\\metadatareferenceservice.abstractions.0.0.1.nupkg.sha512",
     "C:\\Users\\csesz\\.nuget\\packages\\metadatareferenceservice.default\\0.0.1\\metadatareferenceservice.default.0.0.1.nupkg.sha512",
     "C:\\Users\\csesz\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\9.0.3\\microsoft.aspnetcore.authentication.jwtbearer.9.0.3.nupkg.sha512",
