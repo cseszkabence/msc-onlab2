@@ -12,4 +12,5 @@ export interface PcPart{
     type_name: string,
     name: string | null;
     price: number | null;
+    [key: string]: any;  // 👈 This enables dynamic property access
 };

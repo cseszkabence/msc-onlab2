@@ -14,6 +14,7 @@ import { ProductServiceService } from '../shared/services/products/product-servi
 import { map, Observable } from 'rxjs';
 import { BadgeModule } from 'primeng/badge';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
+import { ComparisonService } from '../shared/services/comparison/comparison.service';
 
 @Component({
   selector: 'menu-component',
@@ -48,11 +49,13 @@ export class MenuComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private messageService: MessageService,
+    private comparisonService: ComparisonService,
   ) { }
 
   cartService = inject(CartService)
   showSearchBar: boolean = false;
   showProductsBar: boolean = false;
+  comparisonCount = 0;
 
 
   cards = [
@@ -92,7 +95,11 @@ export class MenuComponent implements OnInit {
     this.cartSize$ = this.cartService.getCartObservable().pipe(
       map(cart => cart.reduce((sum, item) => sum + item.quantity, 0))
     );
-    this.cartSize$.subscribe(val => this.cartSize = val)
+    this.cartService.cart$.subscribe(val => this.cartSize = val.length)
+    this.comparisonService.comparisonList$.subscribe(list => {
+      this.comparisonCount = list.length;
+    });
+    this.chooseProduct(0);
   }
 
   disableBars() {
@@ -131,5 +138,9 @@ export class MenuComponent implements OnInit {
     return this.cartService.getCart().pipe(
       map(cart => cart.reduce((total, item) => total + item.quantity, 0))
     );
+  }
+
+  goToComparison(): void {
+    this.router.navigateByUrl("/comparison-component").then(() => this.disableBars())
   }
 }

@@ -27,8 +27,11 @@
         </p-button>
         <p-button *ngIf="isLoggedIn" (click)="onLogout()" label="Logout" class="main-buttons" severity="danger">
         </p-button>
-        <p-button icon="pi pi-shopping-cart" class="p-button-rounded p-button-text"
+        <p-button label=" "icon="pi pi-shopping-cart" class="p-button-rounded p-button-text me-3" [badge]="cartSize.toString()"
             (click)="navigateToCart()"></p-button>
+        <p-button label=" " icon="pi pi-sliders-h" class="p-button-rounded p-button-text" [badge]="comparisonCount.toString()" 
+            (click)="goToComparison()">
+        </p-button>
     </div>
 </p-toolbar>
 

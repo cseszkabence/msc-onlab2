@@ -1,2 +1,173 @@
-<p>product-details works!</p>
-<div class="text-lg font-medium mt-1">{{ component }}</div>
+<div class="grid">
+    <div class="col-12 md:col-6 lg:col-4">
+        <p-card styleClass="product-image-card">
+            <div class="product-image-placeholder">
+                <i class="pi pi-image"></i>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-12 md:col-6 lg:col-8 product-details">
+        <div class="product-info">
+            <div class="product-name">{{ componentDetails.name}}</div>
+            <div class="product-tag">Tag</div>
+            <!--CPU-->
+
+            <div *ngIf="componentDetails.price" class="details-container"><strong>Price:</strong>
+                <div class="details-data"> {{ componentDetails.price | currency }}</div>
+            </div>
+            <div *ngIf="componentDetails.coreCount" class="details-container"><strong>Cores:</strong>
+                <div class="details-data"> {{ componentDetails.coreCount}}</div>
+            </div>
+            <div *ngIf="componentDetails.coreClock" class="details-container"><strong>Clock speed:</strong>
+                <div class="details-data"> {{ componentDetails.coreClock}} MHz</div>
+            </div>
+            <div *ngIf="componentDetails.boostClock" class="details-container"><strong>Boost clock speed:</strong>
+                <div class="details-data"> {{ componentDetails.boostClock}} MHz</div>
+            </div>
+            <div *ngIf="componentDetails.tdp" class="details-container"><strong>TDP:</strong>
+                <div class="details-data"> {{ componentDetails.tdp}} W</div>
+            </div>
+            <div *ngIf="componentDetails.graphics" class="details-container"><strong>Integrated graphics:</strong>
+                <div class="details-data"> {{ componentDetails.graphics }}</div>
+            </div>
+            <div *ngIf="componentDetails.smt" class="details-container"><strong>SMT:</strong>
+                <div class="details-data"> {{ componentDetails.smt}}</div>
+            </div>
+
+            <!--MOBO-->
+
+            <div *ngIf="componentDetails.socket" class="details-container"><strong>Socket:</strong>
+                <div class="details-data"> {{ componentDetails.socket}}</div>
+            </div>
+            <div *ngIf="componentDetails.formFactor" class="details-container"><strong>Form factor:</strong>
+                <div class="details-data"> {{ componentDetails.formFactor}}</div>
+            </div>
+            <div *ngIf="componentDetails.maxMemory" class="details-container"><strong>Maximum memory:</strong>
+                <div class="details-data"> {{ componentDetails.maxMemory}} GB</div>
+            </div>
+            <div *ngIf="componentDetails.memorySlots" class="details-container"><strong>Memory slots:</strong>
+                <div class="details-data"> {{ componentDetails.memorySlots }}</div>
+            </div>
+            <div *ngIf="componentDetails.color" class="details-container"><strong>Color:</strong>
+                <div class="details-data"> {{ componentDetails.color}}</div>
+            </div>
+
+            <!--MEMORY-->
+
+            <div *ngIf="componentDetails.speed" class="details-container"><strong>Speed:</strong>
+                <div class="details-data"> {{ componentDetails.speed}} MHz</div>
+            </div>
+            <div *ngIf="componentDetails.modules" class="details-container"><strong>Modules</strong>
+                <div class="details-data"> {{ componentDetails.modules}}</div>
+            </div>
+            <div *ngIf="componentDetails.pricePerGb" class="details-container"><strong>Price per GB:</strong>
+                <div class="details-data"> {{ componentDetails.pricePerGb}}</div>
+            </div>
+            <div *ngIf="componentDetails.firsWordLatency" class="details-container"><strong>First Word Latency:</strong>
+                <div class="details-data"> {{ componentDetails.firsWordLatency}}</div>
+            </div>
+            <div *ngIf="componentDetails.casLatency" class="details-container"><strong>CAS Latency:</strong>
+                <div class="details-data"> {{ componentDetails.casLatency}}</div>
+            </div>
+
+            <!--VIDEOCARD-->
+
+            <div *ngIf="componentDetails.chipset" class="details-container"><strong>Chipset:</strong>
+                <div class="details-data"> {{ componentDetails.chipset}}</div>
+            </div>
+            <div *ngIf="componentDetails.memory" class="details-container"><strong>Memory size:</strong>
+                <div class="details-data"> {{ componentDetails.memory}} GB</div>
+            </div>
+            <div *ngIf="componentDetails.length" class="details-container"><strong>Length:</strong>
+                <div class="details-data"> {{ componentDetails.length}} mm</div>
+            </div>
+
+            <!--STORAGE-->
+
+            <div *ngIf="componentDetails.capacity" class="details-container"><strong>Capacity:</strong>
+                <div class="details-data"> {{ componentDetails.capacity}} GB</div>
+            </div>
+            <div *ngIf="componentDetails.pricePerGb" class="details-container"><strong>Price per GB:</strong>
+                <div class="details-data"> {{ componentDetails.pricePerGb}}</div>
+            </div>
+            <div *ngIf="componentDetails.type" class="details-container"><strong>Type:</strong>
+                <div class="details-data"> {{ componentDetails.type}} </div>
+            </div>
+            <div *ngIf="componentDetails.cache" class="details-container"><strong>Cache:</strong>
+                <div class="details-data"> {{ componentDetails.cache }}</div>
+            </div>
+            <div *ngIf="componentDetails.interface" class="details-container"><strong>Interface:</strong>
+                <div class="details-data"> {{ componentDetails.interface}}</div>
+            </div>
+
+
+            <!--PSU-->
+
+            <div *ngIf="componentDetails.efficiency" class="details-container"><strong>Efficiency:</strong>
+                <div class="details-data"> {{ componentDetails.efficiency}}</div>
+            </div>
+            <div *ngIf="componentDetails.wattage" class="details-container"><strong>Wattage:</strong>
+                <div class="details-data"> {{ componentDetails.wattage}} </div>
+            </div>
+            <div *ngIf="componentDetails.modular" class="details-container"><strong>Modular:</strong>
+                <div class="details-data"> {{ componentDetails.modular }}</div>
+            </div>
+
+            <!--CASE-->
+
+            <div *ngIf="componentDetails.sidePanel" class="details-container"><strong>Sidepanel:</strong>
+                <div class="details-data"> {{ componentDetails.sidePanel}} </div>
+            </div>
+            <div *ngIf="componentDetails.externalVolume" class="details-container"><strong>External volume:</strong>
+                <div class="details-data"> {{ componentDetails.externalVolume }}</div>
+            </div>
+            <div *ngIf="componentDetails.internal35Bays" class="details-container"><strong>Internal 3.5" bays:</strong>
+                <div class="details-data"> {{ componentDetails.internal35Bays}}</div>
+            </div>
+
+
+            <!--CPU COOLER-->
+
+            <div *ngIf="componentDetails.rpm" class="details-container"><strong>Fan speed:</strong>
+                <div class="details-data"> {{ componentDetails.rpm}} RPM</div>
+            </div>
+            <div *ngIf="componentDetails.noiseLevel" class="details-container"><strong>Noise level:</strong>
+                <div class="details-data"> {{ componentDetails.noiseLevel}} Db</div>
+            </div>
+        </div>
+        <div class="product-actions">
+            <p-button label="Add to Cart" icon="pi pi-shopping-cart"></p-button>
+            <p-button label="Add to comparison" icon="pi pi-sliders-h" styleClass="p-button-secondary"></p-button>
+        </div>
+    </div>
+    <div class="col-12">
+        <p-card header="Available stores">
+            <div class="grid">
+                <div class="col-12 md:col-4">
+                    <p-button label="Store A" styleClass="p-button-outlined">
+                        <i class="pi pi-map-marker p-mr-2"></i>
+                        <span>Take me there!</span>
+                    </p-button>
+                </div>
+                <div class="col-12 md:col-4">
+                    <p-button label="Store B" styleClass="p-button-outlined">
+                        <i class="pi pi-map-marker p-mr-2"></i>
+                        <span>Take me there!</span>
+                    </p-button>
+                </div>
+                <div class="col-12 md:col-4">
+                    <p-button label="Store C" styleClass="p-button-outlined">
+                        <i class="pi pi-map-marker p-mr-2"></i>
+                        <span>Take me there!</span>
+                    </p-button>
+                </div>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-12">
+        <p-card header="Map" styleClass="map-card">
+            <div class="map-placeholder">
+            </div>
+        </p-card>
+    </div>
+</div>

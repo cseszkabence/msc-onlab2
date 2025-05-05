@@ -1,3 +1,4 @@
+<p-toast position="top-right"/>
 <p-splitter styleClass="mb-8" [panelSizes]="[30, 70]">
   <!-- Filters section (left one-third) -->
   <ng-template #panel>
@@ -55,7 +56,7 @@
                   <button pButton icon="pi pi-microchip" label="Details" (click)="navigateToDetails(product.id, product.type_name)"
                     class="flex-auto whitespace-nowrap"></button>
                   <button pButton icon="pi pi-sliders-h" label="Compare"
-                    class="flex-auto md:flex-initial whitespace-nowrap" (click)="addToCart(product)"></button>
+                    class="flex-auto md:flex-initial whitespace-nowrap" (click)="onCompare(product)"></button>
                   <button pButton icon="pi pi-shopping-cart" label="Buy Now" (click)="addToCart(product)"
                     class="flex-auto whitespace-nowrap"></button>
                 </div>
@@ -82,6 +83,11 @@
                       product.type_name
                       }}</span>
                     <div class="text-lg font-medium mt-1">{{ product.name }}</div>
+
+                    <div *ngIf="product.type_name=='Videocard'" class="text-lg font-medium mt-1">
+                      <!-- {{ product.chipset }} -->
+                    </div>
+
                   </div>
                   <!--     <div class="bg-surface-100 p-1" style="border-radius: 30px; height:100%">
                     <div class="bg-surface-0 flex products-center gap-2 justify-center py-1 px-2"
@@ -96,7 +102,7 @@
                   <div class="flex gap-2">
                     <button pButton icon="pi pi-microchip" label="Details" (click)="navigateToDetails(product.id, product.type_name)"
                       class="flex-auto whitespace-nowrap"></button>
-                    <button pButton icon="pi pi-sliders-h" label="Compare" (click)="addToCart(product)"
+                    <button pButton icon="pi pi-sliders-h" label="Compare" (click)="onCompare(product)"
                       class="flex-auto whitespace-nowrap"></button>
                     <button pButton icon="pi pi-shopping-cart" label="Buy Now" (click)="addToCart(product)"
                       class="flex-auto whitespace-nowrap"></button>

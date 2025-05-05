@@ -115,8 +115,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-03-21T16:50:01.632Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -126,7 +125,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAAAPMAAABXAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPMAAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-25T17:43:54.187Z",
               "IsPinned": true,
@@ -154,8 +153,7 @@
               "RelativeToolTip": "Models\\Videocard.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T17:32:12.707Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T17:32:12.707Z"
             },
             {
               "$type": "Document",
@@ -167,8 +165,7 @@
               "RelativeToolTip": "Models\\Processor.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T17:31:59.625Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T17:31:59.625Z"
             },
             {
               "$type": "Document",
@@ -180,8 +177,7 @@
               "RelativeToolTip": "Models\\Powersupply.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T17:31:53.115Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T17:31:53.115Z"
             },
             {
               "$type": "Document",
@@ -193,8 +189,7 @@
               "RelativeToolTip": "Models\\Pccase.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T17:31:42.127Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T17:31:42.127Z"
             },
             {
               "$type": "Document",
@@ -206,8 +201,7 @@
               "RelativeToolTip": "Models\\Motherboard.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T17:31:34.76Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T17:31:34.76Z"
             },
             {
               "$type": "Document",
@@ -219,8 +213,7 @@
               "RelativeToolTip": "Models\\Memory.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T17:30:19.329Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T17:30:19.329Z"
             },
             {
               "$type": "Document",
@@ -232,8 +225,7 @@
               "RelativeToolTip": "Models\\Harddrive.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T17:30:15.704Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T17:30:15.704Z"
             },
             {
               "$type": "Document",
@@ -245,8 +237,7 @@
               "RelativeToolTip": "Models\\FormfactorType.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T17:30:14.973Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T17:30:14.973Z"
             },
             {
               "$type": "Document",
@@ -258,8 +249,7 @@
               "RelativeToolTip": "Models\\Cpucooler.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T17:30:10.782Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T17:30:10.782Z"
             },
             {
               "$type": "Document",
@@ -271,8 +261,7 @@
               "RelativeToolTip": "Interfaces\\IComponent.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T17:30:00.099Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T17:30:00.099Z"
             },
             {
               "$type": "Document",
@@ -284,8 +273,7 @@
               "RelativeToolTip": "Models\\EmailModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T14:25:51.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T14:25:51.222Z"
             },
             {
               "$type": "Document",
@@ -297,8 +285,7 @@
               "RelativeToolTip": "Services\\IEmailService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T14:25:10.278Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T14:25:10.278Z"
             },
             {
               "$type": "Document",
@@ -310,8 +297,7 @@
               "RelativeToolTip": "Services\\EmailService.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAACEAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T14:24:46.584Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-09T14:24:46.584Z"
             },
             {
               "$type": "Document",
@@ -359,8 +345,7 @@
               "RelativeToolTip": "appsettings.Development.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-07T16:25:14.367Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-07T16:25:14.367Z"
             },
             {
               "$type": "Document",
@@ -383,8 +368,7 @@
               "RelativeToolTip": "Controllers\\PartsController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T18:14:50.532Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-26T18:14:50.532Z"
             },
             {
               "$type": "Document",
@@ -396,8 +380,7 @@
               "RelativeToolTip": "Models\\MyDbContext.cs",
               "ViewState": "AgIAAMcCAAAAAAAAAAAqwOQCAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T10:07:55.055Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T10:07:55.055Z"
             },
             {
               "$type": "Document",

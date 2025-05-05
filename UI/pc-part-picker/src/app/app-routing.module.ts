@@ -10,6 +10,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CheckoutsuccessComponent } from './checkout/checkoutsuccess/checkoutsuccess.component';
 import { CheckoutcancelComponent } from './checkout/checkoutcancel/checkoutcancel.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ComparisonComponent } from './comparison/comparison.component';
 
 export const routes: Routes = [{
   path: 'products-component',
@@ -51,6 +52,11 @@ export const routes: Routes = [{
 {
   path: 'product-details-component/:id/:type',
   component: ProductDetailsComponent
+},
+
+{
+  path: 'comparison-component',
+  component: ComparisonComponent
 }
 ];
 

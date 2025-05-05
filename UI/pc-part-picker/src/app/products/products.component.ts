@@ -21,7 +21,7 @@ import { Ripple } from 'primeng/ripple';
 import { Checkbox } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 import { Card } from 'primeng/card';
-import { PrimeTemplate } from 'primeng/api';
+import { PrimeTemplate, MessageService } from 'primeng/api';
 import { Button } from 'primeng/button';
 import { Tag } from 'primeng/tag';
 import { DataView } from 'primeng/dataview';
@@ -33,14 +33,15 @@ import { signal } from '@angular/core';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { CartService } from '../shared/services/cart/cart.service';
 import { CartItem } from '../../model/CartItem';
-
+import { ComparisonService } from '../shared/services/comparison/comparison.service';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
   standalone: true,
-  imports: [DataView, ScrollTopModule, Rating, ButtonModule, SelectButton, Tag, CommonModule, Splitter, Accordion, NgFor, AccordionPanel, Ripple, AccordionHeader, AccordionContent, Checkbox, FormsModule, NgIf, Card, PrimeTemplate, Button, AsyncPipe, CurrencyPipe]
+  imports: [DataView, ToastModule, ScrollTopModule, Rating, ButtonModule, SelectButton, Tag, CommonModule, Splitter, Accordion, NgFor, AccordionPanel, Ripple, AccordionHeader, AccordionContent, Checkbox, FormsModule, NgIf, Card, PrimeTemplate, Button, AsyncPipe, CurrencyPipe]
 })
 export class ProductsComponent implements OnInit {
 
@@ -61,7 +62,7 @@ export class ProductsComponent implements OnInit {
 
   enabledFilters = 0;
 
-  constructor(private productService: ProductServiceService, public dialog: MatDialog, private router: Router,
+  constructor(private productService: ProductServiceService, public dialog: MatDialog, private router: Router, private comparisonService: ComparisonService, private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -91,7 +92,7 @@ export class ProductsComponent implements OnInit {
 
   getImagePath(product: any): string {
     const basePath = '/assets/images/';
-    if (product.videocardid > 0) {
+    if (product.type_name == 'Videocard') {
       return `${basePath}${product.chipset!}.jpg`;
     }
     else {
@@ -193,25 +194,25 @@ export class ProductsComponent implements OnInit {
     return product.type_name === 'Memory';
   }
   private isVideocard(product: PcPart): product is Videocard {
-    return product.type_name === 'Processor';
+    return product.type_name === 'Videocard';
   }
 
   private isPowersupply(product: PcPart): product is Powersupply {
-    return product.type_name === 'Motherboard';
+    return product.type_name === 'Powersupply';
   }
 
   private isPccase(product: PcPart): product is Pccase {
-    return product.type_name === 'Memory';
+    return product.type_name === 'Pccase';
   }
   private isCpucooler(product: PcPart): product is Cpucooler {
-    return product.type_name === 'Processor';
+    return product.type_name === 'Cpucooler';
   }
 
   private isHarddrive(product: PcPart): product is Harddrive {
-    return product.type_name === 'Motherboard';
+    return product.type_name === 'Harddrive';
   }
 
-  addToCart(part: PcPart,  number = 1): void {
+  addToCart(part: PcPart, number = 1): void {
     const item: CartItem = {
       partType: part.type_name,
       partId: part.id,
@@ -224,6 +225,15 @@ export class ProductsComponent implements OnInit {
 
   navigateToDetails(partId: number, partType: string) {
     this.router.navigateByUrl(`/product-details-component/${partId}/${partType}`)
+  }
+
+  onCompare(part: PcPart): void {
+    const result = this.comparisonService.addProduct(part);
+    if (!result.success) {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: result.message, life: 2000 });
+    } else {
+      this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Product added to comparison list!', life: 2000 });
+    }
   }
 }
 

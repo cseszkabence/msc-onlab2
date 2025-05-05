@@ -1,12 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductServiceService } from '../shared/services/products/product-service.service';
-import { Observable } from 'rxjs';
-import { PcPart } from '../../model/Pcpart';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'product-details-component',
-  imports: [],
+  imports: [CommonModule, ButtonModule, CardModule],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
@@ -14,9 +15,7 @@ export class ProductDetailsComponent {
   productId: number = 1; // Example ID
   productType: string = 'Processor'; // Example Type
 
-  part: any
-
-  component: Observable<any> | undefined
+  componentDetails!: any;
 
   partId: number | null = null;
   partType: string | null = null;
@@ -45,7 +44,6 @@ export class ProductDetailsComponent {
 
   loadComponentDetails(id: number, type: string): void {
     this.loading = true;
-    //this.part = this.productService.getPart(id, type).subscribe();
-    this.component?.subscribe((component) => {this.component = component})
+    this.componentDetails = this.productService.getPart(id, type).subscribe(item=> this.componentDetails = item);
   }
 }
