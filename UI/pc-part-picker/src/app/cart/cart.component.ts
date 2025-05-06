@@ -6,6 +6,9 @@ import { CartItem } from '../../model/CartItem';
 import { CartService } from '../shared/services/cart/cart.service';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { StripeService } from '../shared/services/stripe/stripe.service';
+import { ProductServiceService } from '../shared/services/products/product-service.service';
+import { PcPart } from '../../model/Pcpart';
+import { forkJoin, map } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -16,8 +19,9 @@ import { StripeService } from '../shared/services/stripe/stripe.service';
 })
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
+  enrichedCart: EnrichedCartItem[] = [];
 
-  constructor(private cartService: CartService,     private router: Router,private paymentService: PaymentService
+  constructor(private cartService: CartService,private router: Router,private paymentService: PaymentService, private productService: ProductServiceService,
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +42,21 @@ export class CartComponent implements OnInit {
 
   loadCart(): void {
     this.cartService.getCart().subscribe(items => this.cartItems = items);
+    this.cartService.getCart().subscribe(cartItems => {
+      const observables = cartItems.map(item =>
+        this.productService.getPart<PcPart>(item.partId, item.partType).pipe(
+          map(part => ({
+            ...item,
+            name: part.name ?? 'Unknown',
+            price: part.price
+          }))
+        )
+      );
+  
+      forkJoin(observables).subscribe(enrichedItems => {
+        this.enrichedCart = enrichedItems;
+      });
+    });
   }
 
   removeItem(item: CartItem): void {
@@ -59,4 +78,16 @@ export class CartComponent implements OnInit {
   buyThisProduct(){
     this.paymentService.createCheckoutSession(this.cartItems);
   }
+
+  fetchString(part: PcPart){
+    return part.name;
+  }
+  getImagePath(product: any): string {
+    return this.productService.getImagePath(product);
+  }
+}
+interface EnrichedCartItem extends CartItem {
+  name: string;
+  price?: number | null;
+  // any other part data you want to show
 }

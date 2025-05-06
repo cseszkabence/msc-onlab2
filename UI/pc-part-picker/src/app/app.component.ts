@@ -36,7 +36,7 @@ import { MenuComponent } from "./menu/menu.component";
     ])
   ],
   providers: [MessageService],
-  imports: [Toolbar, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, ToastModule, MenuComponent]
+  imports: [Toolbar, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, ToastModule, MenuComponent, ToastModule]
 })
 export class AppComponent {
 

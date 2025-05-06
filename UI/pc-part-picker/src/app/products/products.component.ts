@@ -91,13 +91,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getImagePath(product: any): string {
-    const basePath = '/assets/images/';
-    if (product.type_name == 'Videocard') {
-      return `${basePath}${product.chipset!}.jpg`;
-    }
-    else {
-      return `${basePath}${product.name!}.jpg`;
-    }
+    return this.productService.getImagePath(product);
   }
 
   private getFolderName(product: PcPart): string {
@@ -220,7 +214,14 @@ export class ProductsComponent implements OnInit {
       userId: "1"
     };
 
-    this.cartService.addToCart(item).subscribe();
+    this.cartService.addToCart(item).subscribe({
+      next: () => {
+        this.messageService.add({ severity: 'info', summary: 'Success!', detail: "Item added to cart successfully.", life: 2000 });
+      },
+      error: err => {
+        this.messageService.add({ severity: 'error', summary: 'Error!', detail: "Failed to add to cart!", life: 2000 });
+      }
+    });
   }
 
   navigateToDetails(partId: number, partType: string) {
@@ -230,9 +231,9 @@ export class ProductsComponent implements OnInit {
   onCompare(part: PcPart): void {
     const result = this.comparisonService.addProduct(part);
     if (!result.success) {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: result.message, life: 2000 });
+      this.messageService.add({ severity: 'error', summary: 'Error!', detail: result.message, life: 2000 });
     } else {
-      this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Product added to comparison list!', life: 2000 });
+      this.messageService.add({ severity: 'info', summary: 'Success!', detail: 'Product added to comparison list!', life: 2000 });
     }
   }
 }

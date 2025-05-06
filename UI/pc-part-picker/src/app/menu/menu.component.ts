@@ -41,8 +41,6 @@ export class MenuComponent implements OnInit {
   title = 'PC PART PICKER';
   categoryNumber: number = 0;
   isLoggedIn = false;
-  cartSize$!: Observable<number>;
-  cartSize: number = 0;
 
   constructor(
     private productService: ProductServiceService,
@@ -56,7 +54,7 @@ export class MenuComponent implements OnInit {
   showSearchBar: boolean = false;
   showProductsBar: boolean = false;
   comparisonCount = 0;
-
+  cartSize = 0;
 
   cards = [
     { title: 'Processor', content: ' ' },
@@ -92,13 +90,14 @@ export class MenuComponent implements OnInit {
     this.authService.loginStatus$.subscribe(status => {
       this.isLoggedIn = status;
     });
-    this.cartSize$ = this.cartService.getCartObservable().pipe(
-      map(cart => cart.reduce((sum, item) => sum + item.quantity, 0))
-    );
-    this.cartService.cart$.subscribe(val => this.cartSize = val.length)
     this.comparisonService.comparisonList$.subscribe(list => {
       this.comparisonCount = list.length;
     });
+    this.cartService.totalQuantity$.subscribe(qty => {
+      this.cartSize = qty;
+    });
+  
+    this.cartService.loadCart(); // trigger initial load
     this.chooseProduct(0);
   }
 

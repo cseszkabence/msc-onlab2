@@ -720,7 +720,7 @@ public partial class MyDbContext : DbContext
                 return Memories.Where(x => x.Id == partId).FirstOrDefault().Price;
             case "Videocard":
                 return Videocards.Where(x => x.Id == partId).FirstOrDefault().Price;
-            case "Storage":
+            case "Harddrive":
                 return Harddrives.Where(x => x.Id == partId).FirstOrDefault().Price;
             case "Powersupply":
                 return Powersupplies.Where(x => x.Id == partId).FirstOrDefault().Price;
@@ -745,7 +745,7 @@ public partial class MyDbContext : DbContext
                 return Memories.Where(x => x.Id == partId).FirstOrDefault();
             case "Videocard":
                 return Videocards.Where(x => x.Id == partId).FirstOrDefault();
-            case "Storage":
+            case "Harddrive":
                 return Harddrives.Where(x => x.Id == partId).FirstOrDefault();
             case "Powersupply":
                 return Powersupplies.Where(x => x.Id == partId).FirstOrDefault();

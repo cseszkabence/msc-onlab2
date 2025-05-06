@@ -144,6 +144,17 @@ app.MapGet("/api/cart", async (string userId, MyDbContext db) =>
     return Results.Ok(items);
 });
 
+app.MapDelete("/api/cart/clear", async (string userId, MyDbContext db) =>
+{
+    var items = await db.CartItems
+        .Where(c => c.UserId == userId)
+        .ToListAsync();
+    //var allItems = db.Set<CartItem>();
+    db.RemoveRange(items);
+    await db.SaveChangesAsync();
+    return Results.Ok("Cart cleared.");
+});
+
 app.MapPost("/api/cart", async ([FromBody] CartItem input, MyDbContext db) =>
 {
     var existingItem = await db.CartItems.FirstOrDefaultAsync(c =>

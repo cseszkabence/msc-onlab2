@@ -1,9 +1,29 @@
-<div *ngFor="let item of cartItems" class="w-full md:w-5/12 flex flex-col items-center justify-center gap-3 py-5">
-    <p>{{ item.partType }} #{{ item.partId }} - Qty: {{ item.quantity }}</p>
-    <p-button (click)="updateCart(item, -1)">-</p-button>
-    <p-button (click)="updateCart(item, 1)">+</p-button>
-    <p-button (click)="updateCart(item, -item.quantity)" severity="danger">Remove</p-button>
-</div>
+<div class="flex flex-col items-center justify-center min-h-screen">
+    <div *ngFor="let item of enrichedCart"
+        class="w-full md:w-5/12 flex flex-row items-center justify-start gap-4 py-5 border rounded-lg shadow-md m-2 p-4">
 
-<p-button (click)="clearCart()">Clear Cart</p-button>
-<p-button (click)="buyThisProduct()">Checkout</p-button>
+        <!-- Image on the left -->
+        <div class="w-24 h-24 flex-shrink-0">
+            <img [src]="getImagePath(item)" class="w-full h-full object-cover rounded" />
+        </div>
+
+        <!-- Details on the right -->
+        <div class="flex flex-col gap-2 flex-grow">
+            <p class="text-lg font-semibold">{{ item.name }} - Qty: {{ item.quantity }}</p>
+
+            <div class="flex gap-2">
+                <p-button (click)="updateCart(item, 1)" icon="pi pi-plus"></p-button>
+                <p-button (click)="updateCart(item, -1)" icon="pi pi-minus"></p-button>
+                <p-button (click)="updateCart(item, -item.quantity)" label="Remove" severity="danger"
+                    icon="pi pi-trash"></p-button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="flex gap-4 mt-6">
+        <p-button class="m-3" (click)="buyThisProduct()" label="Checkout" severity="success"
+            icon="pi pi-check"></p-button>
+        <p-button class="m-3" (click)="clearCart()" label="Clear Cart" severity="warn" icon="pi pi-times"></p-button>
+    </div>
+</div>
