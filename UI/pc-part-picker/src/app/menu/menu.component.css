@@ -5,9 +5,7 @@
 
 .card-container {
     display: flex;
-    background: var(--sys-background);
     /* border-bottom-style: solid; */
-    border-color: var(--sys-primary);
     flex-wrap: wrap;
     /* Ensure the cards wrap to the next row */
     justify-content: space-around;

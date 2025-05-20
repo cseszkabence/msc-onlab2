@@ -1,6 +1,6 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { NgStyle, NgIf, NgFor } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -15,6 +15,7 @@ import { map, Observable } from 'rxjs';
 import { BadgeModule } from 'primeng/badge';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
 import { ComparisonService } from '../shared/services/comparison/comparison.service';
+import { ContextMenu, ContextMenuModule } from 'primeng/contextmenu';
 
 @Component({
   selector: 'menu-component',
@@ -33,11 +34,19 @@ import { ComparisonService } from '../shared/services/comparison/comparison.serv
     ])
   ],
   providers: [MessageService],
-  imports: [Toolbar, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, ToastModule, BadgeModule, OverlayBadgeModule],
+  imports: [Toolbar,ContextMenuModule, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, ToastModule, BadgeModule, OverlayBadgeModule],
   standalone: true
 })
 export class MenuComponent implements OnInit {
+menuItems = [
+    {
+      label: 'Clear Comparison',
+      icon: 'pi pi-trash',
+      command: () => this.clearComparison()
+    }
+  ];
 
+  @ViewChild('cm') contextMenu!: ContextMenu;
   title = 'PC PART PICKER';
   categoryNumber: number = 0;
   isLoggedIn = false;
@@ -141,5 +150,13 @@ export class MenuComponent implements OnInit {
 
   goToComparison(): void {
     this.router.navigateByUrl("/comparison-component").then(() => this.disableBars())
+  }
+
+  onRightClick(event: MouseEvent): void {
+    this.contextMenu.show(event);
+  }
+
+  clearComparison(): void {
+    this.comparisonService.clearComparison();
   }
 }

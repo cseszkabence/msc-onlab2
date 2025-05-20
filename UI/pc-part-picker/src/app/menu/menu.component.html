@@ -1,3 +1,5 @@
+<p-contextMenu #cm [model]="menuItems"></p-contextMenu>
+
 <p-toolbar>
     <div class="p-toolbar-group-left">
         <span>PC PART PICKER</span>
@@ -30,7 +32,7 @@
         <p-button label=" "icon="pi pi-shopping-cart" class="p-button-rounded p-button-text me-3" [badge]="cartSize.toString()"
             (click)="navigateToCart()"></p-button>
         <p-button label=" " icon="pi pi-sliders-h" class="p-button-rounded p-button-text" [badge]="comparisonCount.toString()" 
-            (click)="goToComparison()">
+            (click)="goToComparison()" (contextmenu)="onRightClick($event)">
         </p-button>
     </div>
 </p-toolbar>

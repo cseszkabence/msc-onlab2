@@ -7,6 +7,7 @@ import { CartService } from '../shared/services/cart/cart.service';
 import { CartItem } from '../../model/CartItem';
 import { MenuItem } from 'primeng/api';
 import { ContextMenu, ContextMenuModule } from 'primeng/contextmenu';
+import { ButtonModule } from 'primeng/button';
 
 const comparisonRules: Record<string, Record<string, 'asc' | 'desc'>> = {
   Processor: {
@@ -27,7 +28,7 @@ const comparisonRules: Record<string, Record<string, 'asc' | 'desc'>> = {
   selector: 'app-comparison-page',
   templateUrl: './comparison.component.html',
   styleUrls: ['./comparison.component.scss'],
-  imports: [CommonModule, TableModule, ContextMenuModule]
+  imports: [CommonModule, TableModule, ContextMenuModule, ButtonModule]
 })
 export class ComparisonComponent implements OnInit {
   products: PcPart[] = [];
@@ -105,5 +106,10 @@ export class ComparisonComponent implements OnInit {
   onCellRightClick(event: MouseEvent, product: any): void {
     this.selectedProduct = product;
     this.cm.show(event); // cm is a ViewChild reference to the ContextMenu
+  }
+
+  clearComparison(): void {
+    this.comparisonService.clearComparison();
+    window.location.reload();
   }
 }

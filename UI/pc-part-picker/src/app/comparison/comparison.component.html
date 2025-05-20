@@ -1,8 +1,10 @@
-<h2>Compare Products</h2>
+<h2 class="mt-5 ms-5 me-5">Compare Products <p-button (click)="clearComparison()" label="Clear all" severity="danger"
+    icon="pi pi-trash"></p-button></h2>
 
 <p-contextMenu #cm [model]="items" (onHide)="selectedProduct = null"></p-contextMenu>
 
-<p-table [value]="comparisonKeys" [responsiveLayout]="'scroll'" class="comparison-table m-10" showGridlines *ngIf="products.length!=0">
+<p-table [value]="comparisonKeys" [responsiveLayout]="'scroll'" class="comparison-table m-10" showGridlines
+  *ngIf="products.length!=0">
   <ng-template pTemplate="header">
     <tr>
       <th>Property</th>
@@ -12,9 +14,8 @@
   <ng-template pTemplate="body" let-key>
     <tr>
       <td>{{ key }}</td>
-      <td *ngFor="let product of products"
-          [ngClass]="{ 'best': isBestValue(key, product[key]) }"
-          (contextmenu)="onCellRightClick($event, product)">
+      <td *ngFor="let product of products" [ngClass]="{ 'best': isBestValue(key, product[key]) }"
+        (contextmenu)="onCellRightClick($event, product)">
         {{ product[key] }}
       </td>
     </tr>
