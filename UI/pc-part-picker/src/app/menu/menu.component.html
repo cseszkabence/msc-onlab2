@@ -13,7 +13,7 @@
             label="Search" class="main-buttons">
         </p-button>
 
-        <p-inputGroup *ngIf="showSearchBar" @slideUpDown>
+        <!-- <p-inputGroup *ngIf="showSearchBar" @slideUpDown>
             <p-inputText #txtVal (keydown.enter)="searchProducts()" placeholder="Search something..."
                 [(ngModel)]="searchQuery">
             </p-inputText>
@@ -21,7 +21,7 @@
             </p-button>
             <p-button icon="pi pi-search" (click)="searchProducts()" styleClass="p-button-text">
             </p-button>
-        </p-inputGroup>
+        </p-inputGroup> -->
     </div>
 
     <div class="p-toolbar-group-right">
@@ -29,19 +29,38 @@
         </p-button>
         <p-button *ngIf="isLoggedIn" (click)="onLogout()" label="Logout" class="main-buttons" severity="danger">
         </p-button>
-        <p-button label=" "icon="pi pi-shopping-cart" class="p-button-rounded p-button-text me-3" [badge]="cartSize.toString()"
-            (click)="navigateToCart()"></p-button>
-        <p-button label=" " icon="pi pi-sliders-h" class="p-button-rounded p-button-text" [badge]="comparisonCount.toString()" 
-            (click)="goToComparison()" (contextmenu)="onRightClick($event)">
+        <p-button label=" " icon="pi pi-shopping-cart" class="p-button-rounded p-button-text me-3"
+            [badge]="cartSize.toString()" (click)="navigateToCart()"></p-button>
+        <p-button label=" " icon="pi pi-sliders-h" class="p-button-rounded p-button-text"
+            [badge]="comparisonCount.toString()" (click)="goToComparison()" (contextmenu)="onRightClick($event)">
         </p-button>
+    </div>
+    <div *ngIf="showProductsBar" @slideDownUp>
+        <div>
+            <p-button pButton label="Processors" [routerLink]="['/products','processor']" styleClass="p-button-outlined"
+                class="m-8">
+            </p-button>
+            <p-button pButton label="Motherboards" [routerLink]="['/products','motherboard']" styleClass="p-button-outlined"
+                class="m-8">
+            </p-button>
+            <p-button pButton label="Memories" [routerLink]="['/products','memory']" styleClass="p-button-outlined"
+                class="m-8">
+            </p-button>
+            <p-button pButton label="Videocards" [routerLink]="['/products','videocard']" styleClass="p-button-outlined"
+                class="m-8">
+            </p-button>
+            <p-button pButton label="Storage" [routerLink]="['/products','storage']" styleClass="p-button-outlined"
+                class="m-8">
+            </p-button>
+            <p-button pButton label="Powersupplies" [routerLink]="['/products','powersupply']" styleClass="p-button-outlined"
+                class="m-8">
+            </p-button>
+             <p-button pButton label="Cases" [routerLink]="['/products','case']" styleClass="p-button-outlined"
+                class="m-8">
+            </p-button>
+            <p-button pButton label="CPU Coolers" [routerLink]="['/products','cpucooler']" styleClass="p-button-outlined"
+                class="m-8">
+            </p-button>
+        </div>
     </div>
 </p-toolbar>
-
-
-<div *ngIf="showProductsBar" @slideDownUp>
-    <div class="card-container">
-        <p-button *ngFor="let card of cards; let i = index" (click)="chooseProduct(i)" [label]="card.title"
-            styleClass="p-button-outlined">
-        </p-button>
-    </div>
-</div>

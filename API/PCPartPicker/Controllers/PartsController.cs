@@ -9,9 +9,9 @@ namespace PCPartPicker.Controllers
     [ApiController]
     public class PartsController : ControllerBase
     {
-        private readonly MyDbContext _dbContext;
+        private readonly ApplicationDbContext _dbContext;
 
-        public PartsController(MyDbContext dbContext)
+        public PartsController(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }

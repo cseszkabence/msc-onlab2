@@ -1,4 +1,4 @@
-<p-table [value]="dataSource" class="p-datatable-sm demo-table">
+<!-- <p-table [value]="dataSource" class="p-datatable-sm demo-table">
   <ng-template pTemplate="header">
     <tr>
       <th>Component</th>
@@ -18,7 +18,7 @@
         </ng-container>
 
         <ng-container *ngIf="!element.productBrowserActive && !element.productChosen">
-          <p-button label="+ Choose" class="comp-add-btn" (click)="toggleBrowser(element)"></p-button>
+          <p-button label="+ Choose" class="comp-add-btn" (click)="toggleBrowser(element.name)"></p-button>
         </ng-container>
 
         <ng-container *ngIf="element.productBrowserActive">
@@ -31,7 +31,8 @@
                   <div class="comp-info-label">{{ product.chipset }}</div>
                   <div class="comp-info-label">Cores: {{ product.coreCount }}</div>
                   <div class="comp-info-label">Price: {{ product.price | currency }}</div>
-                  <p-button icon="pi pi-plus" class="comp-add-btn" (click)="chooseComponent(element, product)"></p-button>
+                  <p-button icon="pi pi-plus" class="comp-add-btn"
+                    (click)="chooseComponent(element, product)"></p-button>
                 </div>
               </ng-template>
             </p-listbox>
@@ -40,7 +41,72 @@
       </td>
     </tr>
   </ng-template>
-</p-table>
+</p-table> -->
+
+<h2>Your Current Build</h2>
+
+<!-- wait for build to load -->
+<ng-container *ngIf="build$ | async as build">
+  <p-table [value]="parts" [responsive]="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Component</th>
+        <th>Selected Part</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-part>
+      <tr>
+        <!-- label -->
+        <td>{{ part.label }}</td>
+
+        <!-- selection or placeholder -->
+        <td>
+          {{ build[part.key]?.name || '— not chosen —' }}
+        </td>
+
+        <!-- price if exists -->
+        <td>
+          {{ build[part.key]?.price ? (build[part.key]?.price | currency:'EUR') : '—' }}
+        </td>
+
+        <!-- choose button -->
+        <td>
+          <p-button
+            pButton
+            type="button"
+            icon="pi pi-search"
+            label="Choose"
+            (click)="choose(part)"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ng-container>
+
+
+<p-button pButton label="Save Build" icon="pi pi-save" class="p-mt-3" (click)="onSaveClick()">
+</p-button>
+
+<p-dialog header="Name Your Build" [(visible)]="displaySaveDialog" [modal]="true" [closable]="false"
+  [style]="{ width: '320px' }">
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="cfgName">Build Name</label>
+      <input id="cfgName" type="text" pInputText [(ngModel)]="configName" placeholder="e.g. My Gaming Rig" />
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button pButton label="Cancel" icon="pi pi-times" (click)="displaySaveDialog = false">
+    </p-button>
+    <p-button pButton label="Save" icon="pi pi-check" [disabled]="!configName" (click)="saveConfig()">
+    </p-button>
+  </ng-template>
+</p-dialog>
+
 
 <div class="comp-totalprice-label">TOTAL: {{ totalPrice | currency }}</div>
 <p-button label="CALCULATE" class="comp-add-btn" (click)="totalPriceCalculator()"></p-button>

@@ -3,10 +3,10 @@
   <ng-template #panel>
     <div class="w-full h-full p-0 m-0 flex flex-column">
       <p-accordion class="w-full" [value]="0" [multiple]="true">
-        <p-accordion-panel *ngFor="let filter of filters; let i = index" [value]="i">
+        <p-accordion-panel *ngFor="let filter of filters; let i = index" [value]="0">
           <p-accordion-header>{{ filter.name }}</p-accordion-header>
           <p-accordion-content *ngFor="let option of filter.options" class="flex items-center">
-            <p-checkbox [(ngModel)]="option.checked" (onChange)="onChange($event, i, option)"
+            <p-checkbox [(ngModel)]="option.checked" (onChange)="onChange()"
               [binary]="true"></p-checkbox>
             <label class="ml-2">{{ option.name }}</label>
           </p-accordion-content>

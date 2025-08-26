@@ -8,12 +8,22 @@ import { Processor } from "./Processor";
 import { Videocard } from "./Videocard";
 
 export interface Configuration {
-    processor: Processor | undefined;
-    motherboard: Motherboard| undefined;
-    videocard: | undefined;
-    memory: Memory| undefined;
-    harddrive: Harddrive| undefined;
-    pccase: | undefined;
-    powersupply: Powersupply| undefined;
-    cpucooler: Cpucooler| undefined;
+    processor?: Processor ;
+    motherboard?: Motherboard;
+    videocard?: Videocard ;
+    memory?: Memory;
+    harddrive?: Harddrive;
+    pccase?: Pccase ;
+    powersupply?: Powersupply;
+    cpucooler?: Cpucooler;
+
+    [key: string]: Processor
+                  | Motherboard
+                  | Videocard
+                  | Memory
+                  | Powersupply
+                  | Pccase
+                  | Harddrive
+                  | Cpucooler
+                  | undefined;
 }

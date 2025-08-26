@@ -1,10 +1,7 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router, RouterModule } from '@angular/router';
-import { MatSliderModule } from '@angular/material/slider';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { map, Observable, Subscription } from 'rxjs';
 import { Filter, filterProductsByName, ProductServiceService } from '../shared/services/products/product-service.service';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Processor } from '../../model/Processor';
 import { PcPart } from '../../model/Pcpart';
 import { Harddrive } from '../../model/Harddrive';
@@ -41,7 +38,18 @@ import { ToastModule } from 'primeng/toast';
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
   standalone: true,
-  imports: [DataView, ToastModule, ScrollTopModule, Rating, ButtonModule, SelectButton, Tag, CommonModule, Splitter, Accordion, NgFor, AccordionPanel, Ripple, AccordionHeader, AccordionContent, Checkbox, FormsModule, NgIf, Card, PrimeTemplate, Button, AsyncPipe, CurrencyPipe]
+  imports: [
+    DataView,
+    ToastModule,
+    ScrollTopModule,
+    ButtonModule,
+    SelectButton,
+    CommonModule,
+    Splitter,
+    Accordion,
+    NgFor,
+    AccordionPanel,
+    Ripple, AccordionHeader, AccordionContent, Checkbox, FormsModule, NgIf, Card, PrimeTemplate, Button, AsyncPipe, CurrencyPipe]
 })
 export class ProductsComponent implements OnInit {
 
@@ -59,11 +67,32 @@ export class ProductsComponent implements OnInit {
 
   products$!: Observable<PcPart[]>;
   allProducts!: PcPart[];
-
+  prevComp?: string;
+  category!: string;
+  parts: any[] = [];
   enabledFilters = 0;
 
-  constructor(private productService: ProductServiceService, public dialog: MatDialog, private router: Router, private comparisonService: ComparisonService, private messageService: MessageService
-  ) { }
+  constructor(
+    private productService: ProductServiceService,
+    private router: Router,
+    private comparisonService: ComparisonService,
+    private messageService: MessageService,
+    private route: ActivatedRoute,
+
+  ) {
+    const nav = this.router.getCurrentNavigation();
+    const from = nav?.extras.state?.['from']
+      || (history.state && history.state.from);
+    const product = nav?.extras.state?.['prod']
+    if (from == 'configurator-component') {
+      this.chooseProductAsnyc(product)
+      this.onChange();
+    }
+  }
+
+  async chooseProductAsnyc(product: string) {
+    await this.productService.chooseProduct(product);
+  }
 
   ngOnInit(): void {
     this.layout = 'list';
@@ -80,6 +109,41 @@ export class ProductsComponent implements OnInit {
         this.filters = filters;
       })
     );
+    this.route.paramMap.subscribe(pm => {
+      this.category = pm.get('category') || 'all';
+      this.chooseProductAsnyc(this.category)
+    });
+  }
+
+  loadPartsFor(cat: string) {
+    switch (cat) {
+      case 'processor':
+        this.productService.getProcessor().subscribe(list => this.parts = list);
+        break;
+      case 'motherboard':
+        this.productService.getMotherboard().subscribe(list => this.parts = list);
+        break;
+      case 'memory':
+        this.productService.getMemory().subscribe(list => this.parts = list);
+        break;
+      case 'videocard':
+      this.chooseProductAsnyc(cat)
+        break;
+      case 'storage':
+        this.productService.getHarddrive().subscribe(list => this.parts = list);
+        break;
+      case 'powersupply':
+        this.productService.getPowersupply().subscribe(list => this.parts = list);
+        break;
+      case 'case':
+        this.productService.getCase().subscribe(list => this.parts = list);
+        break;
+      case 'cpucooler':
+        this.productService.getProcessorCooler().subscribe(list => this.parts = list);
+        break;
+      default:
+        this.parts = [];
+    }
   }
 
   ngOnDestroy(): void {
@@ -110,7 +174,7 @@ export class ProductsComponent implements OnInit {
     this.products$ = this.productService.products$;
   }
 
-  onChange(event: any, index: any, item: any) {
+  onChange() {
     this.enabledFilters = 0;
     this.productService.resetProducts();
     this.filters.forEach(async filter => {

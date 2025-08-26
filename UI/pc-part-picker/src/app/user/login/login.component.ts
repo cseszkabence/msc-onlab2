@@ -1,6 +1,9 @@
+// src/app/login/login.component.ts
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
@@ -9,58 +12,101 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToastModule } from 'primeng/toast';
-import { AuthService } from '../../shared/services/auth/auth.service';
-import { Router } from '@angular/router';
 
-async function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+import { AuthService } from '../../shared/services/auth/auth.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'login-component',
-  imports: [ButtonModule, ProgressSpinnerModule, DividerModule, ToastModule, InputTextModule, CommonModule, ReactiveFormsModule, FloatLabelModule, PasswordModule],
-    providers: [MessageService],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    DividerModule,
+    FloatLabelModule,
+    InputTextModule,
+    PasswordModule,
+    ProgressSpinnerModule,
+    ToastModule
+  ],
+  providers: [MessageService],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
-  standalone: true
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-    constructor(private router: Router, public formBuilder: FormBuilder  , private authService: AuthService,private messageService: MessageService
-    ){}
-  isSubmitted: boolean = false;
-  isLoading: boolean = false;
+  isSubmitted = false;
+  isLoading = false;
 
-  form = this.formBuilder.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required],
-  })
+  form = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required]
+  });
 
-  hasDisplayableError(controlName: string): Boolean {
+  constructor(
+    private fb: FormBuilder,
+    private auth: AuthService,
+    private msg: MessageService,
+    private router: Router
+  ) { }
+
+  hasDisplayableError(controlName: string): boolean {
     const control = this.form.get(controlName);
-    return Boolean(control?.invalid) && (this.isSubmitted || Boolean(control?.touched) || Boolean(control?.dirty))
+    return !!(
+      control &&
+      control.invalid &&
+      (this.isSubmitted || control.touched || control.dirty)
+    );
   }
-  onSubmit(){
+
+  onSubmit() {
     this.isSubmitted = true;
-    if(this.form.valid){
-      this.isLoading = true;
-      this.authService.signin(this.form.value).subscribe({
-        next:async (res:any)=>{
-          await sleep(3000);
-          localStorage.setItem('token',res.token);
-          this.authService.setSubject();
-          this.messageService.add({ severity: 'success', summary: 'Login successful!', detail: '', life: 3000 });
-          this.router.navigateByUrl("/configurator-component").then(()=>this.isLoading=false);
+
+    if (this.form.invalid) {
+      this.msg.add({
+        severity: 'warn',
+        summary: 'Validation',
+        detail: 'Please fill in all required fields correctly.',
+        life: 3000
+      });
+      return;
+    }
+
+    this.isLoading = true;
+
+    const email = this.form.get('email')!.value!;
+    const password = this.form.get('password')!.value!;
+
+    this.auth.signin({email, password})
+      .pipe(finalize(() => (this.isLoading = false)))
+      .subscribe({
+        next: () => {
+          this.msg.add({
+            severity: 'success',
+            summary: 'Login successful!',
+            life: 3000
+          });
+          // navigate to configurator or returnUrl if you store one
+          this.router.navigateByUrl('/configurator-component');
         },
         error: err => {
-          if(err.status == 400){
-            this.messageService.add({ severity: 'error', summary: 'Login failed!', detail: 'Incorrect email or password!', life: 3000 });
-          }
-          else
-          {
-            console.log('error during login:\n',err);
+          if (err.status === 400) {
+            this.msg.add({
+              severity: 'error',
+              summary: 'Login failed!',
+              detail: 'Incorrect email or password.',
+              life: 3000
+            });
+          } else {
+            console.error('Login error', err);
+            this.msg.add({
+              severity: 'error',
+              summary: 'Login error',
+              detail: 'An unexpected error occurred.',
+              life: 3000
+            });
           }
         }
-      })
-    }
+      });
   }
 }

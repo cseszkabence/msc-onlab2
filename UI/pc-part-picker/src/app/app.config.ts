@@ -6,26 +6,9 @@ import Aura from '@primeng/themes/aura';
 import { AppRoutingModule, routes } from './app-routing.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
-import { MatListModule } from '@angular/material/list';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatTableModule } from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCardModule } from '@angular/material/card';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { withInterceptorsFromDi, provideHttpClient } from '@angular/common/http';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { withInterceptorsFromDi, provideHttpClient, HttpClient } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { AvatarGroupModule } from 'primeng/avatargroup';
@@ -47,42 +30,45 @@ import { ScrollTopModule } from 'primeng/scrolltop';
 import { ToastModule } from 'primeng/toast';
 import { LoginComponent } from './user/login/login.component';
 import { provideNgxStripe } from 'ngx-stripe';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DialogModule } from 'primeng/dialog';
 
 export const appConfig: ApplicationConfig = {
-    providers: [
-        importProvidersFrom(BrowserModule,
-          AppRoutingModule,
-          FormsModule,
-          ButtonModule,
-          MegaMenuModule,
-          AvatarGroupModule,
-          AvatarModule,
-          ToolbarModule,
-          InputGroupModule,
-          InputGroupAddonModule,
-          ListboxModule,
-          TableModule,
-          SplitterModule,
-          AccordionModule,
-          CardModule,
-          CheckboxModule,
-          DataViewModule,
-          TagModule,
-          ScrollTopModule,
-          ToastModule
-        ),
-        provideRouter(routes),
-        providePrimeNG({
-          theme: {
-            preset: MyPreset,
-            options: {
-                darkModeSelector: true
-            }
-          }
-        }),
-        provideAnimationsAsync(),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideNgxStripe()
-      ]
-  };
+  providers: [
+    importProvidersFrom(BrowserModule,
+      AppRoutingModule,
+      FormsModule,
+      HttpClient,
+      ButtonModule,
+      MegaMenuModule,
+      AvatarGroupModule,
+      AvatarModule,
+      ToolbarModule,
+      InputGroupModule,
+      InputGroupAddonModule,
+      ListboxModule,
+      TableModule,
+      SplitterModule,
+      AccordionModule,
+      CardModule,
+      CheckboxModule,
+      DataViewModule,
+      TagModule,
+      ScrollTopModule,
+      ToastModule,
+      DialogModule
+    ),
+    provideRouter(routes),
+    providePrimeNG({
+      theme: {
+        preset: MyPreset,
+        options: {
+          darkModeSelector: true
+        }
+      }
+    }),
+    provideAnimationsAsync(),
+    provideHttpClient(withInterceptorsFromDi()),
+    provideNgxStripe()
+  ]
+};

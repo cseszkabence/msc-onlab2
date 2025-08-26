@@ -158,7 +158,7 @@
   optionalDependencies:
     lmdb "3.2.6"
 
-"@angular/cdk@^19.0.0", "@angular/cdk@^19.2.2", "@angular/cdk@19.2.2":
+"@angular/cdk@^19.0.0", "@angular/cdk@^19.2.2":
   version "19.2.2"
   resolved "https://registry.npmjs.org/@angular/cdk/-/cdk-19.2.2.tgz"
   integrity sha512-YLiydMiTSf7s/LKaLgNeWawspulqdo/47zcjs1sEkHOcmyN1yR2Q0zQdgSbtsvuNikaR4NMNgTybNTDnULl64A==
@@ -225,17 +225,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/forms@^19.0.0", "@angular/forms@^19.0.0 || ^20.0.0", "@angular/forms@^19.2.1":
+"@angular/forms@^19.0.0", "@angular/forms@^19.2.1":
   version "19.2.1"
   resolved "https://registry.npmjs.org/@angular/forms/-/forms-19.2.1.tgz"
   integrity sha512-a+ifgpX5ie2KgTNI9m8tJWS+ym51u3LZ8Kd67dXX7+CbYe9RzdIgVtuXcTklrP1fmmhfKnQVNmsUqpAYAjrByg==
-  dependencies:
-    tslib "^2.3.0"
-
-"@angular/material@^19.2.2":
-  version "19.2.2"
-  resolved "https://registry.npmjs.org/@angular/material/-/material-19.2.2.tgz"
-  integrity sha512-ChaxmiQkdtYJZCuTzh/LuOofg3/TLKDM/NtmlPrOA8GCEGX5oHQiu9NgJmdwi8LmGJL0lvFS1ftfVSjBTgHlxA==
   dependencies:
     tslib "^2.3.0"
 
@@ -246,7 +239,7 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/platform-browser@^19.0.0", "@angular/platform-browser@^19.0.0 || ^20.0.0", "@angular/platform-browser@^19.2.1", "@angular/platform-browser@19.2.1":
+"@angular/platform-browser@^19.0.0", "@angular/platform-browser@^19.2.1", "@angular/platform-browser@19.2.1":
   version "19.2.1"
   resolved "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-19.2.1.tgz"
   integrity sha512-omBNCMk0Gim+HntrofVQR8dOY2zLCFOW02+FX4y57QvuDBh/FpFfnQ14xxx1Y4qEgGculEcBe914uJlxr4ccIg==

@@ -2,7 +2,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { NgStyle, NgIf, NgFor } from '@angular/common';
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Button } from 'primeng/button';
 import { InputGroup } from 'primeng/inputgroup';
@@ -34,11 +34,11 @@ import { ContextMenu, ContextMenuModule } from 'primeng/contextmenu';
     ])
   ],
   providers: [MessageService],
-  imports: [Toolbar,ContextMenuModule, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, ToastModule, BadgeModule, OverlayBadgeModule],
+  imports: [Toolbar, RouterModule, ContextMenuModule, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, ToastModule, BadgeModule, OverlayBadgeModule],
   standalone: true
 })
 export class MenuComponent implements OnInit {
-menuItems = [
+  menuItems = [
     {
       label: 'Clear Comparison',
       icon: 'pi pi-trash',
@@ -84,7 +84,7 @@ menuItems = [
 
   toggleProducts(): void {
     this.showProductsBar = !this.showProductsBar;
-    this.router.navigateByUrl("/products-component");
+    //this.router.navigateByUrl("/products-component");
   }
 
   navigateToConfigurator() {
@@ -105,9 +105,9 @@ menuItems = [
     this.cartService.totalQuantity$.subscribe(qty => {
       this.cartSize = qty;
     });
-  
+
     this.cartService.loadCart(); // trigger initial load
-    this.chooseProduct(0);
+    this.chooseProduct('Processor');
   }
 
   disableBars() {
@@ -128,13 +128,13 @@ menuItems = [
     this.searchProducts();
   }
 
-  async chooseProduct(n: number) {
-    this.categoryNumber = n;
+  async chooseProduct(n: string) {
+    //this.categoryNumber = n;
     await this.productService.chooseProduct(n);
   }
 
   onLogout() {
-    this.authService.onLogout();
+    this.authService.logout();
     this.messageService.add({ severity: 'success', summary: 'Logout successful!', detail: '', life: 3000 });
   }
 

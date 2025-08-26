@@ -196,20 +196,20 @@ export class ProductServiceService {
     this.filteredProducts = [];
   }
 
-  async saveProducts(n: number) {
+  async saveProducts() {
     this.originalProducts = this.productsSubject.getValue();
   }
 
   getOriginalProducts() {
     return this.originalProducts;
   }
-  async chooseProduct(n: number): Promise<void> {
+  async chooseProduct(n: string): Promise<void> {
     //n=10;
     this.originalProducts = [];
     var filters = this.filtersSubject.getValue();
     filters = [];
     switch (n) {
-      case 0: {
+      case 'processor': {
         const products = await firstValueFrom(this.getProcessor());
         this.productsSubject.next(products);
         const manufacturerOptions = getManufacturers(products);
@@ -220,8 +220,8 @@ export class ProductServiceService {
         filters.push({ name: 'Sockets', options: socketOptions });
         break;
       }
-      case 1: {
-        const products = await firstValueFrom(this.getMotheboard());
+      case 'motherboard': {
+        const products = await firstValueFrom(this.getMotherboard());
         this.productsSubject.next(products);
         const manufacturerOptions = getManufacturers(products);
         const socketOptions = getSocketTypes(products);
@@ -233,7 +233,7 @@ export class ProductServiceService {
         filters.push({ name: 'Memory Types', options: memoryOptions });
         break;
       }
-      case 2: {
+      case 'memory': {
         const products = await firstValueFrom(this.getMemory());
         this.productsSubject.next(products);
         const manufacturerOptions = getManufacturers(products);
@@ -242,7 +242,7 @@ export class ProductServiceService {
         filters.push({ name: 'Memory Types', options: memoryOptions });
         break;
       }
-      case 3: {
+      case 'videocard': {
         const products = await firstValueFrom(this.getVideocard());
         this.productsSubject.next(products);
         const manufacturerOptions = getManufacturers(products);
@@ -253,14 +253,14 @@ export class ProductServiceService {
         filters.push({ name: 'Chipsets', options: chipsetOptions });
         break;
       }
-      case 4: {
+      case 'storage': {
         const products = await firstValueFrom(this.getHarddrive());
         this.productsSubject.next(products);
         const manufacturerOptions = getManufacturers(products);
         filters.push({ name: 'Manufacturer', options: manufacturerOptions });
         break;
       }
-      case 5: {
+      case 'powersupply': {
         const products = await firstValueFrom(this.getPowersupply());
         this.productsSubject.next(products);
         const manufacturerOptions = getManufacturers(products);
@@ -269,7 +269,7 @@ export class ProductServiceService {
         filters.push({ name: 'Form Factors', options: formFactorOptions });
         break;
       }
-      case 6: {
+      case 'case': {
         const products = await firstValueFrom(this.getCase());
         this.productsSubject.next(products);
         const manufacturerOptions = getManufacturers(products);
@@ -278,7 +278,7 @@ export class ProductServiceService {
         filters.push({ name: 'Form Factors', options: formFactorOptions });
         break;
       }
-      case 7: {
+      case 'cpucooler': {
         const products = await firstValueFrom(this.getProcessorCooler());
         this.productsSubject.next(products);
         const manufacturerOptions = getManufacturers(products);
@@ -291,10 +291,10 @@ export class ProductServiceService {
       }
     }
     this.updateFilters(filters);
-    await this.saveProducts(n);
+    await this.saveProducts();
   }
 
-  getMotheboard(): Observable<Motherboard[]> {
+  getMotherboard(): Observable<Motherboard[]> {
     return this.httpClient.get<any[]>(this.APIUrl + '/Parts/GetMotherboard').pipe(
       map(data => data.map(createMotherboard))
     );

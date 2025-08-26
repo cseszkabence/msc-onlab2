@@ -7,7 +7,8 @@ public partial class CartItem
 {
     public int Id { get; set; }
 
-    public string UserId { get; set; } = null!;
+    public string UserId { get; set; } = default!;
+    public AppUser User { get; set; } = default!;
 
     public string PartType { get; set; } = null!;
 

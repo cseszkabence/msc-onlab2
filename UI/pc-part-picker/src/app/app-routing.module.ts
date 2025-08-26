@@ -13,19 +13,24 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { ComparisonComponent } from './comparison/comparison.component';
 
 export const routes: Routes = [{
-  path: 'products-component',
+  path: 'products',
   component: ProductsComponent
 },
 
-{ path: 'configurator-component',
+{ path: 'products/:category', component: ProductsComponent },
+
+{
+  path: 'configurator-component',
   component: ConfiguratorComponent
 },
 
-{ path: 'user-component',
+{
+  path: 'user-component',
   component: UserComponent
 },
 
-{ path: 'registration-component',
+{
+  path: 'registration-component',
   component: RegistrationComponent
 },
 
@@ -64,4 +69,4 @@ export const routes: Routes = [{
   imports: [RouterModule.forRoot(routes), NgxStripeModule.forRoot('pk_test_51Q2EtTB2B1CUn6npnZe7bRixfPQnqYFUZnSqpu7C3uN7yOuXivIm5g17sx2DSXBNoW54AgGGI8Gr375xJwsTaBz100kdXsqT4p')],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

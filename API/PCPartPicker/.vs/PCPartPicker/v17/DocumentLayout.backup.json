@@ -102,20 +102,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 345,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 18,
@@ -137,11 +125,23 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAJIAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAMYAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-25T17:43:54.187Z",
               "IsPinned": true,
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
@@ -378,10 +378,9 @@
               "RelativeDocumentMoniker": "Models\\MyDbContext.cs",
               "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\MyDbContext.cs",
               "RelativeToolTip": "Models\\MyDbContext.cs",
-              "ViewState": "AgIAAM0CAAAAAAAAAAAIwOQCAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAMYCAAAAAAAAAAD4v9ICAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T10:07:55.055Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T10:07:55.055Z"
             },
             {
               "$type": "Document",
@@ -393,8 +392,7 @@
               "RelativeToolTip": "Models\\CartItem.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T10:03:43.821Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T10:03:43.821Z"
             }
           ]
         }

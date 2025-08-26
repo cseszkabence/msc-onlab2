@@ -2,7 +2,7 @@
     <div class="col-12 md:col-6 lg:col-4">
         <p-card styleClass="product-image-card">
             <div class="product-image-placeholder">
-                <img [src]="getImagePath(componentDetails)"/>
+                <img [src]="getImagePath(componentDetails)" />
             </div>
         </p-card>
     </div>
@@ -136,8 +136,11 @@
             </div>
         </div>
         <div class="product-actions m-2">
-            <p-button label="Add to Cart" icon="pi pi-shopping-cart" class="m-2" (click)="addToCart(componentDetails)"></p-button>
-            <p-button label="Add to comparison" icon="pi pi-sliders-h" styleClass="p-button-secondary" class="m-2" (click)="onCompare(componentDetails)"></p-button>
+            <p-button label="Add to Cart" icon="pi pi-shopping-cart" class="m-2"
+                (click)="addToCart(componentDetails)"></p-button>
+            <p-button label="Add to comparison" icon="pi pi-sliders-h" styleClass="p-button-secondary" class="m-2"
+                (click)="onCompare(componentDetails)"></p-button>
+            <p-button label="Add to Build" icon="pi pi-plus" (click)="addToBuild()" class="p-mt-3"></p-button>
         </div>
     </div>
     <div class="col-12">

@@ -7,7 +7,9 @@ public partial class Configuration
 {
     public int Id { get; set; }
 
-    public int UserId { get; set; }
+    public string UserId { get; set; } = default!;
+    public AppUser User { get; set; } = default!;
+    public string Name { get; set; } = string.Empty;
 
     public int? MotherboardId { get; set; }
 
@@ -39,7 +41,6 @@ public partial class Configuration
 
     public virtual Harddrive? Storage { get; set; }
 
-    public virtual User User { get; set; } = null!;
 
     public virtual Videocard? Videocard { get; set; }
 }

@@ -35,6 +35,6 @@ export class UserComponent {
   
 
   onLogout(){
-    this.authService.onLogout();
+    this.authService.logout();
   }
 }

@@ -1,33 +1,65 @@
 import { Component } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule } from '@angular/material/table';
 import { ProductServiceService } from '../shared/services/products/product-service.service';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { Configuration } from '../../model/Configuration';
 import { TableModule } from 'primeng/table';
 import { PrimeTemplate } from 'primeng/api';
-import { NgIf, CurrencyPipe } from '@angular/common';
+import { NgIf, CurrencyPipe, AsyncPipe } from '@angular/common';
 import { Button } from 'primeng/button';
 import { Listbox } from 'primeng/listbox';
+import { Router } from '@angular/router';
+import { AuthService } from '../shared/services/auth/auth.service';
+import { MessageService } from 'primeng/api';
+import { ConfiguratorService, UserConfig } from '../shared/services/configuration/configurator.service';
+import { DialogModule } from 'primeng/dialog';
+import { FormsModule } from '@angular/forms';
+import { BuildService } from '../shared/services/builder/builder.service';
+
+interface PartRow {
+  key: keyof Configuration;
+  label: string;
+  route: string;            // where to navigate when choosing
+}
 
 @Component({
-    selector: 'app-configurator',
-    templateUrl: './configurator.component.html',
-    styleUrl: './configurator.component.css',
-    animations: [
-        trigger('slideDownUp', [
-            state('void', style({ height: '0px', opacity: 0 })),
-            state('*', style({ height: '*', opacity: 1 })),
-            transition('void <=> *', animate('300ms ease-in-out')),
-        ]),
-    ],
-    imports: [TableModule, PrimeTemplate, NgIf, Button, Listbox, CurrencyPipe]
+  selector: 'app-configurator',
+  templateUrl: './configurator.component.html',
+  styleUrl: './configurator.component.css',
+  animations: [
+    trigger('slideDownUp', [
+      state('void', style({ height: '0px', opacity: 0 })),
+      state('*', style({ height: '*', opacity: 1 })),
+      transition('void <=> *', animate('300ms ease-in-out')),
+    ]),
+  ],
+  imports: [TableModule, PrimeTemplate, NgIf, Button, Listbox, CurrencyPipe, DialogModule, FormsModule, AsyncPipe]
 })
 export class ConfiguratorComponent {
 
-  constructor(private productService: ProductServiceService) {
+  displaySaveDialog = false;
+  configName = '';
+  build$: Observable<Configuration> = this.buildSvc.config$ as Observable<Configuration>;
+  parts: PartRow[] = [
+    { key: 'processor', label: 'Processor', route: 'processor' },
+    { key: 'motherboard', label: 'Motherboards', route: 'motherboard' },
+    { key: 'videocard', label: 'GPU', route: 'videocard' },
+    { key: 'memory', label: 'RAM', route: 'memory' },
+    { key: 'powersupply', label: 'PSU', route: 'powersupply' },
+    { key: 'pccase', label: 'Case', route: 'case' },
+    { key: 'harddrive', label: 'Storage', route: 'storage' },
+    { key: 'cpucooler', label: 'Cooler', route: 'cpucooler' },
+  ];
+
+  constructor(
+    private productService: ProductServiceService,
+    private router: Router,
+    private auth: AuthService,
+    private cfgSvc: ConfiguratorService,
+    private msg: MessageService,
+    private buildSvc: BuildService) {
+    this.build$ = this.buildSvc.config$;
+
   }
 
   totalPrice: number | null | undefined;
@@ -51,59 +83,116 @@ export class ConfiguratorComponent {
     });
   }
 
-  async toggleBrowser(element: PeriodicElement) {
-    const name = element.name;
-    switch (name) {
-      case "Processor": {
-        element.browsableProducts = await firstValueFrom(this.productService.getProcessor());
-        break;
-      }
-      case "Motherboard": {
-        element.browsableProducts = await firstValueFrom(this.productService.getMotheboard());
-        const filteredProducts = element.browsableProducts.filter(product =>
-          product.socketType == this.configuration.processor?.socketType
-        );
-        element.browsableProducts = filteredProducts;
-        break;
-      }
-      case "Videocard": {
-        element.browsableProducts = await firstValueFrom(this.productService.getVideocard());
-        break;
-      }
-      case "Memory": {
-        element.browsableProducts = await firstValueFrom(this.productService.getMemory());
-        const filteredProducts = element.browsableProducts.filter(product =>
-          product.typeNavigation == this.configuration.motherboard?.memoryType
-        );
-        element.browsableProducts = filteredProducts;
-        break;
-      }
-      case "Harddrive": {
-        element.browsableProducts = await firstValueFrom(this.productService.getHarddrive());
-        break;
-      }
-      case "PC Case": {
-        element.browsableProducts = await firstValueFrom(this.productService.getCase());
-        const filteredProducts = element.browsableProducts.filter(product =>
-          product.formFactorType == this.configuration.motherboard?.formFactoryType
-        );
-        element.browsableProducts = filteredProducts;
-        break;
-      }
-      case "Powersupply": {
-        element.browsableProducts = await firstValueFrom(this.productService.getPowersupply());
-        break;
-      }
-      case "CPU Cooler": {
-        element.browsableProducts = await firstValueFrom(this.productService.getProcessorCooler());
-        break;
-      }
-      default: {
-        break;
-      }
+  onSaveClick() {
+    if (!this.auth.isLoggedIn()) {
+      this.msg.add({
+        severity: 'warn',
+        summary: 'Login Required',
+        detail: 'Please register or login to save your build.',
+        life: 5000
+      });
+      return;
     }
-    element.productBrowserActive = !element.productBrowserActive;
-    //element.browsableProducts = this.productService.mockData;
+    // open the naming dialog
+    this.displaySaveDialog = true;
+    this.configName = '';
+  }
+
+  choose(row: PartRow) {
+    this.router.navigate(['/products', row.route]);
+  }
+
+  saveConfig() {
+    // assemble the DTO matching our backend shape
+    const build = this.configuration;      // your in-memory Configuration object
+    const payload: Partial<UserConfig> = {
+      name: this.configName,
+      motherboardId: build.motherboard?.id,
+      processorId: build.processor?.id,
+      videocardId: build.videocard?.id,
+      memoryId: build.memory?.id,
+      powersupplyId: build.powersupply?.id,
+      caseId: build.pccase?.id,
+      storageId: build.harddrive?.id,
+      coolerId: build.cpucooler?.id
+    };
+    this.cfgSvc.create(payload).subscribe({
+      next: () => {
+        this.msg.add({
+          severity: 'success',
+          summary: 'Saved',
+          detail: `Build “${this.configName}” saved!`,
+          life: 3000
+        });
+        this.displaySaveDialog = false;
+      },
+      error: () => {
+        this.msg.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Could not save your build. Try again later.',
+          life: 5000
+        });
+      }
+    });
+  }
+
+
+  toggleBrowser(product: string) {
+    this.router.navigate(
+      ["/products"],
+      { state: { from: 'configurator-component', prod: product } });
+    /*  switch (name) {
+       case "Processor": {
+         element.browsableProducts = await firstValueFrom(this.productService.getProcessor());
+         break;
+       }
+       case "Motherboard": {
+         element.browsableProducts = await firstValueFrom(this.productService.getMotheboard());
+         const filteredProducts = element.browsableProducts.filter(product =>
+           product.socketType == this.configuration.processor?.socketType
+         );
+         element.browsableProducts = filteredProducts;
+         break;
+       }
+       case "Videocard": {
+         element.browsableProducts = await firstValueFrom(this.productService.getVideocard());
+         break;
+       }
+       case "Memory": {
+         element.browsableProducts = await firstValueFrom(this.productService.getMemory());
+         const filteredProducts = element.browsableProducts.filter(product =>
+           product.typeNavigation == this.configuration.motherboard?.memoryType
+         );
+         element.browsableProducts = filteredProducts;
+         break;
+       }
+       case "Harddrive": {
+         element.browsableProducts = await firstValueFrom(this.productService.getHarddrive());
+         break;
+       }
+       case "PC Case": {
+         element.browsableProducts = await firstValueFrom(this.productService.getCase());
+         const filteredProducts = element.browsableProducts.filter(product =>
+           product.formFactorType == this.configuration.motherboard?.formFactoryType
+         );
+         element.browsableProducts = filteredProducts;
+         break;
+       }
+       case "Powersupply": {
+         element.browsableProducts = await firstValueFrom(this.productService.getPowersupply());
+         break;
+       }
+       case "CPU Cooler": {
+         element.browsableProducts = await firstValueFrom(this.productService.getProcessorCooler());
+         break;
+       }
+       default: {
+         break;
+       }
+     }
+     element.productBrowserActive = !element.productBrowserActive;
+     //element.browsableProducts = this.productService.mockData; */
   }
 
   removeComponent(element: PeriodicElement) {
