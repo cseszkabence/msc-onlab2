@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable, tap } from 'rxjs';
 import { CartItem } from '../../../../model/CartItem';
 
 @Injectable({
@@ -29,7 +29,7 @@ export class CartService {
   
 
   getCart(): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>(this.apiUrl + '?userId=1');
+    return this.http.get<CartItem[]>(this.apiUrl, {withCredentials: true});
   }
 
   getCartObservable(): Observable<CartItem[]> {
@@ -37,15 +37,15 @@ export class CartService {
   }
 
   addToCart(item: CartItem) {
-    return this.http.post(this.apiUrl, item).pipe(tap(() => this.loadCart()));
+    return this.http.post(this.apiUrl, item, {withCredentials: true}).pipe(tap(() => this.loadCart()));
   }
 
   removeFromCart(item: CartItem): Observable<void> {
-    return this.http.delete<void>(this.apiUrl, { body: item }).pipe(tap(() => this.loadCart()));
+    return this.http.delete<void>(this.apiUrl, { body: item }, ).pipe(tap(() => this.loadCart()));
   }
 
   clearCart(): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/clear` + '?userId=1').pipe(tap(() => this.loadCart()));
+    return this.http.delete<void>(`${this.apiUrl}/clear`, {withCredentials: true}).pipe(tap(() => this.loadCart()));
   }
 
   updateCart(item: CartItem, quantityDelta: number): Observable<void> {
@@ -54,9 +54,13 @@ export class CartService {
       quantity: quantityDelta
     };
 
-    return this.http.post<void>(this.apiUrl + '/update', payload).pipe(tap(() => this.loadCart()));
+    return this.http.post<void>(this.apiUrl + '/update', payload , {withCredentials: true}).pipe(tap(() => this.loadCart()));
   }
   getTotalQuantity(): number {
     return this.items.reduce((sum, item) => sum + item.quantity, 0);
+  }
+
+  addManyToCart(items: CartItem[]): Observable<any[]> {
+    return forkJoin(items.map(i => this.addToCart(i)));
   }
 }

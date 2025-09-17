@@ -17,7 +17,7 @@ export class AuthService {
   /** Optional: call a protected endpoint to see if the cookie is valid */
   private checkAuthStatus() {
     this.http
-      .get<void>(`${this.baseURL}/auth/status`, { withCredentials: true })
+      .get<void>(`${this.baseURL}/status`, { withCredentials: true })
       .subscribe({
         next: () => this.loginStatusSubject.next(true),
         error: () => this.loginStatusSubject.next(false),
@@ -53,6 +53,7 @@ export class AuthService {
 
   /** Synchronous read of our current status */
   isLoggedIn(): boolean {
+    this.checkAuthStatus();
     return this.loginStatusSubject.value;
   }
 }
