@@ -16,6 +16,16 @@ import { BadgeModule } from 'primeng/badge';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
 import { ComparisonService } from '../shared/services/comparison/comparison.service';
 import { ContextMenu, ContextMenuModule } from 'primeng/contextmenu';
+import { BuildService } from '../shared/services/builder/builder.service';
+import { TooltipModule } from 'primeng/tooltip';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+
+type CategoryKey =
+  | 'processor' | 'motherboard' | 'memory' | 'videocard'
+  | 'storage' | 'powersupply' | 'case' | 'cpucooler';
+
+interface Category { key: CategoryKey; label: string; route: string; }
+
 
 @Component({
   selector: 'menu-component',
@@ -34,7 +44,7 @@ import { ContextMenu, ContextMenuModule } from 'primeng/contextmenu';
     ])
   ],
   providers: [MessageService],
-  imports: [Toolbar, RouterModule, ContextMenuModule, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, ToastModule, BadgeModule, OverlayBadgeModule],
+  imports: [Toolbar, RouterModule, ContextMenuModule, Button, NgStyle, NgIf, InputGroup, FormsModule, NgFor, RouterOutlet, ToggleButtonModule, ToastModule, BadgeModule, OverlayBadgeModule, TooltipModule],
   standalone: true
 })
 export class MenuComponent implements OnInit {
@@ -57,6 +67,7 @@ export class MenuComponent implements OnInit {
     private authService: AuthService,
     private messageService: MessageService,
     private comparisonService: ComparisonService,
+    private buildSvc: BuildService
   ) { }
 
   cartService = inject(CartService)
@@ -64,17 +75,35 @@ export class MenuComponent implements OnInit {
   showProductsBar: boolean = false;
   comparisonCount = 0;
   cartSize = 0;
+  buildFilledCount = 0;
 
-  cards = [
-    { title: 'Processor', content: ' ' },
-    { title: 'Motherboard', content: ' ' },
-    { title: 'Memory', content: ' ' },
-    { title: 'Videocard', content: ' ' },
-    { title: 'Storage', content: ' ' },
-    { title: 'Powersupply', content: ' ' },
-    { title: 'Case', content: ' ' },
-    { title: 'Processor cooler', content: ' ' },
+  categories: Category[] = [
+    { key: 'processor', label: 'Processors', route: 'processor' },
+    { key: 'motherboard', label: 'Motherboards', route: 'motherboard' },
+    { key: 'memory', label: 'Memories', route: 'memory' },
+    { key: 'videocard', label: 'Videocards', route: 'videocard' },
+    { key: 'storage', label: 'Storage', route: 'storage' },
+    { key: 'powersupply', label: 'Powersupplies', route: 'powersupply' },
+    { key: 'case', label: 'Cases', route: 'case' },
+    { key: 'cpucooler', label: 'CPU Coolers', route: 'cpucooler' },
   ];
+
+  activeCategory: CategoryKey | null = null;
+
+  onToggleCategory(cat: Category, checked: boolean) {
+    if (!checked) { return; } // ignore uncheck
+    this.activeCategory = cat.key;
+    // single-select behavior
+    this.activeCategory = checked ? cat.key : null;
+
+    if (checked) {
+      // If your app navigates to /products/:type
+      this.router.navigate(['/products', cat.route]).then();
+
+      // If you *also* need to trigger an API load without navigation, keep this:
+      // this.productService.chooseProduct(cat.label);
+    }
+  }
 
   searchQuery: string = '';
 
@@ -105,7 +134,9 @@ export class MenuComponent implements OnInit {
     this.cartService.totalQuantity$.subscribe(qty => {
       this.cartSize = qty;
     });
-
+    this.buildSvc.countFilled$.subscribe(n => {
+      this.buildFilledCount = n;
+    });
     this.cartService.loadCart(); // trigger initial load
     this.chooseProduct('Processor');
   }
@@ -136,6 +167,7 @@ export class MenuComponent implements OnInit {
   onLogout() {
     this.authService.logout();
     this.messageService.add({ severity: 'success', summary: 'Logout successful!', detail: '', life: 3000 });
+    window.location.reload();
   }
 
   navigateToCart() {

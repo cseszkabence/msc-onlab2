@@ -65,6 +65,7 @@ export class CartComponent implements OnInit {
 
   clearCart(): void {
     this.cartService.clearCart().subscribe(() => this.loadCart());
+    window.location.reload()
   }
 
   updateCart(item: CartItem, delta: number){

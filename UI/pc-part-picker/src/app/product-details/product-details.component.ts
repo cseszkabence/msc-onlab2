@@ -19,6 +19,8 @@ import { Videocard } from '../../model/Videocard';
 import { Cpucooler } from '../../model/Cpucooler';
 import { Pccase } from '../../model/Pccase';
 import { Powersupply } from '../../model/Powersupply';
+import { SlotKey } from '../shared/services/configuration/configuration-slots';
+import { Configuration } from '../../model/Configuration';
 
 type PartType =
   | 'processor'
@@ -29,7 +31,17 @@ type PartType =
   | 'pccase'
   | 'storage'
   | 'cpucooler';
-
+const PARTTYPE_TO_SLOT: Record<string, SlotKey> = {
+  processor: 'processor', Processor: 'processor',
+  motherboard: 'motherboard', Motherboard: 'motherboard',
+  videocard: 'videocard', Videocard: 'videocard',
+  memory: 'memory', Memory: 'memory',
+  powersupply: 'powersupply', Powersupply: 'powersupply',
+  pccase: 'pccase', Pccase: 'pccase',
+  harddrive: 'harddrive', Harddrive: 'harddrive',
+  storage: 'harddrive',     // if some routes use 'storage'
+  cpucooler: 'cpucooler', Cpucooler: 'cpucooler'
+};
 @Component({
   selector: 'product-details-component',
   imports: [CommonModule, ButtonModule, CardModule, ToastModule],
@@ -49,7 +61,6 @@ export class ProductDetailsComponent {
   loading: boolean = true;
   errorMessage: string = '';
   product!: any;       // your product model
-
   constructor(
     private route: ActivatedRoute,
     private productService: ProductServiceService,
@@ -59,6 +70,20 @@ export class ProductDetailsComponent {
 
   ) { }
 
+
+  SLOT_LABEL: Record<SlotKey, string> = {
+    processor: 'Processor',
+    motherboard: 'Motherboard',
+    videocard: 'GPU',
+    memory: 'Memory',
+    powersupply: 'Power Supply',
+    pccase: 'Case',
+    harddrive: 'Storage',
+    cpucooler: 'CPU Cooler',
+  };
+  private getPartName(x: any): string {
+    return x?.name ?? x?.model ?? x?.title ?? 'Item';
+  }
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.partId = Number(params.get('id'));
@@ -72,38 +97,34 @@ export class ProductDetailsComponent {
       }
     });
   }
-addToBuild() {
-    // Narrow the type so TS knows which field to update
-    switch (this.partType) {
-      case 'Processor':
-        this.buildSvc.update({ processor: this.componentDetails as Processor });
-        break;
-      case 'Motherboard':
-        this.buildSvc.update({ motherboard: this.componentDetails as Motherboard });
-        break;
-      case 'Videocard':
-        this.buildSvc.update({ videocard: this.componentDetails as Videocard });
-        break;
-      case 'Memory':
-        this.buildSvc.update({ memory: this.componentDetails as Memory });
-        break;
-      case 'Powersupply':
-        this.buildSvc.update({ powersupply: this.componentDetails as Powersupply });
-        break;
-      case 'Pccase':
-        this.buildSvc.update({ pccase: this.componentDetails as Pccase });
-        break;
-      case 'Harddrive':
-        this.buildSvc.update({ harddrive: this.componentDetails as Harddrive });
-        break;
-      case 'Cpucooler':
-        this.buildSvc.update({ cpucooler: this.componentDetails as Cpucooler });
-        break;
+
+  addToBuild() {
+    const key = PARTTYPE_TO_SLOT[this.partType ?? ''];
+    if (!key || !this.componentDetails) {
+      this.messageService.add({
+        severity: 'warn', summary: 'Cannot add',
+        detail: 'Unknown part type or item not loaded.', life: 2500
+      });
+      return;
     }
+
+    const alreadyFilled = !!this.buildSvc.currentConfig[key];
+    const patch = { [key]: this.componentDetails } as Partial<Configuration>;
+    this.buildSvc.update(patch);
+
+    this.messageService.add({
+      severity: alreadyFilled ? 'info' : 'success',
+      summary: `${this.SLOT_LABEL[key]} ${alreadyFilled ? 'replaced' : 'added'}`,
+      detail: this.getPartName(this.componentDetails),
+      life: 2500
+    });
   }
   loadComponentDetails(id: number, type: string): void {
     this.loading = true;
-    this.componentDetails = this.productService.getPart(id, type).subscribe(item => this.componentDetails = item);
+    this.productService.getPart(id, type).subscribe({
+      next: item => { this.componentDetails = item; this.loading = false; },
+      error: err => { this.errorMessage = 'Failed to load item.'; this.loading = false; }
+    });
   }
 
   getImagePath(product: any): string {
@@ -115,7 +136,6 @@ addToBuild() {
       partType: this.partType!,
       partId: part.id,
       quantity: number,
-      userId: "1"
     };
 
     this.cartService.addToCart(item).subscribe({

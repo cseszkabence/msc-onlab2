@@ -1,13 +1,14 @@
+import { Harddrive } from './../../model/Harddrive';
 import { Component } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ProductServiceService } from '../shared/services/products/product-service.service';
-import { firstValueFrom, Observable } from 'rxjs';
+import { finalize, firstValueFrom, forkJoin, Observable } from 'rxjs';
 import { Configuration } from '../../model/Configuration';
 import { TableModule } from 'primeng/table';
 import { PrimeTemplate } from 'primeng/api';
 import { NgIf, CurrencyPipe, AsyncPipe } from '@angular/common';
-import { Button } from 'primeng/button';
-import { Listbox } from 'primeng/listbox';
+import { Button, ButtonModule } from 'primeng/button';
+import { Listbox, ListboxModule } from 'primeng/listbox';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth/auth.service';
 import { MessageService } from 'primeng/api';
@@ -15,9 +16,13 @@ import { ConfiguratorService, UserConfig } from '../shared/services/configuratio
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
 import { BuildService } from '../shared/services/builder/builder.service';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { CartItem } from '../../model/CartItem';
+import { CartService } from '../shared/services/cart/cart.service';
+import { SlotKey } from '../shared/services/configuration/configuration-slots';
 
 interface PartRow {
-  key: keyof Configuration;
+  key: SlotKey;
   label: string;
   route: string;            // where to navigate when choosing
 }
@@ -33,7 +38,7 @@ interface PartRow {
       transition('void <=> *', animate('300ms ease-in-out')),
     ]),
   ],
-  imports: [TableModule, PrimeTemplate, NgIf, Button, Listbox, CurrencyPipe, DialogModule, FormsModule, AsyncPipe]
+  imports: [TableModule, PrimeTemplate, NgIf, Button, Listbox, CurrencyPipe, DialogModule, FormsModule, AsyncPipe, ListboxModule, ButtonModule, ProgressSpinnerModule]
 })
 export class ConfiguratorComponent {
 
@@ -51,13 +56,21 @@ export class ConfiguratorComponent {
     { key: 'cpucooler', label: 'Cooler', route: 'cpucooler' },
   ];
 
+  // dialog state
+  displayLoadDialog = false;
+  loadingConfigs = false;
+  configs: UserConfig[] = [];
+  selectedConfigId?: number;
+
   constructor(
-    private productService: ProductServiceService,
+    private partSvc: ProductServiceService,
     private router: Router,
     private auth: AuthService,
     private cfgSvc: ConfiguratorService,
     private msg: MessageService,
-    private buildSvc: BuildService) {
+    private buildSvc: BuildService,
+    private cartSvc: CartService,
+  ) {
     this.build$ = this.buildSvc.config$;
 
   }
@@ -104,7 +117,7 @@ export class ConfiguratorComponent {
 
   saveConfig() {
     // assemble the DTO matching our backend shape
-    const build = this.configuration;      // your in-memory Configuration object
+    const build = this.buildSvc.currentConfig;      // your in-memory Configuration object
     const payload: Partial<UserConfig> = {
       name: this.configName,
       motherboardId: build.motherboard?.id,
@@ -137,6 +150,145 @@ export class ConfiguratorComponent {
     });
   }
 
+  openLoadDialog() {
+    if (!this.auth.isLoggedIn()) {
+      this.msg.add({
+        severity: 'warn',
+        summary: 'Login Required',
+        detail: 'Please login to access your saved configurations.',
+        life: 4000
+      });
+      // optional: navigate to login
+      // this.router.navigate(['/login']);
+      return;
+    }
+
+    this.loadingConfigs = true;
+    this.cfgSvc.list()
+      .pipe(finalize(() => (this.loadingConfigs = false)))
+      .subscribe({
+        next: (list) => {
+          this.configs = list;
+          this.displayLoadDialog = true;
+        },
+        error: () => {
+          this.msg.add({
+            severity: 'error',
+            summary: 'Could not load configurations',
+            life: 4000
+          });
+        }
+      });
+  }
+
+  onLoadSelected() {
+    const cfg = this.configs.find(c => c.id === this.selectedConfigId);
+    if (!cfg) return;
+
+    this.loadConfigIntoBuild(cfg);
+    this.displayLoadDialog = false;
+    this.msg.add({
+      severity: 'success',
+      summary: `Loaded “${cfg.name}”`,
+      life: 2500
+    });
+  }
+
+  /** Fetch parts by IDs from backend, then push into BuildService */
+  private loadConfigIntoBuild(cfg: UserConfig) {
+    // Build a set of HTTP calls only for non-null IDs
+    const calls: { [k: string]: Observable<any> } = {};
+
+    if (cfg.processorId) calls['processor'] = this.partSvc.getPart(cfg.processorId, 'Processor');
+    if (cfg.motherboardId) calls['motherboard'] = this.partSvc.getPart(cfg.motherboardId, 'Motherboard');
+    if (cfg.videocardId) calls['videocard'] = this.partSvc.getPart(cfg.videocardId, 'Videocard');
+    if (cfg.memoryId) calls['memory'] = this.partSvc.getPart(cfg.memoryId, 'Memory');
+    if (cfg.powersupplyId) calls['powersupply'] = this.partSvc.getPart(cfg.powersupplyId, 'Powersupply');
+    if (cfg.caseId) calls['pccase'] = this.partSvc.getPart(cfg.caseId, 'Pccase');
+    if (cfg.storageId) calls['storage'] = this.partSvc.getPart(cfg.storageId, 'Harddrive');
+    if (cfg.coolerId) calls['cpucooler'] = this.partSvc.getPart(cfg.coolerId, 'Cpucooler');
+
+    if (Object.keys(calls).length === 0) {
+      // nothing selected in this config; just clear
+      this.buildSvc.reset();
+      return;
+    }
+
+    forkJoin(calls).subscribe({
+      next: (parts: any) => {
+        // Push everything into your app-wide build state
+        // parts has keys matching the ones we set above
+        this.buildSvc.reset();
+        this.buildSvc.update(parts as Partial<Configuration>);
+      },
+      error: () => {
+        this.msg.add({
+          severity: 'error',
+          summary: 'Failed to load parts for that configuration.',
+          life: 4000
+        });
+      }
+    });
+  }
+
+  removePart(row: PartRow) {
+    this.buildSvc.remove(row.key);
+  }
+
+  addAllToCart() {
+    // 2) read current build
+    const b = this.buildSvc.currentConfig;
+
+    // 3) map selected parts → CartItemDto[]
+    const items: CartItem[] = [];
+
+    const pushIf = (exists: any, partType: string, getId: (x: any) => number | undefined) => {
+      if (exists) {
+        const id = getId(exists);
+        if (typeof id === 'number') items.push({ partType, partId: id, quantity: 1, userId: '2'});
+      }
+    };
+
+    pushIf(b.processor, 'Processor', x => x.id ?? x.processorId ?? x.ProcessorId);
+    pushIf(b.motherboard, 'Motherboard', x => x.id ?? x.motherboardId ?? x.MotherboardId);
+    pushIf(b.videocard, 'Videocard', x => x.id ?? x.videocardId ?? x.VideocardId);
+    pushIf(b.memory, 'Memory', x => x.id ?? x.memoryId ?? x.MemoryId);
+    pushIf(b.powersupply, 'Powersupply', x => x.id ?? x.powersupplyId ?? x.PowerSupplyId ?? x.PowersupplyId);
+    pushIf(b.pccase, 'Pccase', x => x.id ?? x.pccaseId ?? x.CaseId);
+    pushIf(b.harddrive, 'Harddrive', x => x.id ?? x.harddriveId ?? x.StorageId ?? x.HarddriveId);
+    pushIf(b.cpucooler, 'Cpucooler', x => x.id ?? x.cpucoolerId ?? x.CoolerId);
+
+    if (items.length === 0) {
+      this.msg.add({
+        severity: 'info',
+        summary: 'Nothing to add',
+        detail: 'Select some components first.',
+        life: 3000,
+      });
+      return;
+    }
+
+    // 4) call backend (one request per item, in parallel)
+    this.cartSvc.addManyToCart(items).subscribe({
+      next: () => {
+        this.msg.add({
+          severity: 'success',
+          summary: 'Added to cart',
+          detail: `${items.length} item(s) added.`,
+          life: 3000,
+        });
+      },
+      error: (err) => {
+        console.error('Add to cart failed', err);
+        this.msg.add({
+          severity: 'error',
+          summary: 'Could not add to cart',
+          detail: 'Please try again.',
+          life: 4000,
+        });
+      }
+    });
+  }
 
   toggleBrowser(product: string) {
     this.router.navigate(

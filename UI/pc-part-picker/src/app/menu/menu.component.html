@@ -4,10 +4,9 @@
     <div class="p-toolbar-group-left">
         <span>PC PART PICKER</span>
         <p-button [ngStyle]="{'background-color': showProductsBar ? '#19241E' : '#0F1511'}" (click)="toggleProducts()"
-            label="Products" class="main-buttons">
+            pTooltip="Open product categories" label="Products" class="main-buttons">
         </p-button>
-        <p-button (click)="navigateToConfigurator()" label="Configurator" class="main-buttons">
-        </p-button>
+
 
         <p-button [ngStyle]="{'background-color': showSearchBar ? '#19241E' : '#0F1511'}" (click)="toggleSearch()"
             label="Search" class="main-buttons">
@@ -25,42 +24,25 @@
     </div>
 
     <div class="p-toolbar-group-right">
+        <p-button (click)="navigateToConfigurator()" label=" " icon="pi pi-wrench" class="main-buttons"
+            [badge]="buildFilledCount.toString()" pTooltip="Configuration">
+        </p-button>
+        <p-button label=" " icon="pi pi-shopping-cart" class="p-button-rounded p-button-text me-3"
+            [badge]="cartSize.toString()" (click)="navigateToCart()" pTooltip="Shopping Cart"></p-button>
+        <p-button label=" " icon="pi pi-sliders-h" class="p-button-rounded p-button-text"
+            [badge]="comparisonCount.toString()" (click)="goToComparison()" (contextmenu)="onRightClick($event)"
+            pTooltip="Comparison Table">
+        </p-button>
         <p-button *ngIf="!isLoggedIn" (click)="navigateToAccount()" label="Login" class="main-buttons" severity="info">
         </p-button>
         <p-button *ngIf="isLoggedIn" (click)="onLogout()" label="Logout" class="main-buttons" severity="danger">
         </p-button>
-        <p-button label=" " icon="pi pi-shopping-cart" class="p-button-rounded p-button-text me-3"
-            [badge]="cartSize.toString()" (click)="navigateToCart()"></p-button>
-        <p-button label=" " icon="pi pi-sliders-h" class="p-button-rounded p-button-text"
-            [badge]="comparisonCount.toString()" (click)="goToComparison()" (contextmenu)="onRightClick($event)">
-        </p-button>
     </div>
     <div *ngIf="showProductsBar" @slideDownUp>
         <div>
-            <p-button pButton label="Processors" [routerLink]="['/products','processor']" styleClass="p-button-outlined"
-                class="m-8">
-            </p-button>
-            <p-button pButton label="Motherboards" [routerLink]="['/products','motherboard']" styleClass="p-button-outlined"
-                class="m-8">
-            </p-button>
-            <p-button pButton label="Memories" [routerLink]="['/products','memory']" styleClass="p-button-outlined"
-                class="m-8">
-            </p-button>
-            <p-button pButton label="Videocards" [routerLink]="['/products','videocard']" styleClass="p-button-outlined"
-                class="m-8">
-            </p-button>
-            <p-button pButton label="Storage" [routerLink]="['/products','storage']" styleClass="p-button-outlined"
-                class="m-8">
-            </p-button>
-            <p-button pButton label="Powersupplies" [routerLink]="['/products','powersupply']" styleClass="p-button-outlined"
-                class="m-8">
-            </p-button>
-             <p-button pButton label="Cases" [routerLink]="['/products','case']" styleClass="p-button-outlined"
-                class="m-8">
-            </p-button>
-            <p-button pButton label="CPU Coolers" [routerLink]="['/products','cpucooler']" styleClass="p-button-outlined"
-                class="m-8">
-            </p-button>
+            <p-toggleButton *ngFor="let c of categories" [onLabel]="c.label" [offLabel]="c.label"
+                [ngModel]="activeCategory === c.key" (onChange)="onToggleCategory(c, $event.checked!)"
+                styleClass="p-button-outlined" class="m-2"></p-toggleButton>
         </div>
     </div>
 </p-toolbar>

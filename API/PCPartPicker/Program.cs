@@ -21,6 +21,10 @@ using WireMock.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+static string GetUserId(HttpContext ctx) =>
+    ctx.User.FindFirstValue(ClaimTypes.NameIdentifier)
+    ?? throw new UnauthorizedAccessException("No user id claim.");
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -260,20 +264,25 @@ app.MapGet("/api/auth/status",
   .RequireAuthorization();
 
 // Shopping Cart Endpoints
+var cart = app.MapGroup("/api/cart").RequireAuthorization();
 
-app.MapGet("/api/cart", async (string userId, ApplicationDbContext db) =>
+cart.MapGet("/", async (HttpContext ctx, ApplicationDbContext db) =>
 {
+    var uid = GetUserId(ctx);
+
     var items = await db.CartItems
-        .Where(c => c.UserId == userId)
+        .Where(c => c.UserId == uid)
         .ToListAsync();
 
     return Results.Ok(items);
 });
 
-app.MapDelete("/api/cart/clear", async (string userId, ApplicationDbContext db) =>
+cart.MapDelete("/clear", async (HttpContext ctx, ApplicationDbContext db) =>
 {
+    var uid = GetUserId(ctx);
+
     var items = await db.CartItems
-        .Where(c => c.UserId == userId)
+        .Where(c => c.UserId == uid)
         .ToListAsync();
     //var allItems = db.Set<CartItem>();
     db.RemoveRange(items);
@@ -281,10 +290,11 @@ app.MapDelete("/api/cart/clear", async (string userId, ApplicationDbContext db) 
     return Results.Ok("Cart cleared.");
 });
 
-app.MapPost("/api/cart", async ([FromBody] CartItem input, ApplicationDbContext db) =>
+cart.MapPost("/", async ([FromBody] CartItem input, ApplicationDbContext db, HttpContext ctx) =>
 {
+    var uid = GetUserId(ctx);
     var existingItem = await db.CartItems.FirstOrDefaultAsync(c =>
-        c.UserId == input.UserId &&
+        c.UserId == uid &&
         c.PartType == input.PartType &&
         c.PartId == input.PartId);
 
@@ -294,6 +304,7 @@ app.MapPost("/api/cart", async ([FromBody] CartItem input, ApplicationDbContext 
     }
     else
     {
+        input.UserId = uid;
         db.CartItems.Add(input);
     }
 
@@ -301,10 +312,13 @@ app.MapPost("/api/cart", async ([FromBody] CartItem input, ApplicationDbContext 
     return Results.Ok();
 });
 
-app.MapPost("/api/cart/update", async ([FromBody] CartItem input, ApplicationDbContext db) =>
+cart.MapPost("/update", async ([FromBody] CartItem input, ApplicationDbContext db, HttpContext ctx) =>
 {
+    var uid = GetUserId(ctx);
+    input.UserId = uid;
+
     var item = await db.CartItems.FirstOrDefaultAsync(c =>
-        c.UserId == input.UserId &&
+        c.UserId == uid &&
         c.PartType == input.PartType &&
         c.PartId == input.PartId);
 
@@ -418,3 +432,4 @@ public class Product
     public int Price { get; set; }
     public int Quantity { get; set; }
 }
+

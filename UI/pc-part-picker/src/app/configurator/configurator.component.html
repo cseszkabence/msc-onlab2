@@ -74,22 +74,41 @@
 
         <!-- choose button -->
         <td>
-          <p-button
-            pButton
-            type="button"
-            icon="pi pi-search"
-            label="Choose"
-            (click)="choose(part)"
-          ></p-button>
+          <!-- If a part exists -> show Remove; otherwise -> Choose -->
+          <ng-container *ngIf="build[part.key]; else chooseTpl">
+            <button pButton type="button" icon="pi pi-times" label="Remove" class="p-button-danger p-button-text"
+              (click)="removePart(part)"></button>
+          </ng-container>
+
+          <ng-template #chooseTpl>
+            <button pButton type="button" icon="pi pi-search" label="Choose" (click)="choose(part)"></button>
+          </ng-template>
         </td>
       </tr>
     </ng-template>
   </p-table>
+  <p-button pButton label="Save Build" icon="pi pi-save" class="p-mt-3" (click)="onSaveClick()">
+  </p-button>
+  <p-button pButton type="button" label="Load Configuration" icon="pi pi-folder-open" class="p-ml-2"
+    (click)="openLoadDialog()" w>
+  </p-button>
+  <p-button pButton type="button" icon="pi pi-shopping-cart" label="Add All to Cart" class="p-ml-2"
+    (click)="addAllToCart()" [disabled]="!(
+    build.processor ||
+    build.motherboard ||
+    build.videocard ||
+    build.memory ||
+    build.powersupply ||
+    build.pccase ||
+    build.harddrive ||
+    build.cpucooler
+  )"></p-button>
+
 </ng-container>
 
 
-<p-button pButton label="Save Build" icon="pi pi-save" class="p-mt-3" (click)="onSaveClick()">
-</p-button>
+
+
 
 <p-dialog header="Name Your Build" [(visible)]="displaySaveDialog" [modal]="true" [closable]="false"
   [style]="{ width: '320px' }">
@@ -104,6 +123,33 @@
     </p-button>
     <p-button pButton label="Save" icon="pi pi-check" [disabled]="!configName" (click)="saveConfig()">
     </p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog header="Load a saved configuration" [(visible)]="displayLoadDialog" [modal]="true" [closable]="false"
+  [style]="{ width: '500px' }" (onHide)="selectedConfigId = undefined">
+  <ng-container *ngIf="!loadingConfigs; else loadingTpl">
+    <p-listbox [options]="configs" optionLabel="name" [optionValue]="'id'" [(ngModel)]="selectedConfigId"
+      [multiple]="false" [filter]="true" [listStyle]="{ 'max-height': '260px' }">
+      <ng-template let-c pTemplate="item">
+        <div class="flex justify-between w-full">
+          <div class="font-medium">{{ c.name }}</div>
+          <small class="opacity-70">#{{ c.id }}</small>
+        </div>
+      </ng-template>
+    </p-listbox>
+
+    <div class="flex justify-end gap-2 mt-3">
+      <button pButton label="Cancel" class="p-button-text" (click)="displayLoadDialog=false"></button>
+      <button pButton label="Load" icon="pi pi-check" [disabled]="!selectedConfigId"
+        (click)="onLoadSelected()"></button>
+    </div>
+  </ng-container>
+
+  <ng-template #loadingTpl>
+    <div class="flex justify-center p-4">
+      <p-progressSpinner></p-progressSpinner>
+    </div>
   </ng-template>
 </p-dialog>
 

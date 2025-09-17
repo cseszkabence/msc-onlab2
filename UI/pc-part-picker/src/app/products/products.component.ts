@@ -275,7 +275,6 @@ export class ProductsComponent implements OnInit {
       partType: part.type_name,
       partId: part.id,
       quantity: number,
-      userId: "1"
     };
 
     this.cartService.addToCart(item).subscribe({
