@@ -11,7 +11,6 @@
             <div class="product-name">{{ componentDetails.name}}</div>
             <div class="product-tag">Tag</div>
             <!--CPU-->
-
             <div *ngIf="componentDetails.price" class="details-container"><strong>Price:</strong>
                 <div class="details-data"> {{ componentDetails.price | currency }}</div>
             </div>
@@ -141,6 +140,8 @@
             <p-button label="Add to comparison" icon="pi pi-sliders-h" styleClass="p-button-secondary" class="m-2"
                 (click)="onCompare(componentDetails)"></p-button>
             <p-button label="Add to Build" icon="pi pi-plus" (click)="addToBuild()" class="p-mt-3"></p-button>
+            <p-button pButton icon="pi pi-sparkles" label="Ask AI: Fit" (click)="askAiFit()"></p-button>
+
         </div>
     </div>
     <div class="col-12">

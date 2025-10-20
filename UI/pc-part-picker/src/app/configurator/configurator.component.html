@@ -103,6 +103,8 @@
     build.harddrive ||
     build.cpucooler
   )"></p-button>
+<p-button label="Check compatibility" icon="pi pi-plus" (click)="checkCompat()" class="p-mt-3"></p-button>
+<p-button pButton icon="pi pi-sparkles" label="AI Review" (click)="askAiReview()" [disabled]="isReviewLoading"></p-button>
 
 </ng-container>
 
@@ -150,6 +152,28 @@
     <div class="flex justify-center p-4">
       <p-progressSpinner></p-progressSpinner>
     </div>
+  </ng-template>
+</p-dialog>
+
+<p-dialog header="AI Build Review"
+          [(visible)]="displayReviewDialog"
+          [modal]="true"
+          [closable]="!isReviewLoading"
+          [style]="{ width: '680px' }">
+
+  <ng-container *ngIf="isReviewLoading; else reviewContent">
+    <div class="flex justify-center items-center p-6">
+      <p-progressSpinner></p-progressSpinner>
+    </div>
+  </ng-container>
+
+  <ng-template #reviewContent>
+    <div *ngIf="reviewText; else emptyState" class="whitespace-pre-line">
+      {{ reviewText }}
+    </div>
+    <ng-template #emptyState>
+      <div class="p-4 opacity-70">No response.</div>
+    </ng-template>
   </ng-template>
 </p-dialog>
 

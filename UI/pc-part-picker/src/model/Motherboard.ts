@@ -13,8 +13,8 @@ export interface Motherboard extends PcPart{
     manufacturerTypeId: number | null;
     socketTypeId: number | null;
     memoryTypeId: number | null;
-    formFactoryTypeId: number | null;
-    formFactoryType: string | null;
+    formFactorTypeId: number | null;
+    formFactorType: string | null;
     manufacturerType: string | null;
     memoryType: string | null;
     socketType: string | null;

@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   enrichedCart: EnrichedCartItem[] = [];
 
-  constructor(private cartService: CartService,private router: Router,private paymentService: PaymentService, private productService: ProductServiceService,
+  constructor(private cartService: CartService, private router: Router, private paymentService: PaymentService, private productService: ProductServiceService,
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +52,7 @@ export class CartComponent implements OnInit {
           }))
         )
       );
-  
+
       forkJoin(observables).subscribe(enrichedItems => {
         this.enrichedCart = enrichedItems;
       });
@@ -61,6 +61,7 @@ export class CartComponent implements OnInit {
 
   removeItem(item: CartItem): void {
     this.cartService.removeFromCart(item).subscribe(() => this.loadCart());
+    window.location.reload()
   }
 
   clearCart(): void {
@@ -68,7 +69,7 @@ export class CartComponent implements OnInit {
     window.location.reload()
   }
 
-  updateCart(item: CartItem, delta: number){
+  updateCart(item: CartItem, delta: number) {
     this.cartService.updateCart(item, delta).subscribe(() => this.loadCart());
   }
 
@@ -76,11 +77,11 @@ export class CartComponent implements OnInit {
     this.router.navigateByUrl("/checkout-component")
   }
 
-  buyThisProduct(){
+  buyThisProduct() {
     this.paymentService.createCheckoutSession(this.cartItems);
   }
 
-  fetchString(part: PcPart){
+  fetchString(part: PcPart) {
     return part.name;
   }
   getImagePath(product: any): string {

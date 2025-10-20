@@ -11,7 +11,7 @@ import { Toolbar } from 'primeng/toolbar';
 import { AuthService } from '../shared/services/auth/auth.service';
 import { CartService } from '../shared/services/cart/cart.service';
 import { ProductServiceService } from '../shared/services/products/product-service.service';
-import { map, Observable } from 'rxjs';
+import { finalize, map, Observable } from 'rxjs';
 import { BadgeModule } from 'primeng/badge';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
 import { ComparisonService } from '../shared/services/comparison/comparison.service';
@@ -76,6 +76,7 @@ export class MenuComponent implements OnInit {
   comparisonCount = 0;
   cartSize = 0;
   buildFilledCount = 0;
+isLoggingOut = false;
 
   categories: Category[] = [
     { key: 'processor', label: 'Processors', route: 'processor' },
@@ -165,10 +166,27 @@ export class MenuComponent implements OnInit {
   }
 
   onLogout() {
-    this.authService.logout();
-    this.messageService.add({ severity: 'success', summary: 'Logout successful!', detail: '', life: 3000 });
-    window.location.reload();
-  }
+  this.isLoggingOut = true;
+
+  this.authService.logout()
+    .pipe(finalize(() => this.isLoggingOut = false))
+    .subscribe({
+      next: () => {
+        this.messageService.add({ severity: 'success', summary: 'Logout successful!', life: 3000 });
+        // Only reload AFTER the request completed
+        window.location.reload();
+      },
+      error: err => {
+        // If the cookie expired, [Authorize] may reject with 401; still treat as logged out
+        if (err.status === 401 || err.status === 403 || err.status === 0) {
+          this.messageService.add({ severity: 'info', summary: 'You were already logged out.', life: 2500 });
+          window.location.reload();
+        } else {
+          this.messageService.add({ severity: 'error', summary: 'Logout failed', detail: 'Please try again.' });
+        }
+      }
+    });
+}
 
   navigateToCart() {
     this.router.navigateByUrl("/cart-component").then(() => this.disableBars())

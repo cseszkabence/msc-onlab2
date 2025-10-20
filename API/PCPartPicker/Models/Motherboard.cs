@@ -28,11 +28,11 @@ public partial class Motherboard : IComponent
 
     public int? MemoryTypeId { get; set; }
 
-    public int? FormFactoryTypeId { get; set; }
+    public int? FormFactorTypeId { get; set; }
 
     public virtual ICollection<Configuration> Configurations { get; set; } = new List<Configuration>();
 
-    public virtual FormfactorType? FormFactoryType { get; set; }
+    public virtual FormfactorType? FormFactorType { get; set; }
 
     public virtual ManufacturerType? ManufacturerType { get; set; }
 

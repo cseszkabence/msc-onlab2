@@ -101,7 +101,7 @@ export class ProductServiceService {
     if (this.filteredProducts == undefined) {
       if (isMotherboard(this.originalProducts[0])) {
         this.filteredProducts = this.originalProducts.filter(product =>
-          product.formFactoryType == filterOption.name
+          product.formFactorType == filterOption.name
         );
       } else {
         this.filteredProducts = this.originalProducts.filter(product =>
@@ -112,7 +112,7 @@ export class ProductServiceService {
       var newFilteredProducts: any[];
       if (isMotherboard(this.originalProducts[0])) {
         newFilteredProducts = this.originalProducts.filter(product =>
-          product.formFactoryType == filterOption.name
+          product.formFactorType == filterOption.name
         );
       } else if (isPSU(this.originalProducts[0])) {
         newFilteredProducts = this.originalProducts.filter(product =>
@@ -410,7 +410,7 @@ export function getFormFactorTypes(products: any[]): { name: string; checked: bo
 
   products.forEach((product) => {
     if (isMotherboard(product)) {
-      formfactors.add(product.formFactoryType!);
+      formfactors.add(product.formFactorType!);
     }
     else if (isPSU(product)) {
       formfactors.add(product.formFactor!);
@@ -473,7 +473,7 @@ export function getDriveTypes(products: any[]): { name: string; checked: boolean
 }
 
 export function isMotherboard(item: any): item is Motherboard {
-  return "formFactoryType" in item;
+  return "formFactorType" in item;
 }
 
 export function isPSU(item: any): item is Powersupply {

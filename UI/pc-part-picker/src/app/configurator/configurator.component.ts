@@ -20,6 +20,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CartItem } from '../../model/CartItem';
 import { CartService } from '../shared/services/cart/cart.service';
 import { SlotKey } from '../shared/services/configuration/configuration-slots';
+import { StrictCompatService } from '../shared/services/configuration/compat.service';
+import { AssistantService } from '../shared/services/assistant/assistant.service';
 
 interface PartRow {
   key: SlotKey;
@@ -61,6 +63,9 @@ export class ConfiguratorComponent {
   loadingConfigs = false;
   configs: UserConfig[] = [];
   selectedConfigId?: number;
+  reviewText: any;
+  displayReviewDialog: any;
+  isReviewLoading = false;
 
   constructor(
     private partSvc: ProductServiceService,
@@ -70,6 +75,8 @@ export class ConfiguratorComponent {
     private msg: MessageService,
     private buildSvc: BuildService,
     private cartSvc: CartService,
+    private compatSvc: StrictCompatService,
+    private ai: AssistantService
   ) {
     this.build$ = this.buildSvc.config$;
 
@@ -245,7 +252,7 @@ export class ConfiguratorComponent {
     const pushIf = (exists: any, partType: string, getId: (x: any) => number | undefined) => {
       if (exists) {
         const id = getId(exists);
-        if (typeof id === 'number') items.push({ partType, partId: id, quantity: 1, userId: '2'});
+        if (typeof id === 'number') items.push({ partType, partId: id, quantity: 1, userId: '2' });
       }
     };
 
@@ -289,6 +296,59 @@ export class ConfiguratorComponent {
       }
     });
   }
+  checkCompat() {
+    const b = this.buildSvc.currentConfig;
+    this.compatSvc.check({
+      cpuId: b.processor?.id,
+      motherboardId: b.motherboard?.id,
+      memoryId: b.memory?.id,
+      caseId: b.pccase?.id
+    }).subscribe(res => {
+      if (res.ok) {
+        this.msg.add({ severity: 'success', summary: 'Compatibility', detail: 'No compatibility errors found!', life: 4000 })
+      }
+      else if (!res.ok) {
+        // show deterministic errors; block “save” if you want
+        res.errors.forEach(e => this.msg.add({ severity: 'error', summary: 'Compatibility', detail: e, life: 4000 }));
+      } else {
+        // Optionally: call your Gemini explain endpoint for the rest (GPU fit, PSU, summary)
+        // this.ai.explain({ facts: res.facts, gpuId: b.videocard?.id, psuId: b.powersupply?.id, ... })
+      }
+    });
+
+  }
+
+  askAiReview() {
+    const b = this.buildSvc.currentConfig;
+
+    const body = {
+      cpu: b.processor?.name,
+      gpu: b.videocard?.name,
+      motherboard: b.motherboard?.name,
+      memory: b.memory?.name,
+      storage: b.harddrive?.name,
+      powersupply: b.powersupply?.name,
+      pccase: b.pccase?.name,
+      cpucooler: b.cpucooler?.name,
+      // optionally pass user intent:
+      // targetUse: '1080p gaming', budgetTier: 'mid'
+    };
+
+    this.reviewText = undefined;
+    this.displayReviewDialog = true;   // open dialog immediately
+    this.isReviewLoading = true;       // show loader
+
+    this.ai.reviewByNames(body)
+    .pipe(finalize(() => this.isReviewLoading = false))
+    .subscribe({
+      next: (text: string) => { this.reviewText = text; },
+      error: _ => {
+        this.displayReviewDialog = false;
+        this.msg.add({ severity: 'error', summary: 'AI error', detail: 'Could not review your build.' });
+      }
+    });
+  }
+
 
   toggleBrowser(product: string) {
     this.router.navigate(

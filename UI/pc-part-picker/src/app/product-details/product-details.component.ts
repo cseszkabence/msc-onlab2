@@ -21,6 +21,8 @@ import { Pccase } from '../../model/Pccase';
 import { Powersupply } from '../../model/Powersupply';
 import { SlotKey } from '../shared/services/configuration/configuration-slots';
 import { Configuration } from '../../model/Configuration';
+import { StrictCompatService } from '../shared/services/configuration/compat.service';
+import { AssistantService } from '../shared/services/assistant/assistant.service';
 
 type PartType =
   | 'processor'
@@ -66,10 +68,36 @@ export class ProductDetailsComponent {
     private productService: ProductServiceService,
     private comparisonService: ComparisonService,
     private messageService: MessageService,
-    private buildSvc: BuildService
-
+    private buildSvc: BuildService,
+    private ai: AssistantService,
+    private msg: MessageService
   ) { }
 
+  askAiFit() {
+  const b = this.buildSvc.currentConfig;
+
+  const body = {
+    currentProductType: (this.partType ?? '').toLowerCase(), // e.g. 'gpu'
+    currentProductId: this.partId!,
+    cpuId: b.processor?.id,
+    gpuId: b.videocard?.id,
+    psuId: b.powersupply?.id,
+    caseId: b.pccase?.id,
+    motherboardId: b.motherboard?.id,
+    memoryId: b.memory?.id,
+    coolerId: b.cpucooler?.id,
+    storageId: b.harddrive?.id
+  };
+
+  // this.ai.fit(body).subscribe({
+  //   next: res => {
+  //     this.msg.add({ severity: res.verdict === 'good' ? 'success' : 'info',
+  //       summary: res.shortText, detail: (res.reasons || []).join(' · '), life: 4000 });
+  //     // optionally open a dialog to show suggestions
+  //   },
+  //   error: _ => this.msg.add({ severity: 'error', summary: 'AI error', detail: 'Could not analyze this part.' })
+  // });
+}
 
   SLOT_LABEL: Record<SlotKey, string> = {
     processor: 'Processor',
@@ -156,4 +184,6 @@ export class ProductDetailsComponent {
       this.messageService.add({ severity: 'info', summary: 'Success!', detail: 'Product added to comparison list!', life: 2000 });
     }
   }
+
+  
 }

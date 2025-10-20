@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client.Extensions.Msal;
 using PCPartPicker.Interfaces;
+using System;
+using System.Drawing;
 using System.Reflection.Emit;
 
 namespace PCPartPicker.Models
@@ -310,7 +313,7 @@ namespace PCPartPicker.Models
                     .HasMaxLength(512)
                     .IsUnicode(false)
                     .HasColumnName("form_factor");
-                entity.Property(e => e.FormFactoryTypeId).HasColumnName("form_factory_type_id");
+                entity.Property(e => e.FormFactorTypeId).HasColumnName("form_factory_type_id");
                 entity.Property(e => e.ManufacturerTypeId).HasColumnName("manufacturer_type_id");
                 entity.Property(e => e.MaxMemory).HasColumnName("max_memory");
                 entity.Property(e => e.MemorySlots).HasColumnName("memory_slots");
@@ -328,8 +331,8 @@ namespace PCPartPicker.Models
                     .HasColumnName("socket");
                 entity.Property(e => e.SocketTypeId).HasColumnName("socket_type_id");
 
-                entity.HasOne(d => d.FormFactoryType).WithMany(p => p.Motherboards)
-                    .HasForeignKey(d => d.FormFactoryTypeId)
+                entity.HasOne(d => d.FormFactorType).WithMany(p => p.Motherboards)
+                    .HasForeignKey(d => d.FormFactorTypeId)
                     .HasConstraintName("FK_motherboard_formfactor_type");
 
                 entity.HasOne(d => d.ManufacturerType).WithMany(p => p.Motherboards)
