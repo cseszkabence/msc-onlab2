@@ -81,6 +81,8 @@ export class CartComponent implements OnInit {
     this.paymentService.createCheckoutSession(this.cartItems);
   }
 
+  checkout() { this.router.navigate(['/checkout/shipping']); }
+
   fetchString(part: PcPart) {
     return part.name;
   }

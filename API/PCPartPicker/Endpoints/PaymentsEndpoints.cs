@@ -21,7 +21,7 @@ namespace PCPartPicker.Endpoints
                     {
                         PriceData = new SessionLineItemPriceDataOptions
                         {
-                            UnitAmount = (long?)(db.ComponentLookupForPrice(product.PartId, product.PartType) * 100), // Convert to cents
+                            UnitAmount = (long?)(db.ComponentLookupForPrice(product.PartId, product.PartType) * 100),
                             Currency = "usd",
                             ProductData = new SessionLineItemPriceDataProductDataOptions
                             {
@@ -44,7 +44,6 @@ namespace PCPartPicker.Endpoints
                     sessionId = session.Id
                 });
             });
-            // Payment-related endpoints would be defined here.
             return app;
         }
     }

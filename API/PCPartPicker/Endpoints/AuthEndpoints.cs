@@ -83,7 +83,7 @@ namespace PCPartPicker.Endpoints
                 [Authorize] (HttpContext ctx) => Results.Ok())
               .RequireAuthorization();
             // Identity default endpoints if you used them
-            app.MapGroup("/api").MapIdentityApi<AppUser>();
+            //app.MapGroup("/api").MapIdentityApi<AppUser>();
 
             return app;
         }

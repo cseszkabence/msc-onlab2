@@ -11,6 +11,7 @@ import { CheckoutsuccessComponent } from './checkout/checkoutsuccess/checkoutsuc
 import { CheckoutcancelComponent } from './checkout/checkoutcancel/checkoutcancel.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ComparisonComponent } from './comparison/comparison.component';
+import { ShippingComponent } from './shipping/shipping.component';
 
 export const routes: Routes = [{
   path: 'products',
@@ -62,7 +63,9 @@ export const routes: Routes = [{
 {
   path: 'comparison-component',
   component: ComparisonComponent
-}
+},
+{ path: 'checkout/shipping', component: ShippingComponent },
+  { path: 'checkout/success', component: CheckoutsuccessComponent },
 ];
 
 @NgModule({

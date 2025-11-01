@@ -357,13 +357,24 @@ namespace PCPartPicker.Models
                     .HasDefaultValueSql("(getdate())")
                     .HasColumnType("datetime");
                 entity.Property(e => e.Status).HasMaxLength(50);
-                entity.Property(e => e.TotalPrice).HasColumnType("decimal(10, 2)");
+                entity.Property(e => e.TotalPrice).HasColumnType("decimal(18, 2)");
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
                 entity.HasOne(d => d.User).WithMany(p => p.Orders)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Orders__UserID__151B244E");
+                entity.OwnsOne(o => o.ShippingAddress, sa =>
+                {
+                    sa.Property(p => p.RecipientName).HasMaxLength(160).HasColumnName("Ship_Name");
+                    sa.Property(p => p.Line1).HasMaxLength(160).HasColumnName("Ship_Line1");
+                    sa.Property(p => p.Line2).HasMaxLength(160).HasColumnName("Ship_Line2");
+                    sa.Property(p => p.City).HasMaxLength(100).HasColumnName("Ship_City");
+                    sa.Property(p => p.State).HasMaxLength(100).HasColumnName("Ship_State");
+                    sa.Property(p => p.PostalCode).HasMaxLength(20).HasColumnName("Ship_PostalCode");
+                    sa.Property(p => p.Country).HasMaxLength(2).HasColumnName("Ship_Country");
+                    sa.Property(p => p.Phone).HasMaxLength(32).HasColumnName("Ship_Phone");
+                });
             });
 
             modelBuilder.Entity<OrderItem>(entity =>

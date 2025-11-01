@@ -26,7 +26,7 @@
 
 
     <div class="flex gap-4 mt-6">
-        <p-button class="m-3" (click)="buyThisProduct()" label="Checkout" severity="success"
+        <p-button class="m-3" (click)="checkout()" label="Checkout" severity="success" [disabled]="cartItems.length === 0"
             icon="pi pi-check"></p-button>
         <p-button class="m-3" (click)="clearCart()" label="Clear Cart" severity="warn" icon="pi pi-times"></p-button>
     </div>

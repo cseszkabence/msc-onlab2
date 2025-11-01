@@ -6,36 +6,23 @@
         <p-button [ngStyle]="{'background-color': showProductsBar ? '#19241E' : '#0F1511'}" (click)="toggleProducts()"
             pTooltip="Open product categories" label="Products" class="main-buttons">
         </p-button>
-
-
-        <p-button [ngStyle]="{'background-color': showSearchBar ? '#19241E' : '#0F1511'}" (click)="toggleSearch()"
-            label="Search" class="main-buttons">
+        <p-button (click)="navigateToConfigurator()" label=" " icon="pi pi-wrench" class="main-buttons"
+            [badge]="buildFilledCount.toString()" pTooltip="Configuration" label="Configuration">
         </p-button>
-
-        <!-- <p-inputGroup *ngIf="showSearchBar" @slideUpDown>
-            <p-inputText #txtVal (keydown.enter)="searchProducts()" placeholder="Search something..."
-                [(ngModel)]="searchQuery">
-            </p-inputText>
-            <p-button *ngIf="searchQuery" icon="pi pi-times" (click)="cleanSearch()" styleClass="p-button-text">
-            </p-button>
-            <p-button icon="pi pi-search" (click)="searchProducts()" styleClass="p-button-text">
-            </p-button>
-        </p-inputGroup> -->
+        <p-button label=" " icon="pi pi-sliders-h" class="p-button-rounded p-button-text" class="main-buttons"
+            [badge]="comparisonCount.toString()" (click)="goToComparison()" (contextmenu)="onRightClick($event)"
+            label="Comparison table" pTooltip="Comparison Table">
+        </p-button>
     </div>
 
     <div class="p-toolbar-group-right">
-        <p-button (click)="navigateToConfigurator()" label=" " icon="pi pi-wrench" class="main-buttons"
-            [badge]="buildFilledCount.toString()" pTooltip="Configuration">
-        </p-button>
         <p-button label=" " icon="pi pi-shopping-cart" class="p-button-rounded p-button-text me-3"
             [badge]="cartSize.toString()" (click)="navigateToCart()" pTooltip="Shopping Cart"></p-button>
-        <p-button label=" " icon="pi pi-sliders-h" class="p-button-rounded p-button-text"
-            [badge]="comparisonCount.toString()" (click)="goToComparison()" (contextmenu)="onRightClick($event)"
-            pTooltip="Comparison Table">
-        </p-button>
+        <p-button label=" " icon="pi pi-user" class="p-button-rounded p-button-text me-3" (click)="navigateToCart()"
+            pTooltip="Account"></p-button>
         <p-button *ngIf="!isLoggedIn" (click)="navigateToAccount()" label="Login" class="main-buttons" severity="info">
         </p-button>
-        <p-button *ngIf="isLoggedIn" (click)="onLogout()" label="Logout" class="main-buttons" severity="danger">
+        <p-button *ngIf="isLoggedIn" (click)="onLogout()" label="Logout"  severity="danger">
         </p-button>
     </div>
     <div *ngIf="showProductsBar" @slideDownUp>

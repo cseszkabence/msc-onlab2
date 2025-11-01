@@ -43,7 +43,7 @@
   </ng-template>
 </p-table> -->
 
-<h2>Your Current Build</h2>
+<h1>Your Current Build</h1>
 
 <!-- wait for build to load -->
 <ng-container *ngIf="build$ | async as build">
@@ -87,13 +87,13 @@
       </tr>
     </ng-template>
   </p-table>
-  <p-button pButton label="Save Build" icon="pi pi-save" class="p-mt-3" (click)="onSaveClick()">
+  <p-button label="Save Build" icon="pi pi-save" class="p-mt-3" (click)="onSaveClick()" class="ml-3 mt-3">
   </p-button>
-  <p-button pButton type="button" label="Load Configuration" icon="pi pi-folder-open" class="p-ml-2"
-    (click)="openLoadDialog()" w>
+  <p-button type="button" label="Load Configuration" icon="pi pi-folder-open" class="p-ml-2" (click)="openLoadDialog()"
+    class="ml-3">
   </p-button>
-  <p-button pButton type="button" icon="pi pi-shopping-cart" label="Add All to Cart" class="p-ml-2"
-    (click)="addAllToCart()" [disabled]="!(
+  <p-button type="button" icon="pi pi-shopping-cart" label="Add All to Cart" class="p-ml-2" (click)="addAllToCart()"
+    [disabled]="!(
     build.processor ||
     build.motherboard ||
     build.videocard ||
@@ -102,15 +102,14 @@
     build.pccase ||
     build.harddrive ||
     build.cpucooler
-  )"></p-button>
-<p-button label="Check compatibility" icon="pi pi-plus" (click)="checkCompat()" class="p-mt-3"></p-button>
-<p-button pButton icon="pi pi-sparkles" label="AI Review" (click)="askAiReview()" [disabled]="isReviewLoading"></p-button>
+  )" class="ml-3"></p-button>
+  <p-button label="Check compatibility" icon="pi pi-plus" (click)="checkCompat()" class="ml-3"></p-button>
+  <p-button icon="pi pi-sparkles" label="AI Review" (click)="askAiReview()" [disabled]="isReviewLoading"
+    class="ml-3"></p-button>
+  <p-button label="CALCULATE" class="ml-3" (click)="totalPriceCalculator()"></p-button>
+  <div>TOTAL: {{ totalPrice | currency }}</div>
 
 </ng-container>
-
-
-
-
 
 <p-dialog header="Name Your Build" [(visible)]="displaySaveDialog" [modal]="true" [closable]="false"
   [style]="{ width: '320px' }">
@@ -121,9 +120,9 @@
     </div>
   </div>
   <ng-template pTemplate="footer">
-    <p-button pButton label="Cancel" icon="pi pi-times" (click)="displaySaveDialog = false">
+    <p-button label="Cancel" icon="pi pi-times" (click)="displaySaveDialog = false">
     </p-button>
-    <p-button pButton label="Save" icon="pi pi-check" [disabled]="!configName" (click)="saveConfig()">
+    <p-button label="Save" icon="pi pi-check" [disabled]="!configName" (click)="saveConfig()">
     </p-button>
   </ng-template>
 </p-dialog>
@@ -155,11 +154,8 @@
   </ng-template>
 </p-dialog>
 
-<p-dialog header="AI Build Review"
-          [(visible)]="displayReviewDialog"
-          [modal]="true"
-          [closable]="!isReviewLoading"
-          [style]="{ width: '680px' }">
+<p-dialog header="AI Build Review" [(visible)]="displayReviewDialog" [modal]="true" [closable]="!isReviewLoading"
+  [style]="{ width: '680px' }">
 
   <ng-container *ngIf="isReviewLoading; else reviewContent">
     <div class="flex justify-center items-center p-6">
@@ -176,7 +172,3 @@
     </ng-template>
   </ng-template>
 </p-dialog>
-
-
-<div class="comp-totalprice-label">TOTAL: {{ totalPrice | currency }}</div>
-<p-button label="CALCULATE" class="comp-add-btn" (click)="totalPriceCalculator()"></p-button>

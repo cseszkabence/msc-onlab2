@@ -5,7 +5,7 @@
 namespace PCPartPicker.Migrations.ApplicationDb
 {
     /// <inheritdoc />
-    public partial class UnifyContexts_AdjustUserFks : Migration
+    public partial class AddShippingAddress : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

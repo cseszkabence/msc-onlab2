@@ -7,5 +7,7 @@ namespace PCPartPicker.Services
         public Task<bool> SendEmail(EmailModel emailModel);
 
         public Task<string> FormatEmailTemplate(string fromEmail, string subject, string toEmail, string message);
+        //Task SendAsync(string to, string subject, string textBody, string? htmlBody = null);
+
     }
 }

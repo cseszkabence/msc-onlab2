@@ -12,8 +12,8 @@ using PCPartPicker.Models;
 namespace PCPartPicker.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250812121940_Baseline")]
-    partial class Baseline
+    [Migration("20251029131606_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -625,7 +625,7 @@ namespace PCPartPicker.Migrations.ApplicationDb
                         .HasColumnType("varchar(512)")
                         .HasColumnName("form_factor");
 
-                    b.Property<int?>("FormFactoryTypeId")
+                    b.Property<int?>("FormFactorTypeId")
                         .HasColumnType("int")
                         .HasColumnName("form_factory_type_id");
 
@@ -668,7 +668,7 @@ namespace PCPartPicker.Migrations.ApplicationDb
                     b.HasKey("Id")
                         .HasName("PK__motherbo__68B7A0F0D17DF627");
 
-                    b.HasIndex("FormFactoryTypeId");
+                    b.HasIndex("FormFactorTypeId");
 
                     b.HasIndex("ManufacturerTypeId");
 
@@ -1234,9 +1234,9 @@ namespace PCPartPicker.Migrations.ApplicationDb
 
             modelBuilder.Entity("PCPartPicker.Models.Motherboard", b =>
                 {
-                    b.HasOne("PCPartPicker.Models.FormfactorType", "FormFactoryType")
+                    b.HasOne("PCPartPicker.Models.FormfactorType", "FormFactorType")
                         .WithMany("Motherboards")
-                        .HasForeignKey("FormFactoryTypeId")
+                        .HasForeignKey("FormFactorTypeId")
                         .HasConstraintName("FK_motherboard_formfactor_type");
 
                     b.HasOne("PCPartPicker.Models.ManufacturerType", "ManufacturerType")
@@ -1254,7 +1254,7 @@ namespace PCPartPicker.Migrations.ApplicationDb
                         .HasForeignKey("SocketTypeId")
                         .HasConstraintName("FK_motherboard_socket_type");
 
-                    b.Navigation("FormFactoryType");
+                    b.Navigation("FormFactorType");
 
                     b.Navigation("ManufacturerType");
 

@@ -43,7 +43,6 @@ builder.Services
       options.LogoutPath = "/api/auth/logout";
       options.ExpireTimeSpan = TimeSpan.FromHours(4);
       options.SlidingExpiration = true;
-      // return 401 on unauthorized API calls instead of 302 Redirect
       options.Events.OnRedirectToLogin = ctx =>
       {
           if (ctx.Request.Path.StartsWithSegments("/api"))
@@ -115,7 +114,7 @@ app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//app.MapControllers();
+app.MapOrdersEndpoints();
 app.MapCompatEndpoints();
 app.MapConfigurationsEndpoints();
 app.MapPaymentsEndpoints();

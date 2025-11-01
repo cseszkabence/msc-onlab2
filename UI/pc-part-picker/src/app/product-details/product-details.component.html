@@ -1,15 +1,16 @@
-<div class="grid">
-    <div class="col-12 md:col-6 lg:col-4">
+<div class="grid p-20">
+    <div class="col-12 md:col-3 lg:col-3" style="align-content: center;">
         <p-card styleClass="product-image-card">
-            <div class="product-image-placeholder">
+            <div class="container">
                 <img [src]="getImagePath(componentDetails)" />
             </div>
         </p-card>
     </div>
-    <div class="col-12 md:col-6 lg:col-8 product-details">
+    <div class="col-12 md:col-6 lg:col-5 product-details">
         <div class="product-info">
-            <div class="product-name">{{ componentDetails.name}}</div>
-            <div class="product-tag">Tag</div>
+            <div class="product-name">
+                <p style="font-size: 32px; text-align: center;">{{ componentDetails.name}}</p>
+            </div>
             <!--CPU-->
             <div *ngIf="componentDetails.price" class="details-container"><strong>Price:</strong>
                 <div class="details-data"> {{ componentDetails.price | currency }}</div>
@@ -134,44 +135,14 @@
                 <div class="details-data"> {{ componentDetails.noiseLevel}} Db</div>
             </div>
         </div>
-        <div class="product-actions m-2">
+        <div class="product-actions m-4">
             <p-button label="Add to Cart" icon="pi pi-shopping-cart" class="m-2"
                 (click)="addToCart(componentDetails)"></p-button>
             <p-button label="Add to comparison" icon="pi pi-sliders-h" styleClass="p-button-secondary" class="m-2"
                 (click)="onCompare(componentDetails)"></p-button>
             <p-button label="Add to Build" icon="pi pi-plus" (click)="addToBuild()" class="p-mt-3"></p-button>
-            <p-button pButton icon="pi pi-sparkles" label="Ask AI: Fit" (click)="askAiFit()"></p-button>
+            <!-- <p-button pButton icon="pi pi-sparkles" label="Ask AI: Fit" (click)="askAiFit()"></p-button> -->
 
         </div>
-    </div>
-    <div class="col-12">
-        <p-card header="Available stores">
-            <div class="grid">
-                <div class="col-12 md:col-4">
-                    <p-button label="Store A" styleClass="p-button-outlined">
-                        <i class="pi pi-map-marker p-mr-2"></i>
-                        <span>Take me there!</span>
-                    </p-button>
-                </div>
-                <div class="col-12 md:col-4">
-                    <p-button label="Store B" styleClass="p-button-outlined">
-                        <i class="pi pi-map-marker p-mr-2"></i>
-                        <span>Take me there!</span>
-                    </p-button>
-                </div>
-                <div class="col-12 md:col-4">
-                    <p-button label="Store C" styleClass="p-button-outlined">
-                        <i class="pi pi-map-marker p-mr-2"></i>
-                        <span>Take me there!</span>
-                    </p-button>
-                </div>
-            </div>
-        </p-card>
-    </div>
-    <div class="col-12">
-        <p-card header="Map" styleClass="map-card">
-            <div class="map-placeholder">
-            </div>
-        </p-card>
     </div>
 </div>

@@ -1,2 +1,46 @@
-<p-toast position="top-center"></p-toast>
-<p>Checkout successful!</p>
+<div class="shell">
+  <ng-container *ngIf="loading">
+    <div class="card">
+      <div class="spinner" aria-hidden="true"></div>
+      <h1>Finalizing your order…</h1>
+      <p>We’re confirming the payment and preparing your receipt.</p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!loading && !error">
+    <div class="card success">
+      <div class="icon" aria-hidden="true">✔</div>
+      <h1>Order confirmed</h1>
+      <p class="lead">Thank you! Your payment was successful.</p>
+
+      <div class="meta" *ngIf="hasOrderId">
+        <div class="row">
+          <span>Order ID</span>
+          <strong>#{{ orderId }}</strong>
+        </div>
+        <div class="row">
+          <span>Receipt</span>
+          <strong>Sent to your email address</strong>
+        </div>
+      </div>
+
+      <div class="actions">
+        <!-- <button class="btn" (click)="viewOrders()">View my orders</button> -->
+        <button class="btn ghost" (click)="continueShopping()">Continue shopping</button>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!loading && error">
+    <div class="card error">
+      <div class="icon" aria-hidden="true">!</div>
+      <h1>We’re on it</h1>
+      <p>{{ error }}</p>
+      <p>If payment succeeded, your order will appear in your account shortly.</p>
+      <div class="actions">
+        <!-- <button class="btn" (click)="viewOrders()">View my orders</button> -->
+        <p-button (click)="continueShopping()">Continue shopping</p-button>
+      </div>
+    </div>
+  </ng-container>
+</div>
