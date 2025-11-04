@@ -17,6 +17,12 @@ export interface UserConfig {
   coolerId?: number;
 }
 
+
+export interface ConfigurationListItem {
+  configurationId: number;
+  name?: string | null;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ConfiguratorService {
   private api = 'http://localhost:5147/api/configurations';
@@ -45,5 +51,10 @@ export class ConfiguratorService {
     return this.http.delete<void>(`${this.api}/${id}`, {
       withCredentials: true
     });
+  }
+
+  listMine(): Observable<ConfigurationListItem[]> {
+    // If your API is simply GET /api/configurations for the current user, use that instead.
+    return this.http.get<ConfigurationListItem[]>(`${this.api}/mine`, { withCredentials: true });
   }
 }

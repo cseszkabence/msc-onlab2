@@ -18,7 +18,7 @@
     <div class="p-toolbar-group-right">
         <p-button label=" " icon="pi pi-shopping-cart" class="p-button-rounded p-button-text me-3"
             [badge]="cartSize.toString()" (click)="navigateToCart()" pTooltip="Shopping Cart"></p-button>
-        <p-button label=" " icon="pi pi-user" class="p-button-rounded p-button-text me-3" (click)="navigateToCart()"
+        <p-button *ngIf="isLoggedIn" icon="pi pi-user" class="p-button-rounded p-button-text me-3" (click)="navigateToProfile()"
             pTooltip="Account"></p-button>
         <p-button *ngIf="!isLoggedIn" (click)="navigateToAccount()" label="Login" class="main-buttons" severity="info">
         </p-button>

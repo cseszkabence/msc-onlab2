@@ -29,5 +29,7 @@
         <p-button class="m-3" (click)="checkout()" label="Checkout" severity="success" [disabled]="cartItems.length === 0"
             icon="pi pi-check"></p-button>
         <p-button class="m-3" (click)="clearCart()" label="Clear Cart" severity="warn" icon="pi pi-times"></p-button>
+          <div>TOTAL: {{ totalPrice | currency }}</div>
+
     </div>
 </div>

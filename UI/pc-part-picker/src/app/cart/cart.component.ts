@@ -20,6 +20,7 @@ import { forkJoin, map } from 'rxjs';
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   enrichedCart: EnrichedCartItem[] = [];
+  totalPrice: number | null | undefined;
 
   constructor(private cartService: CartService, private router: Router, private paymentService: PaymentService, private productService: ProductServiceService,
   ) { }
@@ -41,24 +42,47 @@ export class CartComponent implements OnInit {
   }
 
   loadCart(): void {
-    this.cartService.getCart().subscribe(items => this.cartItems = items);
+    // reset
+    this.totalPrice = 0;
+
     this.cartService.getCart().subscribe(cartItems => {
-      const observables = cartItems.map(item =>
+      this.cartItems = cartItems;
+
+      if (!cartItems.length) {
+        this.enrichedCart = [];
+        this.totalPrice = 0;
+        return;
+      }
+
+      const lookups = cartItems.map(item =>
         this.productService.getPart<PcPart>(item.partId, item.partType).pipe(
           map(part => ({
             ...item,
-            name: part.name ?? 'Unknown',
-            price: part.price
+            name: part?.name ?? 'Unknown',
+            // coerce to integer, discard decimals if any
+            price: this.toIntPrice((part as any)?.price)
           }))
         )
       );
 
-      forkJoin(observables).subscribe(enrichedItems => {
-        this.enrichedCart = enrichedItems;
+      forkJoin(lookups).subscribe(enriched => {
+        this.enrichedCart = enriched;
+        this.totalPrice = this.enrichedCart.reduce(
+          (sum, it) => sum + this.toIntPrice(it.price) * (it.quantity ?? 1),
+          0
+        );
       });
     });
   }
 
+  private toIntPrice(v: any): number {
+    if (typeof v === 'number') return Math.trunc(v);
+    if (typeof v === 'string') {
+      const n = Number(v.replace(/[, ]/g, ''));
+      return Number.isFinite(n) ? Math.trunc(n) : 0;
+    }
+    return 0;
+  }
   removeItem(item: CartItem): void {
     this.cartService.removeFromCart(item).subscribe(() => this.loadCart());
     window.location.reload()

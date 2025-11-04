@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { OrderService, ShippingAddressDto } from '../shared/services/order/order.service';
 import { switchMap, tap } from 'rxjs';
+import { FloatLabel, FloatLabelModule } from "primeng/floatlabel";
 
 @Component({
   selector: 'app-shipping',
@@ -19,8 +20,7 @@ import { switchMap, tap } from 'rxjs';
     InputTextModule,
     DropdownModule,
     ButtonModule,
-    DividerModule 
-  ],
+    DividerModule, FloatLabelModule],
   templateUrl: './shipping.component.html',
   styleUrl: './shipping.component.css'
 })
@@ -33,7 +33,7 @@ export class ShippingComponent {
     state: ['', [Validators.required, Validators.maxLength(100)]],
     postalCode: ['', [Validators.required, Validators.maxLength(20)]],
     country: ['HU', [Validators.required, Validators.maxLength(2)]],
-    phone: [''],
+    phone: ['',[Validators.required]],
     currency: ['eur', [Validators.required]] // choose based on your market
   });
 

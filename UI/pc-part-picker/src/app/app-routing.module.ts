@@ -12,6 +12,7 @@ import { CheckoutcancelComponent } from './checkout/checkoutcancel/checkoutcance
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ComparisonComponent } from './comparison/comparison.component';
 import { ShippingComponent } from './shipping/shipping.component';
+import { ProfileComponent } from './user/profile/profile/profile.component';
 
 export const routes: Routes = [{
   path: 'products',
@@ -19,6 +20,10 @@ export const routes: Routes = [{
 },
 
 { path: 'products/:category', component: ProductsComponent },
+
+{ path: '', redirectTo: 'configurator-component', pathMatch: 'full' },
+
+{ path: '**', redirectTo: 'configurator-component' },
 
 {
   path: 'configurator-component',
@@ -64,8 +69,13 @@ export const routes: Routes = [{
   path: 'comparison-component',
   component: ComparisonComponent
 },
+
 { path: 'checkout/shipping', component: ShippingComponent },
-  { path: 'checkout/success', component: CheckoutsuccessComponent },
+
+{ path: 'checkout/success', component: CheckoutsuccessComponent },
+
+{ path: 'profile', component: ProfileComponent },
+
 ];
 
 @NgModule({

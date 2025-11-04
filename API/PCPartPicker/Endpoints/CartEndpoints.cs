@@ -9,7 +9,7 @@ namespace PCPartPicker.Endpoints
     {
         public static IEndpointRouteBuilder MapCartEndpoints(this IEndpointRouteBuilder app)
         {
-            var cart = app.MapGroup("/api/cart");
+            var cart = app.MapGroup("/api/cart").RequireAuthorization();
 
             cart.MapGet("/", async (HttpContext ctx, ApplicationDbContext db) =>
             {

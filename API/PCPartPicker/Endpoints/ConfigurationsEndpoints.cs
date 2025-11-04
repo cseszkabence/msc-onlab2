@@ -58,6 +58,24 @@ namespace PCPartPicker.Endpoints
                 await db.SaveChangesAsync();
                 return Results.NoContent();
             });
+
+            cfgs.MapGet("/mine", async (HttpContext ctx, ApplicationDbContext db) =>
+            {
+                var userId = ctx.GetUserIdString();
+                if (string.IsNullOrEmpty(userId)) return Results.Unauthorized();
+
+                var list = await db.Configurations
+                    .Where(c => c.UserId == userId)
+                    .OrderByDescending(c => c.Id)
+                    .Select(c => new
+                    {
+                        configurationId = c.Id,
+                        name = c.Name
+                    })
+                    .ToListAsync();
+
+                return Results.Ok(list);
+            });
             return app;
 
         }

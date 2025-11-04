@@ -33,7 +33,7 @@ type PartType =
   | 'pccase'
   | 'storage'
   | 'cpucooler';
-const PARTTYPE_TO_SLOT: Record<string, SlotKey> = {
+export const PARTTYPE_TO_SLOT: Record<string, SlotKey> = {
   processor: 'processor', Processor: 'processor',
   motherboard: 'motherboard', Motherboard: 'motherboard',
   videocard: 'videocard', Videocard: 'videocard',
@@ -43,7 +43,19 @@ const PARTTYPE_TO_SLOT: Record<string, SlotKey> = {
   harddrive: 'harddrive', Harddrive: 'harddrive',
   storage: 'harddrive',     // if some routes use 'storage'
   cpucooler: 'cpucooler', Cpucooler: 'cpucooler'
+
 };
+export const SLOT_LABEL: Record<SlotKey, string> = {
+  processor: 'Processor',
+  motherboard: 'Motherboard',
+  videocard: 'GPU',
+  memory: 'Memory',
+  powersupply: 'Power Supply',
+  pccase: 'Case',
+  harddrive: 'Storage',
+  cpucooler: 'CPU Cooler',
+};
+
 @Component({
   selector: 'product-details-component',
   imports: [CommonModule, ButtonModule, CardModule, ToastModule],
@@ -74,41 +86,32 @@ export class ProductDetailsComponent {
   ) { }
 
   askAiFit() {
-  const b = this.buildSvc.currentConfig;
+    const b = this.buildSvc.currentConfig;
 
-  const body = {
-    currentProductType: (this.partType ?? '').toLowerCase(), // e.g. 'gpu'
-    currentProductId: this.partId!,
-    cpuId: b.processor?.id,
-    gpuId: b.videocard?.id,
-    psuId: b.powersupply?.id,
-    caseId: b.pccase?.id,
-    motherboardId: b.motherboard?.id,
-    memoryId: b.memory?.id,
-    coolerId: b.cpucooler?.id,
-    storageId: b.harddrive?.id
-  };
+    const body = {
+      currentProductType: (this.partType ?? '').toLowerCase(), // e.g. 'gpu'
+      currentProductId: this.partId!,
+      cpuId: b.processor?.id,
+      gpuId: b.videocard?.id,
+      psuId: b.powersupply?.id,
+      caseId: b.pccase?.id,
+      motherboardId: b.motherboard?.id,
+      memoryId: b.memory?.id,
+      coolerId: b.cpucooler?.id,
+      storageId: b.harddrive?.id
+    };
 
-  // this.ai.fit(body).subscribe({
-  //   next: res => {
-  //     this.msg.add({ severity: res.verdict === 'good' ? 'success' : 'info',
-  //       summary: res.shortText, detail: (res.reasons || []).join(' · '), life: 4000 });
-  //     // optionally open a dialog to show suggestions
-  //   },
-  //   error: _ => this.msg.add({ severity: 'error', summary: 'AI error', detail: 'Could not analyze this part.' })
-  // });
-}
+    // this.ai.fit(body).subscribe({
+    //   next: res => {
+    //     this.msg.add({ severity: res.verdict === 'good' ? 'success' : 'info',
+    //       summary: res.shortText, detail: (res.reasons || []).join(' · '), life: 4000 });
+    //     // optionally open a dialog to show suggestions
+    //   },
+    //   error: _ => this.msg.add({ severity: 'error', summary: 'AI error', detail: 'Could not analyze this part.' })
+    // });
+  }
 
-  SLOT_LABEL: Record<SlotKey, string> = {
-    processor: 'Processor',
-    motherboard: 'Motherboard',
-    videocard: 'GPU',
-    memory: 'Memory',
-    powersupply: 'Power Supply',
-    pccase: 'Case',
-    harddrive: 'Storage',
-    cpucooler: 'CPU Cooler',
-  };
+
   private getPartName(x: any): string {
     return x?.name ?? x?.model ?? x?.title ?? 'Item';
   }
@@ -142,7 +145,7 @@ export class ProductDetailsComponent {
 
     this.messageService.add({
       severity: alreadyFilled ? 'info' : 'success',
-      summary: `${this.SLOT_LABEL[key]} ${alreadyFilled ? 'replaced' : 'added'}`,
+      summary: `${SLOT_LABEL[key]} ${alreadyFilled ? 'replaced' : 'added'}`,
       detail: this.getPartName(this.componentDetails),
       life: 2500
     });
@@ -185,5 +188,5 @@ export class ProductDetailsComponent {
     }
   }
 
-  
+
 }

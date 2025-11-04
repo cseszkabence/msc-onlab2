@@ -1,0 +1,98 @@
+<div class="profile-shell" *ngIf="!loading; else loadingTpl">
+    <ng-container *ngIf="!error; else errorTpl">
+        <p-splitter [panelSizes]="[30, 40, 30]" [style]="{ height: '300px' }" class="mb-8">
+            <ng-template #panel>
+                <p-card class="w-full">
+                    <div class="gap-3">
+                        <ng-template #title>
+                                Account
+                        </ng-template>
+
+                        <div class="align-items-center justify-content-between pb-2 border-bottom-1 surface-border">
+                            <span class="text-500">Email</span>
+                            <strong class="text-900 break-all">{{ me?.email }}</strong>
+                        </div>
+
+                        <div class="align-items-center justify-content-between pb-2 border-bottom-1 surface-border"
+                            *ngIf="me?.fullName">
+                            <span class="text-500">Name</span>
+                            <strong class="text-900">{{ me?.fullName }}</strong>
+                        </div>
+
+                        <div class="align-items-center justify-content-between" *ngIf="me?.createdAt">
+                            <span class="text-500">Joined</span>
+                            <strong class="text-900">{{ me?.createdAt | date:'mediumDate' }}</strong>
+                        </div>
+                    </div>
+
+                    <ng-template pTemplate="footer">
+                        <div class="flex gap-2 flex-wrap">
+                            <a pButton [text]="true" severity="secondary" label="Edit profile"
+                                routerLink="/account/edit"></a>
+                            <a pButton [text]="true" severity="secondary" label="Change password"
+                                routerLink="/account/password"></a>
+                        </div>
+                    </ng-template>
+                </p-card> </ng-template>
+            <ng-template #panel>
+                <p-card class="w-full">
+                    <div *ngIf="!orders || orders?.length === 0" class="text-500">No orders yet.</div>
+
+                    <p-table *ngIf="orders.length > 0" [value]="orders" dataKey="orderId" responsiveLayout="scroll"
+                        [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,20]" styleClass="p-datatable-sm">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th class="text-right">Total</th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-o>
+                            <tr>
+                                <td>#{{ o.orderId }}</td>
+                                <td>{{ o.orderDate | date:'medium' }}</td>
+                                <td><p-tag [value]="o.status" [severity]="statusToSeverity(o.status)"></p-tag></td>
+                                <td class="text-right">{{ o.totalPrice | currency }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </p-card> </ng-template>
+            <ng-template #panel>
+                <p-card class="w-full">
+                    <div *ngIf="!configs || configs?.length === 0" class="text-500">No saved configurations.</div>
+
+                    <p-listbox *ngIf="configs.length > 0" [options]="configs" [style]="{ width: '100%' }"
+                        [listStyle]="{ 'max-height': '420px' }">
+                        <ng-template let-c pTemplate="item">
+                            <div class="flex align-items-center justify-content-between w-full">
+                                <div>
+                                    <div class="font-medium">{{ c.name || ('Build #' + c.configurationId) }}</div>
+                                    <div class="text-500 text-sm">#{{ c.configurationId }}</div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-listbox>
+                </p-card> </ng-template>
+        </p-splitter>
+        <!-- NEW: robust, equal-column grid layout -->
+
+
+    </ng-container>
+</div>
+
+<!-- Loading -->
+<ng-template #loadingTpl>
+    <div class="min-h-screen flex align-items-center justify-content-center gap-3">
+        <p-progressSpinner styleClass="w-3rem h-3rem" strokeWidth="4" ariaLabel="Loading"></p-progressSpinner>
+        <span>Loading your profile…</span>
+    </div>
+</ng-template>
+
+<!-- Error -->
+<ng-template #errorTpl>
+    <p-card header="Couldn’t load profile">
+        <p-message severity="error"> error </p-message>
+    </p-card>
+</ng-template>

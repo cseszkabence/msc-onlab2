@@ -6,8 +6,7 @@
         <p-accordion-panel *ngFor="let filter of filters; let i = index" [value]="0">
           <p-accordion-header>{{ filter.name }}</p-accordion-header>
           <p-accordion-content *ngFor="let option of filter.options" class="flex items-center">
-            <p-checkbox [(ngModel)]="option.checked" (onChange)="onChange()"
-              [binary]="true"></p-checkbox>
+            <p-checkbox [(ngModel)]="option.checked" (onChange)="onChange()" [binary]="true"></p-checkbox>
             <label class="ml-2">{{ option.name }}</label>
           </p-accordion-content>
         </p-accordion-panel>
@@ -49,15 +48,20 @@
                   </div>
                 </div> -->
               </div>
-              <div class="flex flex-col md:items-end gap-8">
+              <div class="flex flex-col md:items-end gap-4">
                 <span class="text-xl font-semibold">{{ product.price | currency: 'USD' }}</span>
                 <div class="flex flex-row-reverse md:flex-row gap-2">
-                  <button pButton icon="pi pi-microchip" label="Details" (click)="navigateToDetails(product.id, product.type_name)"
+                  <button pButton icon="pi pi-microchip" label="Details"
+                    (click)="navigateToDetails(product.id, product.type_name)"
                     class="flex-auto whitespace-nowrap"></button>
-                  <button pButton icon="pi pi-sliders-h" label="Compare"
-                    class="flex-auto md:flex-initial whitespace-nowrap" (click)="onCompare(product)"></button>
                   <button pButton icon="pi pi-shopping-cart" label="Buy Now" (click)="addToCart(product)"
                     class="flex-auto whitespace-nowrap"></button>
+                </div>
+                <div class="flex flex-row-reverse md:flex-row gap-2">
+                  <button pButton icon="pi pi-sliders-h" label="Compare"
+                    class="flex-auto md:flex-initial whitespace-nowrap" (click)="onCompare(product)"></button>
+                  <button pButton icon="pi pi-plus" label="Build"
+                    class="flex-auto md:flex-initial whitespace-nowrap" (click)="addToBuild(product.id, product.type_name)"></button>
                 </div>
               </div>
             </div>
@@ -99,7 +103,8 @@
                 <div class="flex flex-col gap-6 mt-6">
                   <span class="text-2xl font-semibold">{{ product.price | currency: 'USD' }}</span>
                   <div class="flex gap-2">
-                    <button pButton icon="pi pi-microchip" label="Details" (click)="navigateToDetails(product.id, product.type_name)"
+                    <button pButton icon="pi pi-microchip" label="Details"
+                      (click)="navigateToDetails(product.id, product.type_name)"
                       class="flex-auto whitespace-nowrap"></button>
                     <button pButton icon="pi pi-sliders-h" label="Compare" (click)="onCompare(product)"
                       class="flex-auto whitespace-nowrap"></button>

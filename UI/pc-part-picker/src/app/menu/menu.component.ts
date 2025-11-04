@@ -192,6 +192,10 @@ isLoggingOut = false;
     this.router.navigateByUrl("/cart-component").then(() => this.disableBars())
   }
 
+  navigateToProfile() {
+    this.router.navigateByUrl("/profile").then(() => this.disableBars())
+  }
+
   getCartSize(): Observable<number> {
     return this.cartService.getCart().pipe(
       map(cart => cart.reduce((total, item) => total + item.quantity, 0))

@@ -123,6 +123,7 @@ app.MapPartsEndpoint();
 app.MapEmailEndpoints();
 app.MapAuthEndpoints();
 app.MapCartEndpoints();
+app.MapAccountEndpoints();
 
 StripeConfiguration.ApiKey = "sk_test_51Q2EtTB2B1CUn6npLoD8gQBOnS2y08mvD9hLyy449A6KcXh0xlFuOUQ7QOtPvzH47KqSGtsRfWHc4YORhoWHTV5T00PcQYlgDd";
 

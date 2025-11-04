@@ -1,181 +1,111 @@
 <!-- Full-screen center wrapper -->
-<div class="min-h-screen flex align-items-center justify-content-center px-3">
-  <!-- Constrained card/container -->
-  <div class="surface-card p-4 border-round shadow-2 w-full" style="max-width: 720px;">
-    <h1 class="title mb-1">Shipping address</h1>
-    <p class="subtitle mb-4">We’ll use this to deliver your order and for tax/shipping calculations.</p>
+<div class="min-h-screen align-items-center justify-content-center px-3">
+    <!-- Constrained card/container -->
+    <div class="surface-card p-4 border-round shadow-2 w-full" style="max-width: 720px;">
+        <h1 class="title mb-1">Shipping address</h1>
+        <p class="subtitle mb-4">We’ll use this to deliver your order and for tax/shipping calculations.</p>
 
-    <form class="p-fluid" [formGroup]="form" (ngSubmit)="submit()" novalidate>
-      <div class="formgrid grid">
-        <!-- Country FIRST (affects other address fields) -->
-        <div class="field col-12">
-          <label for="country">Country</label>
-          <p-dropdown
-            id="country"
-            class="w-full"
-            formControlName="country"
-            [options]="countries"
-            optionLabel="name"
-            optionValue="code"
-            placeholder="Select a country"
-            [filter]="true"
-            [showClear]="true"
-            [ngClass]="{'p-invalid': form.get('country')?.invalid && form.get('country')?.touched}"
-            [attr.aria-invalid]="form.get('country')?.invalid && form.get('country')?.touched"
-          ></p-dropdown>
-          <small class="p-error" *ngIf="form.get('country')?.hasError('required') && form.get('country')?.touched">
-            Country is required.
-          </small>
-        </div>
+        <form class="justify-center" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+            <div class="parent">
+                <div class="div1">
+                    <p-floatlabel variant="on">
+                        <input class="w-full" id="recipientName" type="text" pInputText formControlName="recipientName"
+                            autocomplete="name" maxlength="160"
+                            [ngClass]="{'p-invalid': form.get('recipientName')?.invalid && form.get('recipientName')?.touched}"
+                            [attr.aria-invalid]="form.get('recipientName')?.invalid && form.get('recipientName')?.touched" />
+                        <label for="recipientName">Full Name</label>
+                    </p-floatlabel>
+                    <small class="p-error"
+                        *ngIf="form.get('recipientName')?.hasError('required') && form.get('recipientName')?.touched">Name
+                        is required.</small>
+                    <small class="p-error"
+                        *ngIf="form.get('recipientName')?.hasError('maxlength') && form.get('recipientName')?.touched">Max
+                        160 characters.</small>
+                </div>
+                <div class="div2">
+                    <p-floatlabel variant="on">
 
-        <!-- Full name -->
-        <div class="field col-12">
-          <label for="recipientName">Full name</label>
-          <input
-            id="recipientName"
-            type="text"
-            pInputText
-            formControlName="recipientName"
-            autocomplete="name"
-            maxlength="160"
-            [ngClass]="{'p-invalid': form.get('recipientName')?.invalid && form.get('recipientName')?.touched}"
-            [attr.aria-invalid]="form.get('recipientName')?.invalid && form.get('recipientName')?.touched"
-          />
-          <small class="p-error" *ngIf="form.get('recipientName')?.hasError('required') && form.get('recipientName')?.touched">Name is required.</small>
-          <small class="p-error" *ngIf="form.get('recipientName')?.hasError('maxlength') && form.get('recipientName')?.touched">Max 160 characters.</small>
-        </div>
+                        <input class="w-full" id="phone" type="tel" pInputText formControlName="phone" inputmode="tel"
+                            autocomplete="tel" maxlength="32"
+                             [ngClass]="{'p-invalid': form.get('phone')?.invalid && form.get('phone')?.touched}"
+                            [attr.aria-invalid]="form.get('phone')?.invalid && form.get('phone')?.touched" />
+                        <label for="phone">Phone</label>
+                    </p-floatlabel>
+                    <small class="p-error"
+                        *ngIf="form.get('phone')?.hasError('required') && form.get('phone')?.touched">Phone number
+                        is required.</small>
+                </div>
+                <div class="div3">
+                    <p-floatlabel variant="on">
+                        <p-dropdown id="country" class="w-full" formControlName="country" [options]="countries"
+                            optionLabel="name" optionValue="code" placeholder="Select a country" [filter]="true"
+                            [showClear]="true"
+                            [ngClass]="{'p-invalid': form.get('country')?.invalid && form.get('country')?.touched}"
+                            [attr.aria-invalid]="form.get('country')?.invalid && form.get('country')?.touched">
+                            <label for="country">Country</label>
+                        </p-dropdown>
+                    </p-floatlabel>
 
-        <!-- Street -->
-        <div class="field col-12">
-          <label for="line1">Street address</label>
-          <input
-            id="line1"
-            type="text"
-            pInputText
-            formControlName="line1"
-            autocomplete="address-line1"
-            maxlength="160"
-            [ngClass]="{'p-invalid': form.get('line1')?.invalid && form.get('line1')?.touched}"
-            [attr.aria-invalid]="form.get('line1')?.invalid && form.get('line1')?.touched"
-          />
-          <small class="p-error" *ngIf="form.get('line1')?.hasError('required') && form.get('line1')?.touched">Address line 1 is required.</small>
-        </div>
+                    <small class="p-error"
+                        *ngIf="form.get('country')?.hasError('required') && form.get('country')?.touched">
+                        Country is required.
+                    </small>
+                </div>
+                <div class="div4">
+                    <p-floatlabel variant="on">
+                        <input id="city" type="text" pInputText formControlName="city" autocomplete="address-level2"
+                            maxlength="100" class="w-full"
+                            [ngClass]="{'p-invalid': form.get('city')?.invalid && form.get('city')?.touched}"
+                            [attr.aria-invalid]="form.get('city')?.invalid && form.get('city')?.touched" />
+                        <label for="city">City</label>
+                    </p-floatlabel>
+                    <small class="p-error"
+                        *ngIf="form.get('city')?.hasError('required') && form.get('city')?.touched">City is
+                        required.</small>
+                </div>
+                <div class="div5">
+                    <p-floatlabel variant="on">
+                        <input class="w-full" id="state" type="text" pInputText formControlName="state" autocomplete="address-level1"
+                            maxlength="100"
+                            [ngClass]="{'p-invalid': form.get('state')?.invalid && form.get('state')?.touched}"
+                            [attr.aria-invalid]="form.get('state')?.invalid && form.get('state')?.touched" />
+                        <label for="state">State / Region</label>
+                    </p-floatlabel>
+                    <small class="p-error"
+                        *ngIf="form.get('state')?.hasError('required') && form.get('state')?.touched">State/Region is
+                        required.</small>
+                </div>
+                <div class="div6">
+                    <p-floatlabel variant="on">
+                        <input class="w-full" id="postalCode" type="text" pInputText formControlName="postalCode" inputmode="numeric"
+                            autocomplete="postal-code" maxlength="20"
+                            [ngClass]="{'p-invalid': form.get('postalCode')?.invalid && form.get('postalCode')?.touched}"
+                            [attr.aria-invalid]="form.get('postalCode')?.invalid && form.get('postalCode')?.touched" />
+                        <label for="postalCode">Postal code</label>
+                    </p-floatlabel>
 
-        <!-- Address line 2 (collapsed by default) -->
-        <div class="col-12" *ngIf="!showLine2">
-          <button type="button" pButton [text]="true" size="small" (click)="showLine2 = true" label="Add apartment, suite, etc."></button>
-        </div>
-        <div class="field col-12" *ngIf="showLine2">
-          <label for="line2">Apartment, suite, etc. <span class="muted">(optional)</span></label>
-          <input
-            id="line2"
-            type="text"
-            pInputText
-            formControlName="line2"
-            autocomplete="address-line2"
-            maxlength="160"
-          />
-        </div>
-
-        <!-- Zip + City (short + related = 2 columns on desktop) -->
-        <div class="field col-12 md:col-5">
-          <label for="postalCode">Postal code</label>
-          <input
-            id="postalCode"
-            type="text"
-            pInputText
-            formControlName="postalCode"
-            inputmode="numeric"
-            autocomplete="postal-code"
-            maxlength="20"
-            [ngClass]="{'p-invalid': form.get('postalCode')?.invalid && form.get('postalCode')?.touched}"
-            [attr.aria-invalid]="form.get('postalCode')?.invalid && form.get('postalCode')?.touched"
-          />
-          <small class="p-error" *ngIf="form.get('postalCode')?.hasError('required') && form.get('postalCode')?.touched">Postal code is required.</small>
-        </div>
-
-        <div class="field col-12 md:col-7">
-          <label for="city">City</label>
-          <input
-            id="city"
-            type="text"
-            pInputText
-            formControlName="city"
-            autocomplete="address-level2"
-            maxlength="100"
-            [ngClass]="{'p-invalid': form.get('city')?.invalid && form.get('city')?.touched}"
-            [attr.aria-invalid]="form.get('city')?.invalid && form.get('city')?.touched"
-          />
-          <small class="p-error" *ngIf="form.get('city')?.hasError('required') && form.get('city')?.touched">City is required.</small>
-        </div>
-
-        <!-- State/Region -->
-        <div class="field col-12">
-          <label for="state">State / Region</label>
-          <input
-            id="state"
-            type="text"
-            pInputText
-            formControlName="state"
-            autocomplete="address-level1"
-            maxlength="100"
-            [ngClass]="{'p-invalid': form.get('state')?.invalid && form.get('state')?.touched}"
-            [attr.aria-invalid]="form.get('state')?.invalid && form.get('state')?.touched"
-          />
-          <small class="p-error" *ngIf="form.get('state')?.hasError('required') && form.get('state')?.touched">State/Region is required.</small>
-        </div>
-
-        <p-divider class="col-12 my-3"></p-divider>
-
-        <!-- Phone (optional) -->
-        <div class="field col-12">
-          <label for="phone">Phone <span class="muted">(optional, for courier)</span></label>
-          <input
-            id="phone"
-            type="tel"
-            pInputText
-            formControlName="phone"
-            inputmode="tel"
-            autocomplete="tel"
-            maxlength="32"
-          />
-        </div>
-
-        <!-- Currency -->
-        <div class="field col-12">
-          <label for="currency">Currency</label>
-          <p-dropdown
-            id="currency"
-            class="w-full"
-            formControlName="currency"
-            [options]="currencies"
-            optionLabel="label"
-            optionValue="value"
-            placeholder="Choose currency"
-          ></p-dropdown>
-        </div>
-
-        <!-- Actions -->
-        <div class="col-12 flex gap-2 justify-content-between flex-wrap">
-          <a
-            pButton
-            label="Back to cart"
-            icon="pi pi-arrow-left"
-            routerLink="/cart"
-            severity="secondary"
-            [text]="true"
-            aria-label="Back to cart"
-          ></a>
-
-          <button
-            pButton
-            type="submit"
-            label="Save & continue to payment"
-            icon="pi pi-credit-card"
-            [disabled]="form.invalid"
-          ></button>
-        </div>
-      </div>
-    </form>
-  </div>
+                    <small class="p-error"
+                        *ngIf="form.get('postalCode')?.hasError('required') && form.get('postalCode')?.touched">Postal
+                        code is required.</small>
+                </div>
+                <div class="div7">
+                    <p-floatlabel variant="on">
+                        <input class="w-full" id="line1" type="text" pInputText formControlName="line1" autocomplete="address-line1"
+                            maxlength="160"
+                            [ngClass]="{'p-invalid': form.get('line1')?.invalid && form.get('line1')?.touched}"
+                            [attr.aria-invalid]="form.get('line1')?.invalid && form.get('line1')?.touched" />
+                        <label for="line1">Street address</label>
+                    </p-floatlabel>
+                    <small class="p-error"
+                        *ngIf="form.get('line1')?.hasError('required') && form.get('line1')?.touched">Address
+                        line 1 is
+                        required.</small>
+                </div>
+            </div>
+            <div class="col-12 flex gap-2 justify-content-between flex-wrap m-4">
+                <button pButton type="submit" label="Save & continue to payment" icon="pi pi-credit-card"
+                    [disabled]="form.invalid"></button>
+            </div>
+        </form>
+    </div>
 </div>

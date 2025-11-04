@@ -82,7 +82,7 @@ export class ConfiguratorComponent {
 
   }
 
-  totalPrice: number | null | undefined;
+  totalPrice: number = 0;
   displayedColumns: string[] = ['demo-position', 'demo-weight'];
   dataSource = ELEMENT_DATA;
   configuration: Configuration = {
@@ -97,10 +97,28 @@ export class ConfiguratorComponent {
   }
 
   totalPriceCalculator() {
-    this.totalPrice = 0;
-    this.dataSource.forEach((component) => {
-      this.totalPrice = this.totalPrice + component.chosenProduct.price;
-    });
+    const b = this.buildSvc.currentConfig; // the live selection
+    const keys = [
+      'processor', 'motherboard', 'videocard', 'memory',
+      'harddrive', 'powersupply', 'pccase', 'cpucooler'
+    ] as const;
+
+    let sum = 0;
+    for (const k of keys) {
+      const price = (b as any)[k]?.price;
+      if (price != null) sum += this.toIntPrice(price);
+    }
+    this.totalPrice = sum;
+  }
+
+  // same integer-only helper
+  private toIntPrice(v: any): number {
+    if (typeof v === 'number') return Math.trunc(v);
+    if (typeof v === 'string') {
+      const n = Number(v.replace(/[, ]/g, ''));
+      return Number.isFinite(n) ? Math.trunc(n) : 0;
+    }
+    return 0;
   }
 
   onSaveClick() {
@@ -339,14 +357,14 @@ export class ConfiguratorComponent {
     this.isReviewLoading = true;       // show loader
 
     this.ai.reviewByNames(body)
-    .pipe(finalize(() => this.isReviewLoading = false))
-    .subscribe({
-      next: (text: string) => { this.reviewText = text; },
-      error: _ => {
-        this.displayReviewDialog = false;
-        this.msg.add({ severity: 'error', summary: 'AI error', detail: 'Could not review your build.' });
-      }
-    });
+      .pipe(finalize(() => this.isReviewLoading = false))
+      .subscribe({
+        next: (text: string) => { this.reviewText = text; },
+        error: _ => {
+          this.displayReviewDialog = false;
+          this.msg.add({ severity: 'error', summary: 'AI error', detail: 'Could not review your build.' });
+        }
+      });
   }
 
 

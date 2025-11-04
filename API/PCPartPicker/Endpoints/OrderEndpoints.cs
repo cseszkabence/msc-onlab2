@@ -194,6 +194,56 @@ namespace PCPartPicker.Endpoints
                 });
             });
 
+            orders.MapGet("/", async (HttpContext ctx, ApplicationDbContext db) =>
+            {
+                var userId = ctx.GetUserIdString();
+                if (string.IsNullOrEmpty(userId)) return Results.Unauthorized();
+
+                var list = await db.Orders
+                    .Where(o => o.UserId == userId)
+                    .OrderByDescending(o => o.OrderDate)
+                    .Select(o => new
+                    {
+                        o.OrderId,
+                        o.OrderDate,
+                        o.Status,
+                        o.TotalPrice,
+                        Currency = o.Currency ?? "eur"   // optional, helps UI formatting
+                    })
+                    .ToListAsync();
+
+                return Results.Ok(list);
+            });
+
+            // --- ADD: get a single order (with items) for the current user ---
+            orders.MapGet("/{orderId:int}", async (HttpContext ctx, int orderId, ApplicationDbContext db) =>
+            {
+                var userId = ctx.GetUserIdString();
+                if (string.IsNullOrEmpty(userId)) return Results.Unauthorized();
+
+                var order = await db.Orders
+                    .Where(o => o.UserId == userId && o.OrderId == orderId)
+                    .Select(o => new
+                    {
+                        o.OrderId,
+                        o.OrderDate,
+                        o.Status,
+                        o.TotalPrice,
+                        Currency = o.Currency ?? "eur",
+                        Items = o.OrderItems.Select(oi => new
+                        {
+                            oi.OrderItemId,
+                            oi.PartTypeId,
+                            oi.PartId,
+                            oi.Quantity,
+                            oi.UnitPrice
+                        })
+                    })
+                    .FirstOrDefaultAsync();
+
+                return order is null ? Results.NotFound() : Results.Ok(order);
+            });
+
             return app;
         }
 

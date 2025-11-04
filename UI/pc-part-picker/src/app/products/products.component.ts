@@ -1,6 +1,6 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { map, Observable, Subscription } from 'rxjs';
+import { finalize, firstValueFrom, map, Observable, Subscription } from 'rxjs';
 import { Filter, filterProductsByName, ProductServiceService } from '../shared/services/products/product-service.service';
 import { Processor } from '../../model/Processor';
 import { PcPart } from '../../model/Pcpart';
@@ -32,6 +32,9 @@ import { CartService } from '../shared/services/cart/cart.service';
 import { CartItem } from '../../model/CartItem';
 import { ComparisonService } from '../shared/services/comparison/comparison.service';
 import { ToastModule } from 'primeng/toast';
+import { PARTTYPE_TO_SLOT, SLOT_LABEL } from '../product-details/product-details.component';
+import { BuildService } from '../shared/services/builder/builder.service';
+import { Configuration } from '../../model/Configuration';
 
 @Component({
   selector: 'app-products',
@@ -71,14 +74,17 @@ export class ProductsComponent implements OnInit {
   category!: string;
   parts: any[] = [];
   enabledFilters = 0;
-
+  componentDetails!: any;
+  partType: string | null = null;
+  loading: boolean = false;
+  errorMessage: string = '';
   constructor(
     private productService: ProductServiceService,
     private router: Router,
     private comparisonService: ComparisonService,
     private messageService: MessageService,
     private route: ActivatedRoute,
-
+    private buildSvc: BuildService
   ) {
     const nav = this.router.getCurrentNavigation();
     const from = nav?.extras.state?.['from']
@@ -127,7 +133,7 @@ export class ProductsComponent implements OnInit {
         this.productService.getMemory().subscribe(list => this.parts = list);
         break;
       case 'videocard':
-      this.chooseProductAsnyc(cat)
+        this.chooseProductAsnyc(cat)
         break;
       case 'storage':
         this.productService.getHarddrive().subscribe(list => this.parts = list);
@@ -238,6 +244,7 @@ export class ProductsComponent implements OnInit {
     if (this.enabledFilters == 0) {
       this.productService.resetProducts();
     }
+
   }
 
   private isProcessor(product: PcPart): product is Processor {
@@ -299,6 +306,45 @@ export class ProductsComponent implements OnInit {
       this.messageService.add({ severity: 'info', summary: 'Success!', detail: 'Product added to comparison list!', life: 2000 });
     }
   }
+
+  private getPartName(x: any): string {
+    return x?.name ?? x?.model ?? x?.title ?? 'Item';
+  }
+
+  addToBuild(id: number, type: string) {
+  if (this.loading) return;              // prevent double-click races
+  this.loading = true;
+  this.partType = type;
+
+  const key = PARTTYPE_TO_SLOT[type];    // use the argument, not this.partType
+  if (!key) {
+    this.loading = false;
+    this.messageService.add({ severity: 'warn', summary: 'Cannot add', detail: 'Unknown part type.', life: 2500 });
+    return;
+  }
+
+  this.productService.getPart(id, type)
+    .pipe(finalize(() => this.loading = false))
+    .subscribe({
+      next: item => {
+        this.componentDetails = item;
+
+        const alreadyFilled = !!this.buildSvc.currentConfig[key];
+        const patch = { [key]: item } as Partial<Configuration>;
+        this.buildSvc.update(patch);
+
+        this.messageService.add({
+          severity: alreadyFilled ? 'info' : 'success',
+          summary: `${SLOT_LABEL[key]} ${alreadyFilled ? 'replaced' : 'added'}`,
+          detail: this.getPartName(item),
+          life: 2500
+        });
+      },
+      error: () => {
+        this.messageService.add({ severity: 'error', summary: 'Failed', detail: 'Failed to load item.', life: 2500 });
+      }
+    });
+}
 }
 
 
