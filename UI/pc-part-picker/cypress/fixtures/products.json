@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Test CPU",
+      "price": 199.99,
+      "brand": "FooBrand"
+    },
+    {
+      "id": 2,
+      "name": "Test GPU",
+      "price": 399.99,
+      "brand": "BarBrand"
+    }
+  ]
+}

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCPartPicker", "PCPartPicker.csproj", "{A5A6C753-4766-4EB1-B35C-4F63924E0A73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCPartPicker.Tests", "..\PCPartPicker.Tests\PCPartPicker.Tests.csproj", "{DF886AA3-4196-4541-A80B-7FDFFEB581EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A5A6C753-4766-4EB1-B35C-4F63924E0A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5A6C753-4766-4EB1-B35C-4F63924E0A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5A6C753-4766-4EB1-B35C-4F63924E0A73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF886AA3-4196-4541-A80B-7FDFFEB581EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF886AA3-4196-4541-A80B-7FDFFEB581EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF886AA3-4196-4541-A80B-7FDFFEB581EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF886AA3-4196-4541-A80B-7FDFFEB581EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

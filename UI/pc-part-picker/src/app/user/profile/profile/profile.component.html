@@ -9,28 +9,19 @@
                         </ng-template>
 
                         <div class="align-items-center justify-content-between pb-2 border-bottom-1 surface-border">
-                            <span class="text-500">Email</span>
+                            <span class="text-500">Email: </span>
                             <strong class="text-900 break-all">{{ me?.email }}</strong>
                         </div>
 
                         <div class="align-items-center justify-content-between pb-2 border-bottom-1 surface-border"
                             *ngIf="me?.fullName">
-                            <span class="text-500">Name</span>
+                            <span class="text-500">Name: </span>
                             <strong class="text-900">{{ me?.fullName }}</strong>
-                        </div>
-
-                        <div class="align-items-center justify-content-between" *ngIf="me?.createdAt">
-                            <span class="text-500">Joined</span>
-                            <strong class="text-900">{{ me?.createdAt | date:'mediumDate' }}</strong>
                         </div>
                     </div>
 
                     <ng-template pTemplate="footer">
                         <div class="flex gap-2 flex-wrap">
-                            <a pButton [text]="true" severity="secondary" label="Edit profile"
-                                routerLink="/account/edit"></a>
-                            <a pButton [text]="true" severity="secondary" label="Change password"
-                                routerLink="/account/password"></a>
                         </div>
                     </ng-template>
                 </p-card> </ng-template>

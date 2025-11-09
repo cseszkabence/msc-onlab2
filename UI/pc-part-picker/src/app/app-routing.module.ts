@@ -23,7 +23,7 @@ export const routes: Routes = [{
 
 { path: '', redirectTo: 'configurator-component', pathMatch: 'full' },
 
-{ path: '**', redirectTo: 'configurator-component' },
+//{ path: '**', redirectTo: 'configurator-component' },
 
 {
   path: 'configurator-component',
