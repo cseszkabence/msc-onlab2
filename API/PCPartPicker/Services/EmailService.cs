@@ -28,8 +28,6 @@ namespace PCPartPicker.Services
                     Resource = Send.Resource
                 };
 
-                //emailModel.Body = await FormatEmailTemplate(emailModel.From, emailModel.Subject, emailModel.ToEmail, emailModel.Body);
-
                 var email = new TransactionalEmailBuilder()
                        .WithFrom(new SendContact(emailModel.From))
                        .WithSubject(emailModel.Subject)

@@ -26,19 +26,21 @@ namespace PCPartPicker.Endpoints
                 var cpu = req.cpuId is int cId ? await db.Processors.FindAsync(cId) : null;
                 var mobo = req.motherboardId is int mId ? await db.Motherboards.FindAsync(mId) : null;
                 var ram = req.memoryId is int rId ? await db.Memories.FindAsync(rId) : null;
-                var kase = req.caseId is int kId ? await db.Pccases.FindAsync(kId) : null;
+                var pccase = req.caseId is int kId ? await db.Pccases.FindAsync(kId) : null;
 
                 var errors = new List<string>();
 
-                // --- Helpers (adjust property names to your schema!) ---
                 // Most projects have both an Id FK and a Name via navigation; we accept either.
                 static string? Name(dynamic? x) => x?.Name;
 
                 static int? SocketId(dynamic? x) => (int?)(x?.SocketTypeId);
                 static string? SocketName(dynamic? x) => (string?)(x?.SocketType?.Type);
 
-                static int? MemTypeId(dynamic? x) => (int?)(x?.MemoryTypeId);
-                static string? MemTypeName(dynamic? x) => (string?)(x?.MemoryType?.Type);
+                static int? MemTypeIdForMb(dynamic? x) => (int?)(x?.MemoryTypeId);
+                static string? MemTypeNameForMb(dynamic? x) => (string?)(x?.MemoryType?.Type);
+
+                static int? MemTypeIdForMem(dynamic? x) => (int?)(x?.Type);
+                static string? MemTypeNameForMem(dynamic? x) => (string?)(x?.TypeNavigation?.Type);
 
                 static int? FormId(dynamic? x) => (int?)(x?.FormFactorTypeId);
                 static string? FormName(dynamic? x) => (string?)(x?.FormFactorType?.Type);
@@ -46,12 +48,12 @@ namespace PCPartPicker.Endpoints
                 // Case can be modeled two ways:
                 // A) single form-factor (FormfactorTypeId), or
                 // B) "SupportedFormfactors" collection (many-to-many)
-                static IReadOnlyList<int> CaseSupportedFormIds(dynamic? kase)
-                    => ((IEnumerable<object>?)kase?.SupportedFormfactors ?? Array.Empty<object>())
+                static IReadOnlyList<int> CaseSupportedFormIds(dynamic? pccase)
+                    => ((IEnumerable<object>?)pccase?.SupportedFormfactors ?? Array.Empty<object>())
                        .Select(o => (int?)(o as dynamic)?.Id ?? -1).Where(i => i > 0).Cast<int>().ToList();
 
-                static IReadOnlyList<string> CaseSupportedFormNames(dynamic? kase)
-                    => ((IEnumerable<object>?)kase?.SupportedFormfactors ?? Array.Empty<object>())
+                static IReadOnlyList<string> CaseSupportedFormNames(dynamic? pccase)
+                    => ((IEnumerable<object>?)pccase?.SupportedFormfactors ?? Array.Empty<object>())
                        .Select(o => (string?)(o as dynamic)?.TYpe ?? "")
                        .Where(s => !string.IsNullOrWhiteSpace(s)).Cast<string>().ToList();
 
@@ -78,10 +80,10 @@ namespace PCPartPicker.Endpoints
                 // --- 2) Memory ↔ Motherboard: memory type ---
                 if (ram is not null && mobo is not null)
                 {
-                    var ramTid = MemTypeId(ram);
-                    var mobTid = MemTypeId(mobo);
-                    var ramTn = MemTypeName(ram);   // e.g. "DDR4"
-                    var mobTn = MemTypeName(mobo);
+                    var ramTid = MemTypeIdForMem(ram);
+                    var mobTid = MemTypeIdForMb(mobo);
+                    var ramTn = MemTypeNameForMem(ram);   // e.g. "DDR4"
+                    var mobTn = MemTypeNameForMb(mobo);
 
                     var match =
                         (ramTid.HasValue && mobTid.HasValue && ramTid == mobTid) ||
@@ -92,14 +94,14 @@ namespace PCPartPicker.Endpoints
                 }
 
                 // --- 3) Motherboard ↔ Case: form factor support ---
-                if (mobo is not null && kase is not null)
+                if (mobo is not null && pccase is not null)
                 {
                     var mfId = FormId(mobo);
                     var mfNm = FormName(mobo);
 
                     // Path A: case lists many supported form factors
-                    var supportsIds = CaseSupportedFormIds(kase);
-                    var supportsNms = CaseSupportedFormNames(kase);
+                    var supportsIds = CaseSupportedFormIds(pccase);
+                    var supportsNms = CaseSupportedFormNames(pccase);
 
                     bool supported;
                     if (supportsIds.Count > 0 || supportsNms.Count > 0)
@@ -111,8 +113,8 @@ namespace PCPartPicker.Endpoints
                     else
                     {
                         // Path B: case has a single form factor (fallback to equality)
-                        var caseId = FormId(kase);
-                        var caseNm = FormName(kase);
+                        var caseId = FormId(pccase);
+                        var caseNm = FormName(pccase);
                         supported = (mfId.HasValue && caseId.HasValue && mfId == caseId) || StrEq(mfNm, caseNm);
                     }
 
@@ -128,15 +130,15 @@ namespace PCPartPicker.Endpoints
                         cpu = Name(cpu),
                         mobo = Name(mobo),
                         memory = Name(ram),
-                        kase = Name(kase)
+                        pccase = Name(pccase)
                     },
                     sockets = new { cpu = SocketName(cpu) ?? SocketId(cpu)?.ToString(), mobo = SocketName(mobo) ?? SocketId(mobo)?.ToString() },
-                    memtype = new { memory = MemTypeName(ram) ?? MemTypeId(ram)?.ToString(), mobo = MemTypeName(mobo) ?? MemTypeId(mobo)?.ToString() },
+                    memtype = new { memory = MemTypeNameForMem(ram) ?? MemTypeIdForMem(ram)?.ToString(), mobo = MemTypeNameForMb(mobo) ?? MemTypeIdForMb(mobo)?.ToString() },
                     form = new
                     {
                         mobo = FormName(mobo) ?? FormId(mobo)?.ToString(),
-                        caseSupports = CaseSupportedFormNames(kase),
-                        caseForm = FormName(kase) ?? FormId(kase)?.ToString()
+                        caseSupports = CaseSupportedFormNames(pccase),
+                        caseForm = FormName(pccase) ?? FormId(pccase)?.ToString()
                     }
                 };
 

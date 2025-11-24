@@ -76,7 +76,7 @@ export class MenuComponent implements OnInit {
   comparisonCount = 0;
   cartSize = 0;
   buildFilledCount = 0;
-isLoggingOut = false;
+  isLoggingOut = false;
 
   categories: Category[] = [
     { key: 'processor', label: 'Processors', route: 'processor' },
@@ -166,27 +166,27 @@ isLoggingOut = false;
   }
 
   onLogout() {
-  this.isLoggingOut = true;
+    this.isLoggingOut = true;
 
-  this.authService.logout()
-    .pipe(finalize(() => this.isLoggingOut = false))
-    .subscribe({
-      next: () => {
-        this.messageService.add({ severity: 'success', summary: 'Logout successful!', life: 3000 });
-        // Only reload AFTER the request completed
-        window.location.reload();
-      },
-      error: err => {
-        // If the cookie expired, [Authorize] may reject with 401; still treat as logged out
-        if (err.status === 401 || err.status === 403 || err.status === 0) {
-          this.messageService.add({ severity: 'info', summary: 'You were already logged out.', life: 2500 });
+    this.authService.logout()
+      .pipe(finalize(() => this.isLoggingOut = false))
+      .subscribe({
+        next: () => {
+          this.messageService.add({ severity: 'success', summary: 'Logout successful!', life: 3000 });
+          // Only reload AFTER the request completed
           window.location.reload();
-        } else {
-          this.messageService.add({ severity: 'error', summary: 'Logout failed', detail: 'Please try again.' });
+        },
+        error: err => {
+          // If the cookie expired, [Authorize] may reject with 401; still treat as logged out
+          if (err.status === 401 || err.status === 403 || err.status === 0) {
+            this.messageService.add({ severity: 'info', summary: 'You were already logged out.', life: 2500 });
+            window.location.reload();
+          } else {
+            this.messageService.add({ severity: 'error', summary: 'Logout failed', detail: 'Please try again.' });
+          }
         }
-      }
-    });
-}
+      });
+  }
 
   navigateToCart() {
     this.router.navigateByUrl("/cart-component").then(() => this.disableBars())

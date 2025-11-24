@@ -74,7 +74,6 @@
 
         <!-- choose button -->
         <td>
-          <!-- If a part exists -> show Remove; otherwise -> Choose -->
           <ng-container *ngIf="build[part.key]; else chooseTpl">
             <button pButton type="button" icon="pi pi-times" label="Remove" class="p-button-danger p-button-text"
               (click)="removePart(part)"></button>
@@ -115,7 +114,7 @@
   [style]="{ width: '320px' }">
   <div class="p-fluid">
     <div class="p-field">
-      <label for="cfgName">Build Name</label>
+      <label for="cfgName">Build Name: </label>
       <input id="cfgName" type="text" pInputText [(ngModel)]="configName" placeholder="e.g. My Gaming Rig" />
     </div>
   </div>

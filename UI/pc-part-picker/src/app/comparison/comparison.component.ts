@@ -5,7 +5,7 @@ import { ComparisonService } from '../shared/services/comparison/comparison.serv
 import { TableModule } from 'primeng/table';
 import { CartService } from '../shared/services/cart/cart.service';
 import { CartItem } from '../../model/CartItem';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { ContextMenu, ContextMenuModule } from 'primeng/contextmenu';
 import { ButtonModule } from 'primeng/button';
 
@@ -39,16 +39,16 @@ export class ComparisonComponent implements OnInit {
 
   @ViewChild('cm') cm!: ContextMenu;
 
-  constructor(private comparisonService: ComparisonService, private cartService: CartService) { }
+  constructor(private comparisonService: ComparisonService, private cartService: CartService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.products = this.comparisonService.getComparisonList();
     this.generateComparisonKeys();
-    this.calculateBestValues();
+    //this.calculateBestValues();
     this.items = [
-      { label: 'Add to cart', icon: 'pi pi-fw pi-trash', command: () => this.addToCart(this.selectedProduct!) },
+      { label: 'Add to cart', icon: 'pi pi-fw pi-cart-plus', command: () => this.addToCart(this.selectedProduct!) },
       {
-        label: 'Delete', icon: 'pi pi-fw pi-cart-plus', command: () => {
+        label: 'Delete', icon: 'pi pi-fw pi-trash', command: () => {
           this.comparisonService.removeProduct(this.selectedProduct!.id);
           this.products = this.comparisonService.getComparisonList();
         }
@@ -95,7 +95,14 @@ export class ComparisonComponent implements OnInit {
       quantity: number,
     };
 
-    this.cartService.addToCart(item).subscribe();
+    this.cartService.addToCart(item).subscribe({
+      next: () => {
+        this.messageService.add({ severity: 'info', summary: 'Success!', detail: "Item added to cart successfully.", life: 2000 });
+      },
+      error: err => {
+        this.messageService.add({ severity: 'error', summary: 'Error!', detail: "Failed to add to cart! Are you sure you are logged in?", life: 2000 });
+      }
+    });
   }
 
   isBestValue(key: string, value: any): boolean {

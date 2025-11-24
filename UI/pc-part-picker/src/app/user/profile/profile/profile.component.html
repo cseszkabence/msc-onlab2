@@ -1,4 +1,4 @@
-<div class="profile-shell" *ngIf="!loading; else loadingTpl">
+<div class="profile-shell" *ngIf="!loading; else loadingTpl" style="height: 85vh;">
     <ng-container *ngIf="!error; else errorTpl">
         <p-splitter [panelSizes]="[30, 40, 30]" [style]="{ height: '300px' }" class="mb-8">
             <ng-template #panel>

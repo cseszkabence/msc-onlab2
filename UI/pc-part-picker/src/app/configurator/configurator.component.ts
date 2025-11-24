@@ -341,7 +341,7 @@ export class ConfiguratorComponent {
 
     const body = {
       cpu: b.processor?.name,
-      gpu: b.videocard?.name,
+      gpu: b.videocard?.chipset,
       motherboard: b.motherboard?.name,
       memory: b.memory?.name,
       storage: b.harddrive?.name,
@@ -359,7 +359,9 @@ export class ConfiguratorComponent {
     this.ai.reviewByNames(body)
       .pipe(finalize(() => this.isReviewLoading = false))
       .subscribe({
-        next: (text: string) => { this.reviewText = text; },
+        next: (text: string) => { this.reviewText = text;
+          this.isReviewLoading = false;
+         },
         error: _ => {
           this.displayReviewDialog = false;
           this.msg.add({ severity: 'error', summary: 'AI error', detail: 'Could not review your build.' });

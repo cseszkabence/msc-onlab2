@@ -15,6 +15,7 @@ import { ToastModule } from 'primeng/toast';
 
 import { AuthService } from '../../shared/services/auth/auth.service';
 import { finalize } from 'rxjs/operators';
+import { CartService } from '../../shared/services/cart/cart.service';
 
 @Component({
   selector: 'login-component',
@@ -47,7 +48,8 @@ export class LoginComponent {
     private fb: FormBuilder,
     private auth: AuthService,
     private msg: MessageService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) { }
 
   hasDisplayableError(controlName: string): boolean {
@@ -87,6 +89,7 @@ export class LoginComponent {
             life: 3000
           });
           // navigate to configurator or returnUrl if you store one
+          this.cartService.loadCart();
           this.router.navigateByUrl('/configurator-component');
         },
         error: err => {

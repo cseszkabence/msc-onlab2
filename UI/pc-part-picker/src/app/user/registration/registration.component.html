@@ -1,9 +1,10 @@
 <div>
-    <div class="header">
-        Sign up
-    </div>
+
     <form [formGroup]="form" (ngSubmit)="onSubmit()"
         class="w-full flex flex-col items-center justify-center gap-3 py-5">
+        <div class="header">
+            Sign up
+        </div>
         <p-toast />
         <div>
             <p-floatlabel variant="on">
@@ -62,8 +63,8 @@
             </div>
         </div>
         <div class="m-3 flex">
-            <p-button type="ngSubmit" label="Sign Up" icon="pi pi-user-plus"
-                 styleClass="w-full mx-auto" type="submit"/>
+            <p-button type="ngSubmit" label="Sign Up" icon="pi pi-user-plus" styleClass="w-full mx-auto"
+                type="submit" />
         </div>
     </form>
 </div>

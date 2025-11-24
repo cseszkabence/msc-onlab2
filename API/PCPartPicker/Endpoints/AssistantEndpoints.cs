@@ -1,4 +1,6 @@
-﻿using Mscc.GenerativeAI;
+﻿using Google.GenAI;
+using Mscc.GenerativeAI;
+using System.Configuration;
 
 namespace PCPartPicker.Endpoints
 {
@@ -20,8 +22,8 @@ namespace PCPartPicker.Endpoints
         {
 
             app.MapPost("/api/assistant/review", async (
-                ReviewByNamesRequest req,
-                GenerativeModel model
+                ReviewByNamesRequest req
+                , Client gclient
             ) =>
             {
                 var snapshot = new
@@ -54,8 +56,11 @@ namespace PCPartPicker.Endpoints
                 {System.Text.Json.JsonSerializer.Serialize(snapshot)}
                 ";
 
-                var result = await model.GenerateContent(prompt);
-                var text = (result.Text ?? "I couldn't generate a review for this build. Try adding more parts.").Trim();
+                var response = await gclient.Models.GenerateContentAsync(
+                  model: "gemini-2.5-flash-lite", prompt
+                );
+
+                var text = (response.Candidates[0].Content.Parts[0].Text ?? "I couldn't generate a review for this build. Try adding more parts.").Trim();
 
                 return Results.Text(text, "text/plain; charset=utf-8");
             });

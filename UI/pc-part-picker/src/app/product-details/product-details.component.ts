@@ -174,7 +174,7 @@ export class ProductDetailsComponent {
         this.messageService.add({ severity: 'info', summary: 'Success!', detail: "Item added to cart successfully.", life: 2000 });
       },
       error: err => {
-        this.messageService.add({ severity: 'error', summary: 'Error!', detail: "Failed to add to cart!", life: 2000 });
+        this.messageService.add({ severity: 'error', summary: 'Error!', detail: "Failed to add to cart! Are you sure you are logged in?", life: 2000 });
       }
     });
   }

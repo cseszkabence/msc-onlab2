@@ -3,35 +3,80 @@
   "WorkspaceRootPath": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DF886AA3-4196-4541-A80B-7FDFFEB581EE}|..\\PCPartPicker.Tests\\PCPartPicker.Tests.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker.tests\\receipttexttests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\endpoints\\authendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:endpoints\\authendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\endpoints\\cartendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:endpoints\\cartendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\endpoints\\accountendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:endpoints\\accountendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\endpoints\\authendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:endpoints\\authendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DF886AA3-4196-4541-A80B-7FDFFEB581EE}|..\\PCPartPicker.Tests\\PCPartPicker.Tests.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker.tests\\pcpartpicker.tests.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\endpoints\\assistantendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:endpoints\\assistantendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DF886AA3-4196-4541-A80B-7FDFFEB581EE}|..\\PCPartPicker.Tests\\PCPartPicker.Tests.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker.tests\\httpcontextextensionstests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\endpoints\\emailendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:endpoints\\emailendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DF886AA3-4196-4541-A80B-7FDFFEB581EE}|..\\PCPartPicker.Tests\\PCPartPicker.Tests.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker.tests\\emailservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DF886AA3-4196-4541-A80B-7FDFFEB581EE}|..\\PCPartPicker.Tests\\PCPartPicker.Tests.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker.tests\\emailtemplatestests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\infrastructure\\emailtemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:infrastructure\\emailtemplate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\endpoints\\paymentsendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:endpoints\\paymentsendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\endpoints\\orderendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:endpoints\\orderendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\endpoints\\compatendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:endpoints\\compatendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\manufacturertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\manufacturertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\pcpartpicker.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:pcpartpicker.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\endpoints\\configurationsendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:endpoints\\configurationsendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\endpoints\\partsendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:endpoints\\partsendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\motherboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\motherboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\models\\memory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:models\\memory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|c:\\users\\csesz\\desktop\\msc_2\\\u00F6nlab2_project\\msc-onlab2\\api\\pcpartpicker\\endpoints\\accountendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5A6C753-4766-4EB1-B35C-4F63924E0A73}|PCPartPicker.csproj|solutionrelative:endpoints\\accountendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
@@ -62,126 +107,263 @@
         },
         {
           "DockedWidth": 1612,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAAHUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T11:28:46.137Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PaymentsEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\PaymentsEndpoints.cs",
+              "RelativeDocumentMoniker": "Endpoints\\PaymentsEndpoints.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\PaymentsEndpoints.cs",
+              "RelativeToolTip": "Endpoints\\PaymentsEndpoints.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T13:34:01.63Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EmailEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\EmailEndpoints.cs",
+              "RelativeDocumentMoniker": "Endpoints\\EmailEndpoints.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\EmailEndpoints.cs",
+              "RelativeToolTip": "Endpoints\\EmailEndpoints.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAuwD8AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T13:33:34.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AssistantEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\AssistantEndpoints.cs",
+              "RelativeDocumentMoniker": "Endpoints\\AssistantEndpoints.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\AssistantEndpoints.cs",
+              "RelativeToolTip": "Endpoints\\AssistantEndpoints.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAAwDgAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T12:16:02.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "AuthEndpoints.cs",
               "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\AuthEndpoints.cs",
               "RelativeDocumentMoniker": "Endpoints\\AuthEndpoints.cs",
               "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\AuthEndpoints.cs",
               "RelativeToolTip": "Endpoints\\AuthEndpoints.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAUwB8AAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAADwvz4AAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-08T11:39:57.321Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "CartEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\CartEndpoints.cs",
+              "RelativeDocumentMoniker": "Endpoints\\CartEndpoints.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\CartEndpoints.cs",
+              "RelativeToolTip": "Endpoints\\CartEndpoints.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAADoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T11:28:46.137Z",
+              "WhenOpened": "2025-11-15T16:13:20.201Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
+              "Title": "OrderEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\OrderEndpoints.cs",
+              "RelativeDocumentMoniker": "Endpoints\\OrderEndpoints.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\OrderEndpoints.cs",
+              "RelativeToolTip": "Endpoints\\OrderEndpoints.cs",
+              "ViewState": "AgIAAKMAAAAAAAAAAAAkwJQAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T13:00:06.777Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Services\\EmailService.cs",
+              "RelativeDocumentMoniker": "Services\\EmailService.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Services\\EmailService.cs*",
+              "RelativeToolTip": "Services\\EmailService.cs*",
+              "ViewState": "AgIAABgAAAAAAAAAAAAuwDIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T13:34:13.702Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EmailTemplate.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Infrastructure\\EmailTemplate.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\EmailTemplate.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Infrastructure\\EmailTemplate.cs",
+              "RelativeToolTip": "Infrastructure\\EmailTemplate.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAQwEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-21T18:23:25.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-18T13:33:03.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CompatEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\CompatEndpoints.cs",
+              "RelativeDocumentMoniker": "Endpoints\\CompatEndpoints.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\CompatEndpoints.cs",
+              "RelativeToolTip": "Endpoints\\CompatEndpoints.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAgwD8AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T17:42:45.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ManufacturerType.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ManufacturerType.cs",
+              "RelativeDocumentMoniker": "Models\\ManufacturerType.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ManufacturerType.cs",
+              "RelativeToolTip": "Models\\ManufacturerType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T17:57:13.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Motherboard.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Motherboard.cs",
+              "RelativeDocumentMoniker": "Models\\Motherboard.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Motherboard.cs",
+              "RelativeToolTip": "Models\\Motherboard.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAA/wCYAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T17:48:48.185Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PCPartPicker.csproj",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
+              "RelativeDocumentMoniker": "PCPartPicker.csproj",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
+              "RelativeToolTip": "PCPartPicker.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-04T17:39:50.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ConfigurationsEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\ConfigurationsEndpoints.cs",
+              "RelativeDocumentMoniker": "Endpoints\\ConfigurationsEndpoints.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\ConfigurationsEndpoints.cs",
+              "RelativeToolTip": "Endpoints\\ConfigurationsEndpoints.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAABZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-18T08:07:23.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Models\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Models\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAJUBAAAAAAAAAIAwwKkBAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T18:04:39.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Memory.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Memory.cs",
+              "RelativeDocumentMoniker": "Models\\Memory.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Models\\Memory.cs",
+              "RelativeToolTip": "Models\\Memory.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA9wCIAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T17:42:08.538Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PartsEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\PartsEndpoints.cs",
+              "RelativeDocumentMoniker": "Endpoints\\PartsEndpoints.cs",
+              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\PartsEndpoints.cs",
+              "RelativeToolTip": "Endpoints\\PartsEndpoints.cs",
+              "ViewState": "AgIAALwAAAAAAAAAAAAqwK4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T15:57:38.062Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "AccountEndpoints.cs",
               "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\AccountEndpoints.cs",
               "RelativeDocumentMoniker": "Endpoints\\AccountEndpoints.cs",
               "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\Endpoints\\AccountEndpoints.cs",
               "RelativeToolTip": "Endpoints\\AccountEndpoints.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-08T11:28:16.043Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ReceiptTextTests.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker.Tests\\ReceiptTextTests.cs",
-              "RelativeDocumentMoniker": "..\\PCPartPicker.Tests\\ReceiptTextTests.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker.Tests\\ReceiptTextTests.cs",
-              "RelativeToolTip": "..\\PCPartPicker.Tests\\ReceiptTextTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T17:47:40.123Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HttpContextExtensionsTests.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker.Tests\\HttpContextExtensionsTests.cs",
-              "RelativeDocumentMoniker": "..\\PCPartPicker.Tests\\HttpContextExtensionsTests.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker.Tests\\HttpContextExtensionsTests.cs",
-              "RelativeToolTip": "..\\PCPartPicker.Tests\\HttpContextExtensionsTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T17:46:38.21Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EmailServiceTests.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker.Tests\\EmailServiceTests.cs",
-              "RelativeDocumentMoniker": "..\\PCPartPicker.Tests\\EmailServiceTests.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker.Tests\\EmailServiceTests.cs",
-              "RelativeToolTip": "..\\PCPartPicker.Tests\\EmailServiceTests.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T17:46:09.734Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PCPartPicker.Tests.csproj",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker.Tests\\PCPartPicker.Tests.csproj",
-              "RelativeDocumentMoniker": "..\\PCPartPicker.Tests\\PCPartPicker.Tests.csproj",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker.Tests\\PCPartPicker.Tests.csproj",
-              "RelativeToolTip": "..\\PCPartPicker.Tests\\PCPartPicker.Tests.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-04T17:40:17.807Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "EmailTemplatesTests.cs",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker.Tests\\EmailTemplatesTests.cs",
-              "RelativeDocumentMoniker": "..\\PCPartPicker.Tests\\EmailTemplatesTests.cs",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker.Tests\\EmailTemplatesTests.cs",
-              "RelativeToolTip": "..\\PCPartPicker.Tests\\EmailTemplatesTests.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAQwBAAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-04T17:45:33.138Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "PCPartPicker.csproj",
-              "DocumentMoniker": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
-              "RelativeDocumentMoniker": "PCPartPicker.csproj",
-              "ToolTip": "C:\\Users\\csesz\\Desktop\\MSC_2\\\u00F6nlab2_project\\msc-onlab2\\API\\PCPartPicker\\PCPartPicker.csproj",
-              "RelativeToolTip": "PCPartPicker.csproj",
-              "ViewState": "AgIAABgAAAAAAAAAAAAgwDIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-04T17:39:50.673Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 19,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
@@ -189,7 +371,8 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "ViewState": "AgIAAEYHAAAAAAAAAAAgwGAHAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2025-11-04T17:34:59.203Z"
+              "WhenOpened": "2025-11-04T17:34:59.203Z",
+              "EditorCaption": ""
             }
           ]
         }

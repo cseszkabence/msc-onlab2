@@ -35,6 +35,8 @@ import { ToastModule } from 'primeng/toast';
 import { PARTTYPE_TO_SLOT, SLOT_LABEL } from '../product-details/product-details.component';
 import { BuildService } from '../shared/services/builder/builder.service';
 import { Configuration } from '../../model/Configuration';
+import { PaginatorModule } from 'primeng/paginator';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-products',
@@ -52,7 +54,7 @@ import { Configuration } from '../../model/Configuration';
     Accordion,
     NgFor,
     AccordionPanel,
-    Ripple, AccordionHeader, AccordionContent, Checkbox, FormsModule, NgIf, Card, PrimeTemplate, Button, AsyncPipe, CurrencyPipe]
+    Ripple, AccordionHeader, AccordionContent, Checkbox, FormsModule, NgIf, Card, PrimeTemplate, Button, AsyncPipe, CurrencyPipe, PaginatorModule, ProgressSpinnerModule]
 })
 export class ProductsComponent implements OnInit {
 
@@ -76,7 +78,7 @@ export class ProductsComponent implements OnInit {
   enabledFilters = 0;
   componentDetails!: any;
   partType: string | null = null;
-  loading: boolean = false;
+  loading = false;
   errorMessage: string = '';
   constructor(
     private productService: ProductServiceService,

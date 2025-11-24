@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Google.GenAI;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Mscc.GenerativeAI;
@@ -14,6 +15,8 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
 var builder = WebApplication.CreateBuilder(args);
+var stripeKey = builder.Configuration["StripeConfig:SecretApiKey"];
+var geminiApiKey = builder.Configuration["Gemini:GEMINI_API_KEY"];
 
 builder.Services.AddControllers();
 
@@ -33,6 +36,7 @@ builder.Services
       options.DefaultSignInScheme = IdentityConstants.ApplicationScheme;
       options.DefaultSignOutScheme = IdentityConstants.ApplicationScheme;
   })
+
   .AddCookie(options =>
   {
       options.Cookie.Name = "PCPP.Auth";
@@ -94,10 +98,10 @@ builder.Services.AddCors(opts =>
   )
 );
 
-builder.Services.AddSingleton<GenerativeModel>(_ =>
+builder.Services.AddSingleton(sp =>
 {
-    var googleAI = new GoogleAI(apiKey: "AIzaSyAmYeUBdwqJXHR0sv_8idPMJ8E9cgJsMWU");
-    return googleAI.GenerativeModel(model: Model.Gemini25Flash);
+    var client = new Client(apiKey: geminiApiKey);
+    return client;
 });
 
 var app = builder.Build();
@@ -111,9 +115,9 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 app.UseCors("AllowAngular");
 app.UseSession();
+
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapOrdersEndpoints();
 app.MapCompatEndpoints();
 app.MapConfigurationsEndpoints();
@@ -125,7 +129,7 @@ app.MapAuthEndpoints();
 app.MapCartEndpoints();
 app.MapAccountEndpoints();
 
-StripeConfiguration.ApiKey = "sk_test_51Q2EtTB2B1CUn6npLoD8gQBOnS2y08mvD9hLyy449A6KcXh0xlFuOUQ7QOtPvzH47KqSGtsRfWHc4YORhoWHTV5T00PcQYlgDd";
+StripeConfiguration.ApiKey = stripeKey;
 
 app.MapGet("/api/me", [Authorize] (HttpContext ctx) =>
 {
